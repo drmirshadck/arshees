@@ -7,240 +7,318 @@
 <meta name="description" content="Premium Malabari food hampers, gift boxes and baby baskets, fully customised and delivered across Dubai, Sharjah, Ajman, RAK and UAQ. WhatsApp +971 56 564 5048.">
 <meta property="og:title" content="Arshees Kitchen | Food &amp; Gift Hampers">
 <meta property="og:description" content="Customised Malabari food hampers and gift hampers delivered across the UAE.">
-<meta property="og:image" content="../images/p03.jpg">
+<meta property="og:image" content="../images/p17.jpg">
+<meta name="theme-color" content="#FBF6EF">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='40' fill='%236B1E2E'/%3E%3Ccircle cx='40' cy='40' r='33' fill='none' stroke='%23F6EEE3' stroke-width='1.5' stroke-dasharray='3 4'/%3E%3Ctext x='37' y='57' text-anchor='middle' font-family='Rubik,Arial,sans-serif' font-weight='600' font-size='46' fill='%23F6EEE3'%3Ea%3C/text%3E%3Ccircle cx='57' cy='52' r='5.5' fill='%23E2A93B'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;family=Noto+Sans+Malayalam:wght@500;700&amp;display=swap" rel="stylesheet">
 <style>
-:root{--wine:#6B1E2E;--wine-d:#4A1220;--cream:#F6EEE3;--sand:#EFE2D2;--ink:#2B1A1A;--muted:#5E4A4A;--green:#1F8F55;--gold:#E8B84A}
+:root{--bg:#FBF6EF;--panel:#F4EADF;--ink:#2A1C1E;--muted:#6A5A5D;--wine:#6B1E2E;--wine-d:#3E0F19;--gold:#E2A93B;--cream:#F6EEE3;--mint:#E3EEE7;--butter:#FCEFD2;--blush:#F7E1DC;--line:#EADFD2;--green:#25D366}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:#fff;color:var(--ink);font-family:Rubik,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-a{color:var(--wine)}a:hover{color:var(--wine-d)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Rubik,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
 img{display:block;max-width:100%}
-.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
-.serif{font-family:Rubik,system-ui,sans-serif}
 .ml{font-family:'Noto Sans Malayalam',sans-serif}
+.wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+.seal text{font-family:Rubik,system-ui,sans-serif}
 /* announcement */
-.ann{background:var(--wine);color:var(--cream);text-align:center;font-size:13px;font-weight:500;padding:9px 16px;letter-spacing:.02em}
+.ann{background:var(--wine-d);color:#F3E2DA;text-align:center;font-size:13px;letter-spacing:.04em;padding:9px 16px}
+.ann b{color:var(--gold);font-weight:600}
 /* header */
-.hdr{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #EEE3D8}
-.hdr-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:14px 24px 6px;max-width:1240px;margin:0 auto}
-.hdr-left{display:flex;gap:14px;align-items:center}
-.hdr-right{display:flex;justify-content:flex-end;gap:10px;align-items:center}
-.brand{text-decoration:none;font-family:Rubik,system-ui,sans-serif;font-style:italic;font-weight:600;font-size:30px;color:var(--wine);letter-spacing:.01em}
-.icon-btn{width:40px;height:40px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:var(--wine);text-decoration:none}
-.icon-btn:hover{background:var(--cream)}
-.hdr-cta{background:var(--green);color:#fff!important;text-decoration:none;padding:9px 16px;border-radius:999px;font-weight:600;font-size:13px;display:inline-flex;gap:6px;align-items:center}
-.nav{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 28px;padding:6px 16px 12px;font-size:14px}
-.nav a{text-decoration:none;color:var(--ink)}
+.hdr{position:sticky;top:0;z-index:40;background:rgba(251,246,239,.9);backdrop-filter:saturate(1.3) blur(10px);-webkit-backdrop-filter:saturate(1.3) blur(10px);border-bottom:1px solid var(--line)}
+.hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:18px;height:74px}
+.kbrand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.kbrand .seal{width:40px;height:40px}
+.kbrand span{display:flex;flex-direction:column;line-height:1.05}
+.kbrand b{font-size:22px;font-weight:600;color:var(--wine);letter-spacing:-.01em}
+.kbrand small{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.nav{display:flex;align-items:center;gap:26px;font-size:15px;font-weight:500}
+.nav a{text-decoration:none}
 .nav a:hover{color:var(--wine)}
-/* hero */
-.hero{position:relative;min-height:560px;display:flex;align-items:center;overflow:hidden;background:var(--wine-d)}
-.hero-imgs{position:absolute;inset:0;display:grid;grid-template-columns:1.25fr 1fr 1fr}
-.hero-imgs img{width:100%;height:100%;object-fit:cover}
-.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(43,15,20,.82) 0%,rgba(43,15,20,.55) 45%,rgba(43,15,20,.05) 80%)}
-.hero-c{position:relative;z-index:1;max-width:1240px;width:100%;margin:0 auto;padding:64px 24px;color:#fff}
-.hero-c .inner{max-width:560px;display:flex;flex-direction:column;gap:18px}
-.hero h1{margin:0;font-family:Rubik,system-ui,sans-serif;font-weight:600;font-size:54px;line-height:1.08}
-.hero h1 em{color:var(--gold)}
-.hero .ml{font-weight:700;font-size:20px;line-height:1.6;color:#F8E6D2}
-.hero p{margin:0;font-size:17px;line-height:1.6;color:#F3E7DD}
-.btns{display:flex;flex-wrap:wrap;gap:12px}
-.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;padding:14px 26px;font-weight:600;font-size:15px;border-radius:4px}
-.btn-wine{background:var(--wine);color:#fff!important}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;text-decoration:none;border-radius:999px;font-weight:600;font-size:15px;padding:14px 26px;transition:transform .25s,background .25s,box-shadow .25s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn-wine{background:var(--wine);color:#fff!important;box-shadow:0 14px 28px -14px rgba(107,30,46,.7)}
 .btn-wine:hover{background:var(--wine-d)}
-.btn-green{background:var(--green);color:#fff!important}
-.btn-ghost{border:1.5px solid #fff;color:#fff!important}
-.btn-outline{border:1.5px solid var(--wine);color:var(--wine)!important}
-.stats{display:flex;gap:32px;flex-wrap:wrap;margin-top:6px}
-.stats b{display:block;font-family:Rubik,system-ui,sans-serif;font-size:28px;color:var(--gold)}
-.stats span{font-size:13px;color:#F3E7DD}
-/* section heads */
-.sec{padding:72px 0}
-.sec-h{text-align:center;max-width:720px;margin:0 auto 36px;display:flex;flex-direction:column;gap:10px;align-items:center}
-.eyebrow{font-size:12px;letter-spacing:.2em;font-weight:600;color:var(--wine);text-transform:uppercase}
-.sec-h h2,.split h2{margin:0;font-family:Rubik,system-ui,sans-serif;font-weight:500;font-size:38px;line-height:1.18;color:var(--wine)}
-.sec-h p{margin:0;font-size:16px;line-height:1.6;color:var(--muted)}
-/* category tiles */
-.cats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
-.cat{text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:12px;text-align:center}
-.cat-img{aspect-ratio:1/1;overflow:hidden;background:var(--sand)}
-.cat-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.cat:hover .cat-img img{transform:scale(1.04)}
-.cat h3{margin:0;font-family:Rubik,system-ui,sans-serif;font-size:21px;font-weight:500;color:var(--wine)}
-.cat p{margin:0;font-size:14px;line-height:1.55;color:var(--muted);padding:0 6px}
-/* tall tiles */
-.talls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
-.tall{position:relative;aspect-ratio:3/4;overflow:hidden;color:#fff;text-decoration:none}
-.tall img{width:100%;height:100%;object-fit:cover}
-.tall:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(30,10,14,.7) 0%,rgba(30,10,14,0) 50%)}
-.tall .t{position:absolute;left:24px;right:24px;bottom:22px;z-index:1}
-.tall .t b{display:block;font-family:Rubik,system-ui,sans-serif;font-size:26px;font-weight:500}
-.tall .t span{font-size:14px;color:#F3E7DD}
-/* split */
-.split{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;background:var(--cream)}
-.split-txt{display:flex;flex-direction:column;justify-content:center;gap:18px;padding:64px max(24px,6vw);text-align:center;align-items:center}
-.split-txt p{margin:0;font-size:16px;line-height:1.65;color:var(--muted);max-width:520px}
-.split-img{min-height:520px;display:grid;grid-template-columns:1fr 1fr;gap:4px}
-.split-img img{width:100%;height:100%;object-fit:cover}
-.menu-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;width:100%;max-width:560px;text-align:left}
-.menu-item{background:#fff;padding:14px 16px;border-top:3px solid var(--wine)}
-.menu-item b{display:block;font-size:11px;letter-spacing:.16em;color:var(--wine);margin-bottom:4px}
-.menu-item span{font-size:14px;line-height:1.55}
-/* carousels */
+.btn-line{border:1.5px solid rgba(42,28,30,.75);color:var(--ink)!important}
+.btn-line:hover{background:#fff}
+.btn-gold{background:var(--gold);color:var(--wine-d)!important}
+.btn-ghost{border:1.5px solid rgba(246,238,227,.7);color:#F6EEE3!important}
+.nav .btn{padding:11px 20px;font-size:14px}
+.menu-toggle{display:none}
+/* mobile menu */
+.mnav{display:none}
+@media (max-width:900px){
+ .nav{display:none}
+ .mnav{display:block;position:relative}
+ .mnav summary{list-style:none;cursor:pointer;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid var(--line)}
+ .mnav summary::-webkit-details-marker{display:none}
+ .mnav .panel{position:absolute;right:0;top:54px;width:230px;background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 24px 50px -20px rgba(62,15,25,.35);padding:10px;display:flex;flex-direction:column}
+ .mnav .panel a{padding:12px 14px;border-radius:12px;text-decoration:none;font-weight:500}
+ .mnav .panel a:hover{background:var(--panel)}
+ .mnav .panel .btn{margin-top:6px}
+}
+/* sections */
+.sec{padding:96px 0}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--wine);letter-spacing:.02em}
+.eyebrow:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold)}
+h2{margin:14px 0 0;font-weight:600;font-size:46px;line-height:1.08;letter-spacing:-.025em}
+h2 em{font-style:italic;font-weight:500;color:var(--wine)}
+.lead{margin:16px 0 0;font-size:18px;line-height:1.7;color:var(--muted);max-width:620px}
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+.center{text-align:center}
+.center .lead{margin-left:auto;margin-right:auto}
+/* hero */
+.hero{padding:64px 0 96px}
+.hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);color:var(--wine);font-size:13.5px;font-weight:600;padding:7px 14px;border-radius:999px}
+.pill:before{content:"";width:7px;height:7px;border-radius:50%;background:#2F8F5B;animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+.hero h1{margin:22px 0 0;font-weight:600;font-size:66px;line-height:1.02;letter-spacing:-.035em}
+.hero h1 em{font-style:italic;font-weight:500;color:var(--wine);position:relative;white-space:nowrap}
+.hero h1 em:after{content:"";position:absolute;left:2%;right:2%;bottom:-8px;height:12px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12'%3E%3Cpath d='M2 8 C 50 2, 100 2, 198 7' stroke='%23E2A93B' stroke-width='3.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center/100% 100%}
+.hero .ml{margin:22px 0 0;font-size:19px;font-weight:700;line-height:1.6;color:var(--wine)}
+.hero .lead{font-size:18px}
+.hero .btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.facts{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.facts span{background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px 16px;font-size:13.5px;color:var(--muted)}
+.facts b{display:block;font-size:20px;color:var(--wine);font-weight:600}
+.art{position:relative;height:600px}
+.art .main{position:absolute;right:40px;top:0;width:76%;height:560px;border-radius:260px 260px 32px 32px;overflow:hidden;box-shadow:0 40px 80px -40px rgba(62,15,25,.55)}
+.art .main img{width:100%;height:100%;object-fit:cover}
+.art .sm{position:absolute;border-radius:24px;overflow:hidden;border:6px solid #fff;box-shadow:0 30px 50px -24px rgba(62,15,25,.5);animation:float 7s ease-in-out infinite}
+.art .sm img{width:100%;height:100%;object-fit:cover}
+.art .sm1{left:0;bottom:30px;width:200px;height:240px}
+.art .sm2{right:0;bottom:0;width:180px;height:180px;border-radius:50%;animation-delay:-3s}
+.art .sun{position:absolute;right:16px;top:-14px;width:84px;height:84px;border-radius:50%;background:var(--gold);z-index:-1}
+.tagcard{position:absolute;left:6%;top:56px;background:#fff;border-radius:18px;padding:12px 16px;box-shadow:0 22px 40px -20px rgba(62,15,25,.45);font-size:13.5px;line-height:1.35;animation:float 8s ease-in-out infinite;animation-delay:-1.5s}
+.tagcard b{display:block;color:var(--wine);font-size:15px}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+/* hamper showcase (bento) */
+.bento{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:260px;gap:18px;perspective:1400px}
+.tile{--rx:0deg;--ry:0deg;position:relative;border-radius:28px;overflow:hidden;text-decoration:none;color:#fff;transform:rotateX(var(--rx)) rotateY(var(--ry));transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s;box-shadow:0 26px 50px -30px rgba(62,15,25,.6);will-change:transform}
+.tile.tilting{transition:transform .08s linear}
+.tile img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.tile:hover img{transform:scale(1.07)}
+.tile:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(40,10,16,.72) 0%,rgba(40,10,16,0) 48%)}
+.tile .cap{position:absolute;left:20px;right:20px;bottom:18px;z-index:1;display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+.tile .cap b{display:block;font-size:20px;font-weight:600;letter-spacing:-.01em}
+.tile .cap small{font-size:13px;color:#F3E2DA}
+.tile .ord{position:absolute;right:0;top:-46px;background:rgba(255,255,255,.18);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:8px 14px;font-size:13px;font-weight:600;opacity:0;transform:translateY(8px);transition:.35s}
+.tile:hover .ord,.tile:focus-visible .ord{opacity:1;transform:none}
+.tile.big{grid-column:span 2;grid-row:span 2}
+.tile.tall{grid-row:span 2}
+.tile.wide,.tile.wd{grid-column:span 2}
+/* menu */
+.menuwrap{background:var(--panel);border-radius:44px;margin:0 16px;padding:88px 0}
+.menuwrap .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.mgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:30px}
+.menu-item{background:#fff;border-radius:20px;padding:18px 20px;box-shadow:0 14px 30px -24px rgba(62,15,25,.5)}
+.menu-item b{display:block;font-size:11.5px;letter-spacing:.16em;color:var(--wine);margin-bottom:6px}
+.menu-item span{font-size:15px;line-height:1.6}
+.mphotos{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.mphotos .p{border-radius:28px;overflow:hidden;box-shadow:0 30px 60px -36px rgba(62,15,25,.6)}
+.mphotos .p img{width:100%;height:100%;object-fit:cover}
+.mphotos .p1{height:440px}
+.mphotos .p2{height:440px;margin-top:60px}
+/* occasions */
+.occ{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;perspective:1400px}
+.occ .tile{aspect-ratio:3/4;color:#fff}
+.occ .tile .cap{flex-direction:column;align-items:flex-start}
+.occ .tile .cap p{margin:4px 0 0;font-size:13.5px;line-height:1.5;color:#F3E2DA}
+/* reels carousel */
 .car{position:relative}
-.car-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 2px 10px}
+.car-track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:6px 4px 18px}
 .car-track::-webkit-scrollbar{display:none}
 .car-track>*{scroll-snap-align:start;flex:0 0 auto}
-.car-btn{position:absolute;top:40%;width:44px;height:44px;border-radius:50%;border:none;background:#fff;color:var(--wine);box-shadow:0 2px 10px rgba(0,0,0,.15);cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;z-index:2}
-.car-btn.prev{left:-14px}.car-btn.next{right:-14px}
-.smile{width:250px;aspect-ratio:3/4;overflow:hidden}
+.car-btn{position:absolute;top:38%;width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--wine);box-shadow:0 14px 30px -16px rgba(62,15,25,.5);cursor:pointer;font-size:22px;display:flex;align-items:center;justify-content:center;z-index:2}
+.car-btn.prev{left:-18px}.car-btn.next{right:-18px}
+.rc{background:#fff;border-radius:26px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 50px -34px rgba(62,15,25,.55);transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
+.rc:hover{transform:translateY(-6px);box-shadow:0 34px 60px -34px rgba(62,15,25,.65)}
+.car-track .rc{width:280px}
+.rc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px}
+.rc-thumb{position:relative;display:block;aspect-ratio:4/5;background:var(--panel);overflow:hidden}
+.rc-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.rc:hover .rc-thumb img{transform:scale(1.05)}
+.rc-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.25);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.5);color:#fff;display:flex;align-items:center;justify-content:center;padding-left:3px}
+.rc-tag{position:absolute;left:14px;top:14px;background:rgba(255,255,255,.92);color:var(--wine);font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px}
+.rc-body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.rc-body h3{margin:0;font-size:19px;font-weight:600;line-height:1.25;letter-spacing:-.01em}
+.rc-k{margin:0;font-size:11px;letter-spacing:.16em;font-weight:600;color:var(--muted);text-transform:uppercase}
+.rc-body ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px;flex:1;align-content:flex-start}
+.rc-body li{background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-size:12.5px;color:var(--muted)}
+.rc-btns{display:flex;gap:6px;align-items:center;margin-top:6px}
+.rc-wa{flex:1;white-space:nowrap;font-size:13.5px!important;padding:11px 10px!important;text-align:center;background:var(--wine);color:#fff!important;text-decoration:none;padding:11px 12px;border-radius:999px;font-weight:600;font-size:14px}
+.rc-wa:hover{background:var(--wine-d)}
+.rc-ig{text-decoration:none;color:var(--wine);font-weight:600;font-size:13.5px;padding:10px 4px;white-space:nowrap}
+.rc-ig:hover{text-decoration:underline}
+/* smiles (compact) */
+.smiles{display:flex;gap:14px;overflow-x:auto;scrollbar-width:none;padding:4px}
+.smiles::-webkit-scrollbar{display:none}
+.smile{flex:0 0 auto;width:170px;height:210px;border-radius:22px;overflow:hidden;box-shadow:0 18px 34px -24px rgba(62,15,25,.55)}
 .smile img{width:100%;height:100%;object-fit:cover}
-/* reels */
-.rc{background:#fff;overflow:hidden;display:flex;flex-direction:column;border:1px solid #EEE3D8}
-.car-track .rc{width:270px}
-.rc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px}
-.rc-thumb{position:relative;display:block;aspect-ratio:9/14;background:var(--sand)}
-.rc-thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.rc-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;background:rgba(43,26,26,.6);color:#fff;display:flex;align-items:center;justify-content:center;padding-left:3px}
-.rc-tag{position:absolute;left:12px;top:12px;background:var(--wine);color:var(--cream);font-size:12px;font-weight:600;padding:5px 11px;border-radius:2px}
-.rc-body{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
-.rc-body h3{margin:0;font-family:Rubik,system-ui,sans-serif;font-size:20px;font-weight:500;line-height:1.2;color:var(--wine)}
-.rc-k{margin:4px 0 0;font-size:11px;letter-spacing:.14em;font-weight:700;color:var(--ink);text-transform:uppercase}
-.rc-body ul{margin:0;padding-left:18px;font-size:14px;line-height:1.6;color:var(--muted);flex:1}
-.rc-btns{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
-.rc-wa{flex:1 1 auto;text-align:center;background:var(--green);color:#fff!important;text-decoration:none;padding:11px 12px;border-radius:4px;font-weight:600;font-size:14px}
-.rc-ig{text-align:center;border:1.5px solid var(--wine);color:var(--wine);text-decoration:none;padding:10px 12px;border-radius:4px;font-weight:600;font-size:14px}
-.center{display:flex;justify-content:center;margin-top:28px}
-/* who row */
-.who{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 0;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
-.who a{text-decoration:none;color:var(--wine);padding:0 16px;border-right:1px solid #D9C6B6}
-.who a:last-child{border-right:none}
-/* promise */
-.promise{background:var(--cream);text-align:center}
-.promise .cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;margin-top:8px}
-.promise .ico{width:46px;height:46px;margin:0 auto 12px;color:var(--wine)}
-.promise h3{margin:0 0 8px;font-size:15px;font-weight:600}
-.promise p{margin:0;font-size:14px;line-height:1.65;color:var(--muted)}
+.smilesrow{display:grid;grid-template-columns:.8fr 2.2fr;gap:40px;align-items:center}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.step{border-radius:28px;padding:30px;display:flex;flex-direction:column;gap:12px;min-height:240px}
+.step:nth-child(1){background:var(--mint)}.step:nth-child(2){background:var(--butter)}.step:nth-child(3){background:var(--blush)}
+.step .n{width:44px;height:44px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;color:var(--wine)}
+.step h3{margin:8px 0 0;font-size:23px;font-weight:600}
+.step p{margin:0;font-size:15.5px;line-height:1.65;color:var(--muted)}
+/* contact */
+.contact{position:relative;overflow:hidden;background:var(--wine);color:#F6EEE3;border-radius:44px;margin:0 16px;padding:84px 24px;text-align:center}
+.contact:before{content:"";position:absolute;width:320px;height:320px;border-radius:50%;background:rgba(226,169,59,.18);left:-90px;top:-120px}
+.contact:after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:rgba(246,238,227,.08);right:-70px;bottom:-110px}
+.contact>*{position:relative;z-index:1}
+.contact h2{color:#fff;margin:14px auto 0;max-width:760px}
+.contact h2 em{color:var(--gold)}
+.contact .phone{display:inline-block;margin-top:28px;background:var(--gold);color:var(--wine-d);text-decoration:none;font-weight:700;font-size:28px;padding:16px 34px;border-radius:999px;box-shadow:0 18px 30px -16px rgba(0,0,0,.5)}
+.contact .btns{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:20px}
+.contact .ml{margin-top:22px;font-size:17px;font-weight:500;color:#F3E2DA}
+.contact .eyebrow{color:#F3E2DA}
 /* footer */
-.ftr{background:var(--wine);color:var(--cream)}
-.ftr-top{text-align:center;padding:56px 24px 36px;border-bottom:1px solid rgba(246,238,227,.18);display:flex;flex-direction:column;align-items:center;gap:14px}
-.ftr-brand{font-family:Rubik,system-ui,sans-serif;font-style:italic;font-size:44px;font-weight:600}
-.ftr-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;padding:40px 24px;max-width:1100px;margin:0 auto}
-.ftr h4{margin:0 0 14px;font-size:12px;letter-spacing:.18em;font-weight:700}
-.ftr a{color:var(--cream);text-decoration:none}
-.ftr a:hover{text-decoration:underline;color:#fff}
-.ftr ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;font-size:14px;color:#EAD2D5}
-.ftr-bottom{border-top:1px solid rgba(246,238,227,.18);text-align:center;padding:18px 24px;font-size:13px;color:#EAD2D5}
-.phone{background:var(--gold);color:var(--ink)!important;text-decoration:none!important;padding:14px 30px;border-radius:4px;font-weight:700;font-size:24px}
-/* floating WA */
-.fab{position:fixed;right:20px;bottom:20px;width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff!important;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:60}
+.ftr{padding:64px 0 34px}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;padding-bottom:36px;border-bottom:1px solid var(--line)}
+.ftr h5{margin:0 0 14px;font-size:14px;font-weight:600}
+.ftr ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;font-size:15px;color:var(--muted)}
+.ftr a{text-decoration:none}
+.ftr a:hover{color:var(--wine);text-decoration:underline}
+.ftag{margin:14px 0 0;font-size:16px;font-style:italic;color:var(--muted);max-width:260px;line-height:1.5}
+.fbot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-top:22px;font-size:13.5px;color:var(--muted)}
+.fbot a{color:var(--wine);font-weight:600}
+/* floating WhatsApp */
+.fab{position:fixed;right:22px;bottom:22px;width:60px;height:60px;border-radius:50%;background:var(--green);color:#fff!important;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 30px -10px rgba(0,0,0,.45);z-index:60;transition:transform .25s}
+.fab:hover{transform:scale(1.08)}
 .fab svg{width:30px;height:30px}
-/* reels page head */
-.page-h{padding:48px 0 8px}
-@media (max-width:900px){
- .cats{grid-template-columns:repeat(2,minmax(0,1fr))}
- .talls{grid-template-columns:1fr}
- .tall{aspect-ratio:4/3}
- .split{grid-template-columns:1fr}
- .split-img{min-height:360px}
- .promise .cols{grid-template-columns:1fr;gap:28px}
- .ftr-cols{grid-template-columns:1fr 1fr}
- .hero-imgs{grid-template-columns:1fr}
- .hero-imgs img:not(:first-child){display:none}
- .hero:after{background:linear-gradient(0deg,rgba(43,15,20,.88) 0%,rgba(43,15,20,.5) 60%,rgba(43,15,20,.25) 100%)}
+/* reveal on scroll */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+/* reels page */
+.phead{padding:56px 0 34px}
+.back{display:inline-flex;gap:8px;font-size:14px;font-weight:600;color:var(--wine);text-decoration:none;margin-bottom:18px}
+@media (max-width:1060px){
+ .hero .wrap,.menuwrap .wrap,.smilesrow{grid-template-columns:1fr}
+ .art{height:520px;max-width:560px;width:100%;margin:0 auto}
+ .bento{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:220px}
+ .tile.wd{grid-column:span 1}
+ .occ{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .steps{grid-template-columns:1fr}
+ .step{min-height:0}
+ .fgrid{grid-template-columns:1fr 1fr}
 }
 @media (max-width:600px){
- .hdr-top{grid-template-columns:auto 1fr auto;padding:10px 12px 4px}
- .brand{font-size:24px;text-align:center}
- .hdr-cta span{display:none}
- .hdr-cta{padding:9px}
- .nav{gap:4px 16px;font-size:13px;padding-bottom:10px}
- .hero{min-height:620px;align-items:flex-end}
- .hero h1{font-size:38px}
- .sec{padding:52px 0}
- .sec-h h2,.split h2{font-size:30px}
- .menu-grid{grid-template-columns:1fr}
+ .wrap{padding:0 18px}
+ .ann{font-size:12px}
+ .hdr .wrap{height:64px}
+ .kbrand .seal{width:34px;height:34px}
+ .kbrand b{font-size:19px}
+ .hero{padding:34px 0 64px}
+ .hero h1{font-size:44px}
+ .hero .ml{font-size:17px}
+ .art{height:440px}
+ .art .main{right:0;width:84%;height:400px;left:8%}
+ .art .sm1{width:130px;height:160px;bottom:10px}
+ .art .sm2{width:120px;height:120px}
+ .tagcard{top:24px;left:0}
+ .sec{padding:64px 0}
+ h2{font-size:34px}
+ .bento{grid-template-columns:1fr 1fr;grid-auto-rows:170px;gap:12px}
+ .tile{border-radius:20px}
+ .tile.big{grid-column:span 2;grid-row:span 2}
+ .tile.wide,.tile.wd{grid-column:span 2}
+ .tile .cap{left:14px;right:14px;bottom:12px}
+ .tile .cap b{font-size:16px}
+ .tile .cap small{display:none}
+ .tile .ord{display:none}
+ .menuwrap,.contact{border-radius:30px;margin:0 10px;padding:56px 0}
+ .contact{padding:56px 18px}
+ .mgrid{grid-template-columns:1fr}
+ .mphotos .p1,.mphotos .p2{height:260px}
+ .mphotos .p2{margin-top:30px}
+ .occ{gap:12px}
  .car-btn{display:none}
- .car-track .rc{width:78vw}
- .smile{width:62vw}
- .rc-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
- .rc-grid .rc-body{padding:12px;gap:6px}.rc-grid .rc-body h3{font-size:16px}.rc-grid .rc-body ul{font-size:12.5px;padding-left:16px}
- .rc-grid .rc-wa,.rc-grid .rc-ig{font-size:12.5px;padding:9px 8px}
- .ftr-cols{grid-template-columns:1fr}
- .ftr-brand{font-size:34px}
- .who a{padding:0 10px}
+ .car-track .rc{width:76vw}
+ .rc-grid{grid-template-columns:1fr 1fr;gap:12px}
+ .rc-grid .rc-body{padding:12px;gap:8px}
+ .rc-grid .rc-body h3{font-size:15px}
+ .rc-grid .rc-body li{font-size:11px;padding:3px 8px}
+ .rc-grid .rc-btns{flex-direction:column;align-items:stretch;gap:2px}
+ .rc-grid .rc-wa{font-size:13px;padding:10px 8px}
+ .rc-grid .rc-ig{text-align:center;font-size:12.5px;padding:6px}
+ .smile{width:140px;height:175px}
+ .contact .phone{font-size:22px;padding:14px 26px}
+ .fgrid{grid-template-columns:1fr}
 }
-.parent-link{font-size:12px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;color:var(--muted);font-weight:600}
-.parent-link:hover{color:var(--wine)}
-@media (max-width:600px){.parent-link{display:none}}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
 </style>
 </head>
-<body><div class="ann">Delivering across Dubai · Sharjah · Ajman · RAK · UAQ &nbsp;|&nbsp; Please order at least 3 days in advance</div>
-<header class="hdr">
-<div class="hdr-top">
-<div class="hdr-left"><a href="../" class="parent-link" aria-label="Arshees home">Arshees</a><a class="icon-btn" href="https://www.instagram.com/arsheeskitchen/" target="_blank" rel="noopener" aria-label="Instagram @arsheeskitchen"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a></div>
-<a class="brand" href="index.html">Arshees Kitchen</a>
-<div class="hdr-right"><a class="hdr-cta" href="https://wa.me/971565645048?text=Hi%21+I+found+Arshees+Kitchen+and+would+like+to+order" target="_blank" rel="noopener" aria-label="Order on WhatsApp"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4a.5.5 0 0 0 0-.4c-.1-.1-.6-1.4-.8-1.9s-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg><span>Order on WhatsApp</span></a></div>
-</div>
-<nav class="nav" aria-label="Main">
-<a href="#occasions">Occasions</a>
-<a href="#menu">Menu</a>
-<a href="reels.html">Reels</a>
-<a href="#gallery">Gallery</a>
-<a href="#order">How to order</a>
-<a href="#contact">Contact</a>
-</nav>
-</header>
+<body><div class="ann">Delivering across <b>Dubai · Sharjah · Ajman · RAK · UAQ</b> · Please order at least 3 days in advance</div>
+<header class="hdr"><div class="wrap">
+<a class="kbrand" href="index.html" aria-label="Arshees Kitchen home"><svg class="seal" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="40" fill="#6B1E2E"/><circle cx="40" cy="40" r="33" fill="none" stroke="#F6EEE3" stroke-width="1.5" stroke-dasharray="3 4"/><text x="37" y="57" text-anchor="middle" font-weight="600" font-size="46" fill="#F6EEE3">a</text><circle cx="57" cy="52" r="5.5" fill="#E2A93B"/></svg><span><b>Arshees Kitchen</b><small>by arshees</small></span></a>
+<nav class="nav" aria-label="Main"><a href="#hampers">Hampers</a><a href="#menu">Menu</a><a href="reels.html">Reels</a><a href="#order">How to order</a><a href="#contact">Contact</a><a class="btn btn-wine" href="https://wa.me/971565645048?text=Hi%21+I+found+Arshees+Kitchen+and+would+like+to+order" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4a.5.5 0 0 0 0-.4c-.1-.1-.6-1.4-.8-1.9s-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>Order a hamper</a></nav>
+<details class="mnav"><summary aria-label="Open menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6B1E2E" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+<div class="panel"><a href="#hampers">Hampers</a><a href="#menu">Menu</a><a href="reels.html">Reels</a><a href="#order">How to order</a><a href="#contact">Contact</a><a class="btn btn-wine" href="https://wa.me/971565645048?text=Hi%21+I+found+Arshees+Kitchen+and+would+like+to+order" target="_blank" rel="noopener">Order a hamper</a></div></details>
+</div></header>
 <main>
-<section class="hero">
-<div class="hero-imgs"><img src="../images/p03.jpg" alt="Birthday hamper box with red roses and a Happy Birthday topper"><img src="../images/p17.jpg" alt="Gold gift box with dry fruits, nuts and blue roses"><img src="../images/p22.jpg" alt="Just for you hamper with butterfly decorations"></div>
-<div class="hero-c"><div class="inner">
-<span class="eyebrow" style="color:var(--gold)">Arshees Kitchen</span>
+<section class="hero"><div class="wrap">
+<div class="rv">
+<span class="pill">Arshees Kitchen · Now taking orders</span>
 <h1>Make every special day <em>unforgettable</em></h1>
-<div class="ml">ഏത് വിശേഷ ദിവസവും കൂടുതൽ മനോഹരമാക്കാൻ ഞങ്ങൾ കൂടെയുണ്ട്</div>
-<p>Premium food hampers, gift boxes and baby baskets: freshly prepared Malabari favourites, fully customised and beautifully packed with love.</p>
-<div class="btns"><a class="btn btn-green" href="https://wa.me/971565645048?text=Hi%21+I+found+Arshees+Kitchen+and+would+like+to+order" target="_blank" rel="noopener">WhatsApp +971 56 564 5048</a><a class="btn btn-ghost" href="https://www.instagram.com/arsheeskitchen/" target="_blank" rel="noopener">DM @arsheeskitchen</a></div>
-<div class="stats"><div><b>10.8K</b><span>Instagram followers</span></div><div><b>5 emirates</b><span>Dubai · Sharjah · Ajman · RAK · UAQ</span></div></div>
-</div></div>
-</section>
-
-<section id="occasions" class="sec"><div class="wrap">
-<div class="sec-h"><span class="eyebrow">For every celebration</span><h2>More than a gift, a beautiful memory wrapped with love</h2><p>Birthdays, anniversaries, mom-to-be celebrations, thank-you gifts, apologies, or simply surprising someone special.</p></div>
-<div class="cats">
-<a class="cat" href="https://wa.me/971565645048?text=Hi%21+I+found+Arshees+Kitchen+and+would+like+to+order" target="_blank" rel="noopener"><div class="cat-img"><img loading="lazy" src="../images/p00.jpg" alt="Birthday hamper with mini cake and green ribbon"></div><h3>Birthdays</h3><p>Pathiri, beef curry and a sweet mini cake: a birthday feast sent straight to the heart.</p></a>
-<a class="cat" href="https://wa.me/971565645048?text=Hi%21+I+found+Arshees+Kitchen+and+would+like+to+order" target="_blank" rel="noopener"><div class="cat-img"><img loading="lazy" src="../images/p20.jpg" alt="Anniversary basket with red roses"></div><h3>Anniversaries</h3><p>Six months, one year, 1000 days: celebrate love with their favourite flavours.</p></a>
-<a class="cat" href="https://wa.me/971565645048?text=Hi%21+I+found+Arshees+Kitchen+and+would+like+to+order" target="_blank" rel="noopener"><div class="cat-img"><img loading="lazy" src="../images/p19.jpg" alt="Mom-to-be receiving a birthday hamper" style="object-position:top"></div><h3>Mom-to-be &amp; newborns</h3><p>Baby shower gifts, newborn welcome kits and baby baskets for the newest little one.</p></a>
-<a class="cat" href="https://wa.me/971565645048?text=Hi%21+I+found+Arshees+Kitchen+and+would+like+to+order" target="_blank" rel="noopener"><div class="cat-img"><img loading="lazy" src="../images/p06.jpg" alt="Just for you gift bag with red rose"></div><h3>Just because</h3><p>Say "I miss you" or "thank you" with a warm meal delivered out of nowhere.</p></a>
+<p class="ml">ഏത് വിശേഷ ദിവസവും കൂടുതൽ മനോഹരമാക്കാൻ ഞങ്ങൾ കൂടെയുണ്ട്</p>
+<p class="lead">Premium food hampers, gift boxes and baby baskets: freshly prepared Malabari favourites, fully customised and beautifully packed with love.</p>
+<div class="btns"><a class="btn btn-wine" href="https://wa.me/971565645048?text=Hi%21+I+found+Arshees+Kitchen+and+would+like+to+order" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4a.5.5 0 0 0 0-.4c-.1-.1-.6-1.4-.8-1.9s-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>Order a hamper</a><a class="btn btn-line" href="#hampers">View hampers</a></div>
+<div class="facts"><span><b>10.8K</b>Instagram followers</span><span><b>5 emirates</b>Dubai · Sharjah · Ajman · RAK · UAQ</span></div>
+</div>
+<div class="art rv d2" aria-hidden="false">
+<div class="sun" aria-hidden="true"></div>
+<div class="main"><img src="../images/p17.jpg" alt="Gold gift box with dry fruits, nuts and blue roses"></div>
+<div class="sm sm1"><img src="../images/p03.jpg" alt="Birthday hamper with red roses" style="object-position:center 65%"></div>
+<div class="sm sm2"><img src="../images/p08.jpg" alt="Tray hamper with pink rose buns"></div>
+<div class="tagcard"><b>Fully customised</b>Packed with love</div>
 </div>
 </div></section>
 
-<section class="talls" aria-label="What we make">
-<a class="tall" href="#menu"><img loading="lazy" src="../images/p08.jpg" alt="Tray hamper with pink rose buns and a birthday photo card"><div class="t"><b>Food hampers</b><span>Freshly prepared Malabari favourites</span></div></a>
-<a class="tall" href="#menu"><img loading="lazy" src="../images/p10.jpg" alt="Gift box with roses and chocolates"><div class="t"><b>Gift boxes</b><span>Fully customised</span></div></a>
-<a class="tall" href="#menu"><img loading="lazy" src="../images/p12.jpg" alt="Just for you hamper bag with roses"><div class="t"><b>Baby baskets</b><span>Beautifully packed with love</span></div></a>
-</section>
+<section id="hampers" class="sec" style="padding-top:24px"><div class="wrap">
+<div class="head rv"><div><span class="eyebrow">Our signature hampers</span><h2>Hampers made to be <em>remembered</em></h2><p class="lead">Every hamper is made to order. Pick one you love and we'll customise it for your occasion.</p></div><a class="btn btn-line" href="reels.html">See all hamper reels</a></div>
+<div class="bento">
+<a class="tile big rv" href="https://wa.me/971565645048?text=Hi%20Arshees%20Kitchen%21%20I%27d%20like%20to%20order%20a%20hamper%20like%20the%20birthday%20hamper%20on%20your%20website." target="_blank" rel="noopener"><img loading="lazy" src="../images/p03.jpg" alt="Birthday hamper box with red roses and a Happy Birthday topper" style="object-position:center 60%"><div class="cap"><span><b>Birthday hamper</b><small>Roses, treats and a Happy Birthday topper</small></span><span class="ord">Order similar</span></div></a>
+<a class="tile tall rv" href="https://wa.me/971565645048?text=Hi%20Arshees%20Kitchen%21%20I%27d%20like%20to%20order%20a%20hamper%20like%20the%20gift%20box%20on%20your%20website." target="_blank" rel="noopener"><img loading="lazy" src="../images/p17.jpg" alt="Gold gift box with dry fruits, nuts and blue roses"><div class="cap"><span><b>Gift box</b><small>Dry fruits, nuts and blue roses</small></span><span class="ord">Order similar</span></div></a>
+<a class="tile  rv" href="https://wa.me/971565645048?text=Hi%20Arshees%20Kitchen%21%20I%27d%20like%20to%20order%20a%20hamper%20like%20the%20tray%20hamper%20on%20your%20website." target="_blank" rel="noopener"><img loading="lazy" src="../images/p08.jpg" alt="Tray hamper with pink rose buns and a birthday photo card"><div class="cap"><span><b>Tray hamper</b><small>With a personal photo card</small></span><span class="ord">Order similar</span></div></a>
+<a class="tile  rv" href="https://wa.me/971565645048?text=Hi%20Arshees%20Kitchen%21%20I%27d%20like%20to%20order%20a%20hamper%20like%20the%20food%20hamper%20box%20on%20your%20website." target="_blank" rel="noopener"><img loading="lazy" src="../images/p23.jpg" alt="Food hamper box with purple ribbon" style="object-position:center 70%"><div class="cap"><span><b>Food hamper box</b><small>Freshly prepared, ribbon-tied</small></span><span class="ord">Order similar</span></div></a>
+<a class="tile  rv" href="https://wa.me/971565645048?text=Hi%20Arshees%20Kitchen%21%20I%27d%20like%20to%20order%20a%20hamper%20like%20the%20celebration%20hamper%20on%20your%20website." target="_blank" rel="noopener"><img loading="lazy" src="../images/p00.jpg" alt="Birthday hamper with mini cake and green ribbon" style="object-position:center 65%"><div class="cap"><span><b>Celebration hamper</b><small>Mini cake and satin ribbon</small></span><span class="ord">Order similar</span></div></a>
+<a class="tile  rv" href="https://wa.me/971565645048?text=Hi%20Arshees%20Kitchen%21%20I%27d%20like%20to%20order%20a%20hamper%20like%20the%20hamper%20bag%20on%20your%20website." target="_blank" rel="noopener"><img loading="lazy" src="../images/p13.jpg" alt="Hamper gift bag with ribbon" style="object-position:center 60%"><div class="cap"><span><b>Hamper bag</b><small>Homemade food, gift-wrapped</small></span><span class="ord">Order similar</span></div></a>
+<a class="tile wide rv" href="https://wa.me/971565645048?text=Hi%20Arshees%20Kitchen%21%20I%27d%20like%20to%20order%20a%20hamper%20like%20the%20anniversary%20hamper%20on%20your%20website." target="_blank" rel="noopener"><img loading="lazy" src="../images/p20.jpg" alt="Anniversary basket with red roses" style="object-position:center 45%"><div class="cap"><span><b>Anniversary hamper</b><small>Red roses and favourite flavours</small></span><span class="ord">Order similar</span></div></a>
+<a class="tile wd rv" href="https://wa.me/971565645048?text=Hi%20Arshees%20Kitchen%21%20I%27d%20like%20to%20order%20a%20hamper%20like%20the%20%22just%20for%20you%22%20bag%20on%20your%20website." target="_blank" rel="noopener"><img loading="lazy" src="../images/p06.jpg" alt="Just for you gift bag with red rose" style="object-position:center 40%"><div class="cap"><span><b>"Just for you" bag</b><small>A warm meal, beautifully packed</small></span><span class="ord">Order similar</span></div></a>
+<a class="tile wd rv" href="https://wa.me/971565645048?text=Hi%20Arshees%20Kitchen%21%20I%27d%20like%20to%20order%20a%20hamper%20like%20the%20gift%20bag%20hamper%20on%20your%20website." target="_blank" rel="noopener"><img loading="lazy" src="../images/p12.jpg" alt="Just for you hamper bag with roses" style="object-position:center 35%"><div class="cap"><span><b>Gift bag hamper</b><small>Roses and treats, ready to gift</small></span><span class="ord">Order similar</span></div></a>
+</div>
+</div></section>
 
-<section id="menu" class="split">
-<div class="split-txt">
-<span class="eyebrow">Classic Malabar favourites</span>
-<h2>Food hampers made from the heart</h2>
-<div class="ml" style="font-size:18px;font-weight:500;color:var(--wine)">ഫുഡ് ഹാംപറുകൾക്കും ഗിഫ്റ്റ് ഹാംപറുകൾക്കുമായി</div>
-<p>You choose the gift, we make it special. Pick their favourites and we pack them with cake, chocolates, flowers or a photo frame.</p>
-<div class="menu-grid">
+<section id="menu" class="menuwrap"><div class="wrap">
+<div class="rv">
+<span class="eyebrow">What goes inside</span>
+<h2>Food hampers made <em>from the heart</em></h2>
+<p class="ml" style="margin:14px 0 0;font-size:18px;font-weight:500;color:var(--wine)">ഫുഡ് ഹാംപറുകൾക്കും ഗിഫ്റ്റ് ഹാംപറുകൾക്കുമായി</p>
+<p class="lead">You choose the gift, we make it special. Pick their favourites and we pack them with cake, chocolates, flowers or a photo frame.</p>
+<div class="mgrid">
 <div class="menu-item"><b>BREADS &amp; RICE</b><span>Soft Pathiri · Nice Pathiri · Porotta · Ghee Rice · Chicken Biryani</span></div>
 <div class="menu-item"><b>CURRIES &amp; GRILLS</b><span>Beef Curry · Chicken Varattiyath · Chicken Stew · Al Faham</span></div>
 <div class="menu-item"><b>MALABAR SNACKS</b><span>Spicy Chattipathiri · Sweet Chattipathiri · Unnakkaaya · Pazham Nirachathu · Kai Pola</span></div>
 <div class="menu-item"><b>SWEETS &amp; EXTRAS</b><span>Birthday Cake · Cupcakes · Milk Pudding · Chocolates · Flowers</span></div>
 </div>
-<a class="btn btn-wine" href="https://wa.me/971565645048?text=Hi%21+I+found+Arshees+Kitchen+and+would+like+to+order" target="_blank" rel="noopener">Order on WhatsApp</a>
+<div style="margin-top:28px"><a class="btn btn-wine" href="https://wa.me/971565645048?text=Hi%21+I+found+Arshees+Kitchen+and+would+like+to+order" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4a.5.5 0 0 0 0-.4c-.1-.1-.6-1.4-.8-1.9s-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>Build your hamper</a></div>
 </div>
-<div class="split-img"><img loading="lazy" src="../images/p23.jpg" alt="Food hamper box with purple ribbon"><img loading="lazy" src="../images/p13.jpg" alt="Hamper gift bag"></div>
-</section>
+<div class="mphotos rv d2"><div class="p p1"><img loading="lazy" src="../images/p23.jpg" alt="Food hamper box with purple ribbon" style="object-position:center 70%"></div><div class="p p2"><img loading="lazy" src="../images/p13.jpg" alt="Hamper gift bag" style="object-position:center 60%"></div></div>
+</div></section>
 
-<section id="reels" class="sec"><div class="wrap">
-<div class="sec-h"><span class="eyebrow">From our Instagram reels</span><h2>Pick a hamper you saw on Instagram</h2><p>Our latest hampers from Instagram. Tap a thumbnail to watch the reel, or order the same hamper on WhatsApp.</p></div>
-<div class="car"><button class="car-btn prev" type="button" aria-label="Previous reels">&#8249;</button>
+<section id="occasions" class="sec"><div class="wrap">
+<div class="head rv"><div><span class="eyebrow">For every celebration</span><h2>More than a gift, a <em>beautiful memory</em></h2><p class="lead">Birthdays, anniversaries, mom-to-be celebrations, thank-you gifts, apologies, or simply surprising someone special.</p></div></div>
+<div class="occ"><a class="tile rv d1" href="reels.html"><img loading="lazy" src="../images/p08.jpg" alt="Birthday tray hamper"><div class="cap"><b>Birthdays</b><p>Pathiri, beef curry and a sweet mini cake.</p></div></a><a class="tile rv d2" href="reels.html"><img loading="lazy" src="../images/p20.jpg" alt="Anniversary hamper with roses"><div class="cap"><b>Anniversaries</b><p>Celebrate love with their favourite flavours.</p></div></a><a class="tile rv d3" href="reels.html"><img loading="lazy" src="../images/p22.jpg" alt="Just for you hamper with butterfly decorations" style="object-position:center 30%"><div class="cap"><b>Mom-to-be &amp; newborns</b><p>Baby shower gifts and welcome baskets.</p></div></a><a class="tile rv d4" href="reels.html"><img loading="lazy" src="../images/p06.jpg" alt="Just for you gift bag"><div class="cap"><b>Just because</b><p>Say "I miss you" with a warm meal.</p></div></a></div>
+</div></section>
+
+<section id="reels" class="sec" style="padding-top:0"><div class="wrap">
+<div class="head rv"><div><span class="eyebrow">From our Instagram reels</span><h2>Pick a hamper you saw <em>on Instagram</em></h2><p class="lead">Our latest hampers from Instagram. Tap a thumbnail to watch the reel, or order the same hamper on WhatsApp.</p></div></div>
+<div class="car rv"><button class="car-btn prev" type="button" aria-label="Previous reels">&#8249;</button>
 <div class="car-track">
 <article class="rc">
 <a class="rc-thumb" href="https://www.instagram.com/reel/DfUbydHBpDy/" target="_blank" rel="noopener" aria-label="Watch the The Ultimate Salkaram Hamper reel on Instagram"><img loading="lazy" src="../images/reels/DfUbydHBpDy.jpg" alt="The Ultimate Salkaram Hamper reel thumbnail"><span class="rc-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span><span class="rc-tag">Just because</span></a>
@@ -264,54 +342,52 @@ img{display:block;max-width:100%}
 </article>
 </div>
 <button class="car-btn next" type="button" aria-label="Next reels">&#8250;</button></div>
-<div class="center"><a class="btn btn-wine" href="reels.html">Click to see more reels</a></div>
+<div style="display:flex;justify-content:center;margin-top:26px"><a class="btn btn-wine" href="reels.html">Click to see more reels</a></div>
 </div></section>
 
-
-<section id="gallery" class="sec" style="background:var(--cream)"><div class="wrap">
-<div class="sec-h"><span class="eyebrow">We don't just deliver food, we deliver happiness</span><h2>Smiles from our happy customers</h2></div>
-<div class="car"><button class="car-btn prev" type="button" aria-label="Previous photos">&#8249;</button>
-<div class="car-track">
-<div class="smile"><img loading="lazy" src="../images/p04.jpg" alt="Customer receiving a hamper"></div>
-<div class="smile"><img loading="lazy" src="../images/p05.jpg" alt="Customer smiling with his surprise"></div>
-<div class="smile"><img loading="lazy" src="../images/p09.jpg" alt="Customer holding a hamper tray"></div>
-<div class="smile"><img loading="lazy" src="../images/p07.jpg" alt="Customer smiling at his gift"></div>
-<div class="smile"><img loading="lazy" src="../images/p21.jpg" alt="Customer holding a rose"></div>
-<div class="smile"><img loading="lazy" src="../images/p11.jpg" alt="Customer waving"></div>
-<div class="smile"><img loading="lazy" src="../images/p16.jpg" alt="Customer with a hamper bag"></div>
-<div class="smile"><img loading="lazy" src="../images/p13.jpg" alt="Hamper gift bag"></div>
-</div>
-<button class="car-btn next" type="button" aria-label="Next photos">&#8250;</button></div>
+<section id="gallery" class="sec" style="padding-top:0"><div class="wrap smilesrow">
+<div class="rv"><span class="eyebrow">Happy customers</span><h2 style="font-size:34px">We don't just deliver food, we deliver <em>happiness</em></h2></div>
+<div class="smiles rv d2"><div class="smile"><img loading="lazy" src="../images/p04.jpg" alt="Customer receiving a hamper"></div><div class="smile"><img loading="lazy" src="../images/p05.jpg" alt="Customer smiling with his surprise"></div><div class="smile"><img loading="lazy" src="../images/p11.jpg" alt="Customer waving"></div><div class="smile"><img loading="lazy" src="../images/p21.jpg" alt="Customer holding a rose"></div><div class="smile"><img loading="lazy" src="../images/p19.jpg" alt="Mom-to-be receiving a hamper"></div><div class="smile"><img loading="lazy" src="../images/p16.jpg" alt="Customer with a hamper bag"></div><div class="smile"><img loading="lazy" src="../images/p09.jpg" alt="Customer holding a hamper tray"></div><div class="smile"><img loading="lazy" src="../images/p07.jpg" alt="Customer smiling at his gift"></div></div>
 </div></section>
 
-<section id="order" class="sec promise" style="background:#fff"><div class="wrap">
-<div class="sec-h"><h2>How to order</h2></div>
-<div class="cols">
-<div><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/></svg><h3>1. Message us</h3><p>Call or WhatsApp +971 56 564 5048, or DM @arsheeskitchen on Instagram.</p></div>
-<div><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9z"/></svg><h3>2. Customise it</h3><p>Tell us the occasion, their favourite dishes and the name for the card. Please order at least 3 days in advance.</p></div>
-<div><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 8h18v12H3zM3 8l2-4h14l2 4M12 8v12M8 12h0"/></svg><h3>3. We cook, pack and deliver</h3><p>Freshly prepared and delivered across Dubai, Sharjah, Ajman, RAK and UAQ.</p></div>
+<section id="order" class="sec" style="padding-top:0"><div class="wrap">
+<div class="head rv"><div><span class="eyebrow">How to order</span><h2>Your hamper in <em>three steps</em></h2></div></div>
+<div class="steps">
+<div class="step rv d1"><span class="n">1</span><h3>Message us</h3><p>Call or WhatsApp +971 56 564 5048, or DM @arsheeskitchen on Instagram.</p></div>
+<div class="step rv d2"><span class="n">2</span><h3>Customise it</h3><p>Tell us the occasion, their favourite dishes and the name for the card. Please order at least 3 days in advance.</p></div>
+<div class="step rv d3"><span class="n">3</span><h3>We cook, pack and deliver</h3><p>Freshly prepared and delivered across Dubai, Sharjah, Ajman, RAK and UAQ.</p></div>
 </div>
 </div></section>
-</main>
-<footer id="contact" class="ftr">
-<div class="ftr-top">
-<div class="ftr-brand">Arshees Kitchen</div>
-<div style="letter-spacing:.16em;font-size:13px;font-weight:600">FOOD HAMPERS · GIFT HAMPERS</div>
+
+<section id="contact" class="contact rv">
+<span class="eyebrow">Food hampers · Gift hampers</span>
+<h2>Ready to make someone's day <em>unforgettable?</em></h2>
 <a class="phone" href="tel:+971565645048">+971 56 564 5048</a>
-<div style="font-size:14px;color:#EAD2D5">Call or WhatsApp</div>
-<a class="btn btn-ghost" href="https://www.instagram.com/arsheeskitchen/" target="_blank" rel="noopener">DM us to order · @arsheeskitchen</a>
-<div class="ml" style="font-size:17px;font-weight:500">ഇന്ന് തന്നെ ബന്ധപ്പെടൂ · ഇപ്പോൾ തന്നെ DM ചെയ്യൂ</div>
+<div class="btns"><a class="btn btn-gold" href="https://wa.me/971565645048?text=Hi%21+I+found+Arshees+Kitchen+and+would+like+to+order" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4a.5.5 0 0 0 0-.4c-.1-.1-.6-1.4-.8-1.9s-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>Order on WhatsApp</a><a class="btn btn-ghost" href="https://www.instagram.com/arsheeskitchen/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>DM @arsheeskitchen</a></div>
+<p class="ml">ഇന്ന് തന്നെ ബന്ധപ്പെടൂ · ഇപ്പോൾ തന്നെ DM ചെയ്യൂ</p>
+</section>
+</main>
+<footer class="ftr"><div class="wrap">
+<div class="fgrid">
+<div><a class="kbrand" href="index.html"><svg class="seal" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="40" fill="#6B1E2E"/><circle cx="40" cy="40" r="33" fill="none" stroke="#F6EEE3" stroke-width="1.5" stroke-dasharray="3 4"/><text x="37" y="57" text-anchor="middle" font-weight="600" font-size="46" fill="#F6EEE3">a</text><circle cx="57" cy="52" r="5.5" fill="#E2A93B"/></svg><span><b>Arshees Kitchen</b><small>by arshees</small></span></a><p class="ftag">Crafted with taste, packed with love.</p></div>
+<div><h5>Order</h5><ul><li><a href="https://wa.me/971565645048?text=Hi%21+I+found+Arshees+Kitchen+and+would+like+to+order" target="_blank" rel="noopener">WhatsApp +971 56 564 5048</a></li><li><a href="tel:+971565645048">Call +971 56 564 5048</a></li><li><a href="https://www.instagram.com/arsheeskitchen/" target="_blank" rel="noopener">Instagram @arsheeskitchen</a></li></ul></div>
+<div><h5>Explore</h5><ul><li><a href="index.html#hampers">Hampers</a></li><li><a href="index.html#menu">Menu</a></li><li><a href="reels.html">Hamper reels</a></li><li><a href="index.html#order">How to order</a></li></ul></div>
+<div><h5>Delivery</h5><ul><li>Dubai · Sharjah · Ajman · RAK · UAQ</li><li>Please order at least 3 days in advance</li></ul></div>
 </div>
-<div class="ftr-cols">
-<div><h4>ORDER</h4><ul><li><a href="https://wa.me/971565645048?text=Hi%21+I+found+Arshees+Kitchen+and+would+like+to+order" target="_blank" rel="noopener">WhatsApp +971 56 564 5048</a></li><li><a href="tel:+971565645048">Call +971 56 564 5048</a></li><li><a href="https://www.instagram.com/arsheeskitchen/" target="_blank" rel="noopener">Instagram @arsheeskitchen</a></li></ul></div>
-<div><h4>EXPLORE</h4><ul><li><a href="index.html#occasions">Occasions</a></li><li><a href="index.html#menu">Menu</a></li><li><a href="reels.html">Reels</a></li><li><a href="index.html#gallery">Gallery</a></li><li><a href="index.html#order">How to order</a></li></ul></div>
-<div><h4>DELIVERY</h4><ul><li>Dubai · Sharjah · Ajman · RAK · UAQ</li><li>Please order at least 3 days in advance</li></ul></div>
-</div>
-<div class="ftr-bottom">Crafted with taste · Packed with love · Dubai · Sharjah · Ajman · RAK · UAQ</div>
-<div class="ftr-bottom" style="border-top:none;padding-top:0">Arshees Kitchen is part of <a href="../" style="text-decoration:underline">Arshees</a></div>
-</footer>
-<a class="fab" href="https://wa.me/971565645048?text=Hi%21+I+found+Arshees+Kitchen+and+would+like+to+order" target="_blank" rel="noopener" aria-label="Order on WhatsApp"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4a.5.5 0 0 0 0-.4c-.1-.1-.6-1.4-.8-1.9s-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg></a><script>
-document.querySelectorAll('.car').forEach(function(c){var t=c.querySelector('.car-track');c.querySelectorAll('.car-btn').forEach(function(b){b.addEventListener('click',function(){t.scrollBy({left:(b.classList.contains('next')?1:-1)*t.clientWidth*0.8,behavior:'smooth'})})})});
+<div class="fbot"><span>&copy; 2026 Arshees Kitchen</span><span>Arshees Kitchen is part of <a href="../">arshees</a></span></div>
+</div></footer>
+<a class="fab" href="https://wa.me/971565645048?text=Hi%21+I+found+Arshees+Kitchen+and+would+like+to+order" target="_blank" rel="noopener" aria-label="Order on WhatsApp"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4a.5.5 0 0 0 0-.4c-.1-.1-.6-1.4-.8-1.9s-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg></a><script>
+(function(){
+ var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12}):null;
+ document.querySelectorAll('.rv').forEach(function(el){io?io.observe(el):el.classList.add('in')});
+ document.querySelectorAll('.car').forEach(function(c){var t=c.querySelector('.car-track');c.querySelectorAll('.car-btn').forEach(function(b){b.addEventListener('click',function(){t.scrollBy({left:(b.classList.contains('next')?1:-1)*t.clientWidth*0.8,behavior:'smooth'})})})});
+ if(window.matchMedia&&matchMedia('(hover:hover) and (pointer:fine)').matches){
+  document.querySelectorAll('.tile').forEach(function(c){
+   c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;c.classList.add('tilting');c.style.setProperty('--ry',((x-.5)*10).toFixed(2)+'deg');c.style.setProperty('--rx',((.5-y)*9).toFixed(2)+'deg')});
+   c.addEventListener('pointerleave',function(){c.classList.remove('tilting');c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg')});
+  });
+ }
+})();
 </script>
 </body>
 </html>
