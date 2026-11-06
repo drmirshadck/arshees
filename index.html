@@ -7,174 +7,225 @@
 <meta name="description" content="The House of Arshees, home of Arshees Kitchen: premium Malabari food hampers and gift hampers delivered across the UAE.">
 <meta property="og:title" content="arshees">
 <meta property="og:image" content="images/p03.jpg">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'><circle cx='40' cy='40' r='40' fill='%236B1E2E'/><circle cx='40' cy='40' r='33' fill='none' stroke='%23F6EEE3' stroke-width='1.5' stroke-dasharray='3 4'/><text x='37' y='57' text-anchor='middle' font-family='Rubik,Arial,sans-serif' font-weight='600' font-size='46' fill='%23F6EEE3'>a</text><circle cx='57' cy='52' r='5.5' fill='%23E2A93B'/></svg>">
+<meta name="theme-color" content="#FBF6EF">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='40' fill='%236B1E2E'/%3E%3Ccircle cx='40' cy='40' r='33' fill='none' stroke='%23F6EEE3' stroke-width='1.5' stroke-dasharray='3 4'/%3E%3Ctext x='37' y='57' text-anchor='middle' font-family='Rubik,Arial,sans-serif' font-weight='600' font-size='46' fill='%23F6EEE3'%3Ea%3C/text%3E%3Ccircle cx='57' cy='52' r='5.5' fill='%23E2A93B'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;display=swap" rel="stylesheet">
+<script>
+/* show the intro once per visit; add the class before first paint so there is no flash */
+(function(){var seen=false;try{seen=sessionStorage.getItem('arsheesIntro')==='1'}catch(e){}
+var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.documentElement.classList.add(seen||reduce?'no-intro':'intro');})();
+</script>
 <style>
-:root{--bg:#FBF8F3;--panel:#F3EADF;--ink:#2A1C1E;--muted:#5F5054;--wine:#6B1E2E;--wine-d:#4A1220;--gold:#E2A93B;--mint:#E6EFE9;--butter:#FCEFD2;--blush:#F7E1DC;--line:#EADFD2}
+:root{--bg:#FBF6EF;--ink:#2A1C1E;--muted:#6A5A5D;--wine:#6B1E2E;--wine-d:#3E0F19;--gold:#E2A93B;--gold-l:#F3D28B;--cream:#F6EEE3;--mint:#E3EEE7;--butter:#FCEFD2;--blush:#F7E1DC}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:Rubik,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-a{color:inherit}
+html,body{margin:0}
+body{min-height:100vh;background:var(--bg);color:var(--ink);font-family:Rubik,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{display:block;max-width:100%}
-.serif{font-family:Rubik,system-ui,sans-serif}
-.wrap{max-width:1200px;margin:0 auto;padding:0 28px}
-/* header */
-.hdr{position:sticky;top:0;z-index:40;background:rgba(251,248,243,.92);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid var(--line)}
-.hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:76px}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.logo .dots{display:flex;gap:3px;align-items:flex-end}
-.logo .dots i{display:block;width:8px;border-radius:8px}
-.logo .dots i:first-child{height:14px;background:var(--gold)}
-.logo .dots i:last-child{height:22px;background:var(--wine)}
-.logo b{font-family:Rubik,system-ui,sans-serif;font-weight:600;font-size:30px;letter-spacing:-.01em;color:var(--wine);text-transform:lowercase;line-height:1}
-.nav{display:flex;align-items:center;gap:28px;font-size:15px;font-weight:500}
-.nav a{text-decoration:none;color:var(--ink)}
-.nav a:hover{color:var(--wine)}
-.nav a.btn,.nav a.btn:hover{color:#fff}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;border-radius:999px;font-weight:600;font-size:15px;padding:13px 24px;transition:background .2s}
-.btn-wine{background:var(--wine);color:#fff}
-.btn-wine:hover{background:var(--wine-d)}
-.btn-line{border:1.5px solid var(--ink);color:var(--ink)}
-.btn-line:hover{background:#fff}
-/* hero */
-.hero{padding:72px 0 88px}
-.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
-.tag{display:inline-flex;align-items:center;gap:8px;background:var(--mint);color:#2F4F43;font-size:14px;font-weight:500;padding:7px 14px;border-radius:999px}
-.tag svg{width:14px;height:14px}
-.hero h1{margin:22px 0 0;font-family:Rubik,system-ui,sans-serif;font-weight:500;font-size:68px;line-height:1.04;letter-spacing:-.025em}
-.hero h1 em{font-style:italic;color:var(--wine);position:relative;white-space:nowrap}
-.hero h1 em:after{content:"";position:absolute;left:2%;right:2%;bottom:-6px;height:10px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12'%3E%3Cpath d='M2 8 C 50 2, 100 2, 198 7' stroke='%23E2A93B' stroke-width='3.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center/100% 100%}
-.hero p.lead{margin:26px 0 0;font-size:18px;line-height:1.7;color:var(--muted);max-width:520px}
-.hero .btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
-.checks{display:flex;flex-wrap:wrap;gap:22px;margin-top:22px;font-size:14px;color:var(--muted)}
-.checks span{display:inline-flex;align-items:center;gap:8px}
-.checks span:before{content:"";width:18px;height:18px;border-radius:50%;background:var(--mint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' stroke='%232F4F43' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center/12px}
-.art{position:relative;justify-self:center;width:100%;max-width:480px}
-.arch{aspect-ratio:4/5;border-radius:240px 240px 28px 28px;overflow:hidden;background:var(--panel)}
-.arch img{width:100%;height:100%;object-fit:cover}
-.sun{position:absolute;top:-18px;left:-18px;width:86px;height:86px;border-radius:50%;background:var(--gold);opacity:.9;z-index:-1}
-.float{position:absolute;right:-24px;bottom:34px;background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 18px 40px rgba(42,28,30,.12);padding:16px 18px;width:250px}
-.float .row{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.float b{font-family:Rubik,system-ui,sans-serif;font-size:18px;font-weight:600}
-.live{white-space:nowrap;display:inline-flex;align-items:center;gap:6px;background:var(--mint);color:#2F4F43;font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px}
-.live:before{content:"";width:7px;height:7px;border-radius:50%;background:#2F8F5B}
-.float p{margin:8px 0 0;font-size:13.5px;line-height:1.5;color:var(--muted)}
-/* panel */
-.panel{background:var(--panel);border-radius:40px;margin:0 16px;padding:88px 0}
-.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:600;color:var(--wine)}
-.eyebrow:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold)}
-.split{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
-h2{margin:14px 0 0;font-family:Rubik,system-ui,sans-serif;font-weight:500;font-size:50px;line-height:1.08;letter-spacing:-.015em}
-h2 em{font-style:italic;color:var(--wine)}
-.split p.side{margin:12px 0 0;font-size:18px;line-height:1.75;color:var(--muted)}
-/* ventures */
-.ventures{padding:96px 0}
-.v-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:44px}
-.v{border-radius:28px;padding:30px 28px 32px;display:flex;flex-direction:column;gap:14px;min-height:380px;text-decoration:none;color:var(--ink);position:relative;overflow:hidden}
-.v.k{background:var(--mint)}
-.v.s1{background:var(--butter)}
-.v.s2{background:var(--blush)}
-.v .top{display:flex;align-items:center;justify-content:space-between}
-.num{width:38px;height:38px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-family:Rubik,system-ui,sans-serif;font-weight:600;font-size:16px}
-.v h3{margin:8px 0 0;font-family:Rubik,system-ui,sans-serif;font-weight:600;font-size:28px;line-height:1.15}
-.v p{margin:0;font-size:16px;line-height:1.65;color:var(--muted)}
-.v .thumb{margin-top:auto;border-radius:18px;overflow:hidden;aspect-ratio:16/9}
-.v .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-a.v:hover .thumb img{transform:scale(1.04)}
-.v .go{margin-top:6px;font-weight:600;color:var(--wine);display:inline-flex;gap:6px;align-items:center}
-.soonbox{margin-top:auto;border-radius:18px;aspect-ratio:16/9;border:1.5px dashed rgba(107,30,46,.25);display:flex;align-items:center;justify-content:center;font-family:Rubik,system-ui,sans-serif;font-style:italic;font-size:26px;color:rgba(107,30,46,.55)}
-.chip{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;border-radius:999px;background:#fff;color:var(--wine)}
-.chip.on{background:#2F8F5B;color:#fff}
-/* steps */
-.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:8px}
-.step{background:#fff;border-radius:24px;padding:24px;display:flex;flex-direction:column;gap:10px}
-.step .ico{width:42px;height:42px;border-radius:50%;background:var(--blush);display:flex;align-items:center;justify-content:center;color:var(--wine)}
-.step h4{margin:4px 0 0;font-family:Rubik,system-ui,sans-serif;font-size:21px;font-weight:600}
-.step p{margin:0;font-size:15px;line-height:1.6;color:var(--muted)}
-/* cta */
-.cta{position:relative;overflow:hidden;background:var(--butter);border-radius:40px;margin:96px 16px 0;padding:88px 24px;text-align:center}
-.cta:before{content:"";position:absolute;left:-60px;top:-40px;width:200px;height:200px;border-radius:50%;background:var(--blush)}
-.cta:after{content:"";position:absolute;right:-40px;bottom:-60px;width:180px;height:180px;border-radius:50%;background:var(--mint)}
-.cta>*{position:relative;z-index:1}
-.cta h2{font-size:56px;margin:18px auto 0;max-width:820px}
-.cta p{margin:18px auto 0;max-width:560px;font-size:18px;line-height:1.7;color:var(--muted)}
-.cta .btns{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:30px}
-.cta .logo{justify-content:center}
-/* footer */
-.ftr{background:var(--wine-d);color:#F3E6DF;margin-top:96px;padding:64px 0 28px}
-.ftr .logo b{color:#fff}
-.ftr .logo .dots i:last-child{background:#F3E6DF}
-.f-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:32px;padding-bottom:40px;border-bottom:1px solid rgba(243,230,223,.16)}
-.f-tag{margin:14px 0 0;font-family:Rubik,system-ui,sans-serif;font-style:italic;font-size:19px;line-height:1.4;max-width:260px}
-.ftr h5{margin:0 0 14px;font-size:14px;font-weight:700;color:#fff}
-.ftr ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;font-size:15px;color:#E3CFCB}
-.ftr a{text-decoration:none}
-.ftr a:hover{color:#fff;text-decoration:underline}
-.f-bot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-top:24px;font-size:13.5px;color:#D9C2BE}
+a{color:inherit}
+
+/* ---------- soft moving background ---------- */
+.glow{position:fixed;inset:-20vmax;z-index:0;pointer-events:none;filter:blur(70px);opacity:.55}
+.glow i{position:absolute;border-radius:50%}
+.glow i:nth-child(1){width:46vmax;height:46vmax;left:10%;top:5%;background:radial-gradient(circle,#F1C9C3 0%,transparent 65%);animation:drift1 22s ease-in-out infinite alternate}
+.glow i:nth-child(2){width:40vmax;height:40vmax;right:5%;top:20%;background:radial-gradient(circle,#F7DFA6 0%,transparent 65%);animation:drift2 26s ease-in-out infinite alternate}
+.glow i:nth-child(3){width:38vmax;height:38vmax;left:35%;bottom:0;background:radial-gradient(circle,#E9D6DA 0%,transparent 65%);animation:drift3 30s ease-in-out infinite alternate}
+@keyframes drift1{to{transform:translate(8vmax,6vmax) scale(1.1)}}
+@keyframes drift2{to{transform:translate(-10vmax,8vmax) scale(.9)}}
+@keyframes drift3{to{transform:translate(6vmax,-8vmax) scale(1.15)}}
+
+/* ---------- seal logo ---------- */
+.seal text{font-family:Rubik,system-ui,sans-serif}
+.seal .ring{transform-origin:40px 40px}
+
+/* ---------- intro splash ---------- */
+.splash{position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;cursor:pointer}
+html.no-intro .splash{display:none}
+.splash .seal{width:132px;height:132px;opacity:0;transform:scale(.4);animation:sealIn 1s cubic-bezier(.2,1.4,.4,1) .15s forwards}
+.splash .seal .ring{animation:spin 1.6s cubic-bezier(.4,0,.2,1) .3s both}
+.splash .seal .dot{opacity:0;transform:translateY(-36px);animation:dotDrop .55s cubic-bezier(.3,1.6,.5,1) 1.05s forwards}
+.splash .word{font-weight:600;font-size:40px;color:var(--wine);letter-spacing:-.02em;opacity:0;animation:fadeUp .6s ease .9s forwards}
+.splash .welcome{display:flex;gap:.3em;font-size:30px;letter-spacing:-.01em;color:var(--muted);font-weight:400}
+.splash .welcome span{opacity:0;transform:translateY(12px);animation:fadeUp .6s ease forwards}
+.splash .welcome span:nth-child(1){animation-delay:1.05s}
+.splash .welcome span:nth-child(2){animation-delay:1.25s}
+.splash .welcome span:nth-child(3){animation-delay:1.45s;color:var(--wine);font-weight:600}
+.splash.leave{animation:liftAway .9s cubic-bezier(.7,0,.2,1) forwards}
+@keyframes sealIn{to{opacity:1;transform:scale(1)}}
+@keyframes spin{from{transform:rotate(-180deg)}to{transform:rotate(0)}}
+@keyframes dotDrop{to{opacity:1;transform:translateY(0)}}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+@keyframes liftAway{to{transform:translateY(-100%);border-radius:0 0 50% 50%/0 0 12% 12%}}
+
+/* ---------- page ---------- */
+.page{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:56px 28px 80px}
+.brand{display:flex;align-items:center;justify-content:center;gap:16px;text-decoration:none;margin-bottom:56px}
+.brand .seal{width:70px;height:70px;animation:breathe 5s ease-in-out infinite}
+.brand b{font-weight:600;font-size:54px;letter-spacing:-.025em;color:var(--wine);line-height:1}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;perspective:1400px}
+
+/* card shell (3D) */
+.card{--rx:0deg;--ry:0deg;--mx:50%;--my:50%;position:relative;display:flex;flex-direction:column;text-decoration:none;color:var(--ink);border-radius:30px;transform-style:preserve-3d;transform:rotateX(var(--rx)) rotateY(var(--ry));transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s;box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 30px 60px -28px rgba(62,15,25,.35),0 12px 24px -16px rgba(62,15,25,.25);will-change:transform}
+.card.tilting{transition:transform .08s linear,box-shadow .3s}
+.card:hover{box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 50px 80px -30px rgba(62,15,25,.45),0 20px 30px -18px rgba(62,15,25,.3)}
+.card .face{flex:1;position:relative;border-radius:30px;padding:30px 28px 30px;display:flex;flex-direction:column;gap:14px;min-height:430px;overflow:hidden;transform-style:preserve-3d}
+.k .face{background:linear-gradient(150deg,#EEF5F0,#DCEAE1)}
+.s1 .face{background:linear-gradient(150deg,#FEF6E3,#F8E5BC)}
+.s2 .face{background:linear-gradient(150deg,#FBEDEA,#F1D4CF)}
+/* light sheen following the pointer */
+.card .face:after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(circle at var(--mx) var(--my),rgba(255,255,255,.55),rgba(255,255,255,0) 45%);opacity:0;transition:opacity .4s}
+.card:hover .face:after,.card.tilting .face:after{opacity:1}
+/* depth layers */
+.lift1{transform:translateZ(30px)}
+.lift2{transform:translateZ(45px)}
+.lift3{transform:translateZ(60px)}
+.row{display:flex;align-items:center;justify-content:space-between}
+.num{width:40px;height:40px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:16px;box-shadow:0 6px 14px -8px rgba(62,15,25,.4)}
+.chip{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:7px 13px;border-radius:999px;background:#fff;color:var(--wine);box-shadow:0 6px 14px -8px rgba(62,15,25,.35)}
+.chip.on{background:#2F8F5B;color:#fff;display:inline-flex;align-items:center;gap:7px}
+.chip.on:before{content:"";width:7px;height:7px;border-radius:50%;background:#C8F2D6;animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.card h3{margin:8px 0 0;font-weight:600;font-size:30px;line-height:1.12;letter-spacing:-.015em}
+.card p{margin:0;font-size:16px;line-height:1.65;color:var(--muted)}
+.go{margin-top:4px;font-weight:600;color:var(--wine);display:inline-flex;gap:8px;align-items:center}
+.go i{font-style:normal;transition:transform .3s}
+.card:hover .go i{transform:translateX(5px)}
+.photo{margin-top:auto;border-radius:20px;overflow:hidden;aspect-ratio:16/10;box-shadow:0 22px 36px -18px rgba(62,15,25,.55)}
+.photo img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.card:hover .photo img{transform:scale(1.1)}
+.soonbox{margin-top:auto;position:relative;border-radius:20px;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;font-style:italic;font-weight:500;font-size:26px;color:rgba(107,30,46,.6);background:rgba(255,255,255,.35)}
+/* shimmering gold border */
+.soonbox:before{content:"";position:absolute;inset:0;border-radius:inherit;padding:2.5px;background:conic-gradient(from var(--a,0deg),rgba(226,169,59,0) 0deg,rgba(226,169,59,1) 60deg,rgba(226,169,59,0) 120deg,rgba(226,169,59,0) 360deg);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:shimmer 4s linear infinite}
+.soonbox:after{content:"";position:absolute;inset:0;border-radius:inherit;border:1.5px dashed rgba(107,30,46,.18)}
+@property --a{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes shimmer{to{--a:360deg}}
+
+/* entrance */
+.reveal{opacity:0;transform:translateY(40px) rotateX(14deg)}
+.ready .reveal{animation:rise 1s cubic-bezier(.2,.8,.2,1) forwards}
+.ready .reveal:nth-child(1){animation-delay:.05s}
+.ready .reveal:nth-child(2){animation-delay:.2s}
+.ready .reveal:nth-child(3){animation-delay:.35s}
+.brand.reveal{transform:translateY(-16px)}
+.ready .brand.reveal{animation:riseBrand .9s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes rise{to{opacity:1;transform:translateY(0) rotateX(0)}}
+@keyframes riseBrand{to{opacity:1;transform:translateY(0)}}
+.grid .reveal.done{opacity:1;animation:none;transform:rotateX(var(--rx)) rotateY(var(--ry))}
+
 @media (max-width:980px){
- .hero .wrap,.split{grid-template-columns:1fr}
- .split{gap:18px}
- .art{max-width:420px}
- .v-grid,.steps{grid-template-columns:1fr}
- .v{min-height:0}
- .f-grid{grid-template-columns:1fr 1fr}
- .nav a.hide-m{display:none}
+ .grid{grid-template-columns:1fr;max-width:520px;margin:0 auto;gap:26px}
+ .card .face{min-height:0}
 }
 @media (max-width:600px){
- .wrap{padding:0 18px}
- .hdr .wrap{height:64px}
- .logo b{font-size:26px}
- .nav{gap:14px}
- .nav .btn{padding:10px 16px;font-size:14px}
- .hero{padding:40px 0 64px}
- .hero h1{font-size:44px}
- h2,.cta h2{font-size:36px}
- .panel,.cta{border-radius:28px;margin-left:10px;margin-right:10px;padding-top:60px;padding-bottom:60px}
- .ventures{padding:64px 0}
- .float{right:8px;bottom:-20px;width:220px}
- .sun{width:64px;height:64px;left:-6px}
- .f-grid{grid-template-columns:1fr}
+ .page{padding:40px 18px 56px}
+ .brand{margin-bottom:38px;gap:12px}
+ .brand .seal{width:54px;height:54px}
+ .brand b{font-size:42px}
+ .splash .seal{width:110px;height:110px}
+ .splash .welcome{font-size:24px}
+ .card .face{padding:24px 22px 24px;border-radius:26px}
+ .card{border-radius:26px}
+ .card h3{font-size:26px}
 }
-
-.brandbar{padding:56px 24px 8px;text-align:center}
-.brandbar .logo{justify-content:center}
-.brandbar .logo b{font-size:52px}
-.brandbar .logo .dots i:first-child{height:22px;width:11px}
-.brandbar .logo .dots i:last-child{height:34px;width:11px}
-.simple{max-width:1200px;margin:0 auto;padding:48px 28px 72px}
-.simple .v-grid{margin-top:0}
-@media (max-width:600px){.brandbar{padding:40px 16px 0}.brandbar .logo b{font-size:42px}.simple{padding:32px 16px 48px}}
-.seal{width:68px;height:68px;flex:0 0 auto}
-.seal text{font-family:Rubik,system-ui,sans-serif}
-.brandbar .logo{gap:16px;align-items:center}
-@media (max-width:600px){.seal{width:54px;height:54px}}
+@media (prefers-reduced-motion:reduce){
+ *,*:before,*:after{animation:none!important;transition:none!important}
+ .reveal{opacity:1;transform:none}
+}
 </style>
 </head>
 <body>
-<header class="brandbar"><a class="logo" href="./" aria-label="arshees"><svg class="seal" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="40" fill="#6B1E2E"/><circle cx="40" cy="40" r="33" fill="none" stroke="#F6EEE3" stroke-width="1.5" stroke-dasharray="3 4"/><text x="37" y="57" text-anchor="middle" font-weight="600" font-size="46" fill="#F6EEE3">a</text><circle cx="57" cy="52" r="5.5" fill="#E2A93B"/></svg><b>arshees</b></a></header>
-<main class="simple">
-<div class="v-grid">
-<a class="v k" href="kitchen/">
-<div class="top"><span class="num">1</span><span class="chip on">Now open</span></div>
-<h3>Arshees Kitchen</h3>
-<p>Premium food hampers, gift boxes and baby baskets: freshly prepared Malabari favourites, fully customised and beautifully packed with love.</p>
-<span class="go">Visit Arshees Kitchen &rarr;</span>
-<div class="thumb"><img loading="lazy" src="images/p08.jpg" alt="Arshees Kitchen tray hamper with pink rose buns"></div>
-</a>
-<div class="v s1">
-<div class="top"><span class="num">2</span><span class="chip">Coming soon</span></div>
-<h3>Coming soon</h3>
-<p>A new venture from the House of Arshees. Launching soon.</p>
-<div class="soonbox">Coming soon</div>
+<div class="glow" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<div class="splash" id="splash" role="presentation" aria-hidden="true">
+<svg class="seal" viewBox="0 0 80 80"><circle cx="40" cy="40" r="40" fill="#6B1E2E"/><circle class="ring" cx="40" cy="40" r="33" fill="none" stroke="#F6EEE3" stroke-width="1.5" stroke-dasharray="3 4"/><text x="37" y="57" text-anchor="middle" font-weight="600" font-size="46" fill="#F6EEE3">a</text><circle class="dot" cx="57" cy="52" r="5.5" fill="#E2A93B"/></svg>
+<div class="welcome"><span>Welcome</span><span>to</span><span>arshees</span></div>
 </div>
-<div class="v s2">
-<div class="top"><span class="num">3</span><span class="chip">Coming soon</span></div>
-<h3>Coming soon</h3>
-<p>Another new venture from the House of Arshees, currently in the making.</p>
-<div class="soonbox">Coming soon</div>
+
+<div class="page" id="page">
+<a class="brand reveal" href="./" aria-label="arshees">
+<svg class="seal" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="40" fill="#6B1E2E"/><circle cx="40" cy="40" r="33" fill="none" stroke="#F6EEE3" stroke-width="1.5" stroke-dasharray="3 4"/><text x="37" y="57" text-anchor="middle" font-weight="600" font-size="46" fill="#F6EEE3">a</text><circle cx="57" cy="52" r="5.5" fill="#E2A93B"/></svg>
+<b>arshees</b>
+</a>
+
+<main class="grid" aria-label="Arshees ventures">
+<a class="card k reveal" href="kitchen/">
+<div class="face">
+<div class="row lift2"><span class="num">1</span><span class="chip on">Now open</span></div>
+<h3 class="lift2">Arshees Kitchen</h3>
+<p class="lift1">Premium food hampers, gift boxes and baby baskets: freshly prepared Malabari favourites, fully customised and beautifully packed with love.</p>
+<span class="go lift1">Visit Arshees Kitchen <i>&rarr;</i></span>
+<div class="photo lift3"><img src="images/p08.jpg" alt="Arshees Kitchen tray hamper with pink rose buns"></div>
+</div>
+</a>
+<div class="card s1 reveal">
+<div class="face">
+<div class="row lift2"><span class="num">2</span><span class="chip">Coming soon</span></div>
+<h3 class="lift2">Coming soon</h3>
+<p class="lift1">A new venture from the House of Arshees. Launching soon.</p>
+<div class="soonbox lift3">Coming soon</div>
+</div>
+</div>
+<div class="card s2 reveal">
+<div class="face">
+<div class="row lift2"><span class="num">3</span><span class="chip">Coming soon</span></div>
+<h3 class="lift2">Coming soon</h3>
+<p class="lift1">Another new venture from the House of Arshees, currently in the making.</p>
+<div class="soonbox lift3">Coming soon</div>
 </div>
 </div>
 </main>
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement, splash=document.getElementById('splash'), page=document.getElementById('page');
+  function start(){ page.classList.add('ready'); setTimeout(function(){document.querySelectorAll('.grid .reveal').forEach(function(c){c.classList.add('done')})},1500); }
+  if(root.classList.contains('intro')){
+    var gone=false;
+    function leave(){ if(gone) return; gone=true; try{sessionStorage.setItem('arsheesIntro','1')}catch(e){}
+      splash.classList.add('leave'); setTimeout(start,350); setTimeout(function(){splash.style.display='none'},950); }
+    var t=setTimeout(leave,2900);
+    splash.addEventListener('click',function(){clearTimeout(t);leave();});
+  } else { start(); }
+
+  /* 3D tilt */
+  var fine=window.matchMedia&&matchMedia('(hover:hover) and (pointer:fine)').matches;
+  var cards=document.querySelectorAll('.card');
+  if(fine){
+    cards.forEach(function(c){
+      c.addEventListener('pointermove',function(e){
+        var r=c.getBoundingClientRect(), x=(e.clientX-r.left)/r.width, y=(e.clientY-r.top)/r.height;
+        c.classList.add('tilting');
+        c.style.setProperty('--ry',((x-.5)*16).toFixed(2)+'deg');
+        c.style.setProperty('--rx',((.5-y)*14).toFixed(2)+'deg');
+        c.style.setProperty('--mx',(x*100).toFixed(1)+'%');
+        c.style.setProperty('--my',(y*100).toFixed(1)+'%');
+      });
+      c.addEventListener('pointerleave',function(){
+        c.classList.remove('tilting'); c.style.setProperty('--rx','0deg'); c.style.setProperty('--ry','0deg');
+      });
+    });
+  } else {
+    /* touch: gentle tilt that settles as each card scrolls into the middle of the screen */
+    function onScroll(){
+      var vh=window.innerHeight;
+      cards.forEach(function(c){
+        var r=c.getBoundingClientRect(), mid=(r.top+r.height/2-vh/2)/vh;
+        var rx=Math.max(-10,Math.min(10,mid*-14));
+        c.style.setProperty('--rx',rx.toFixed(2)+'deg');
+        c.style.setProperty('--my',(50+mid*60).toFixed(1)+'%');
+      });
+    }
+    window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+    cards.forEach(function(c){
+      c.addEventListener('touchstart',function(){c.style.transform='rotateX(var(--rx)) rotateY(0deg) scale(.97)'},{passive:true});
+      c.addEventListener('touchend',function(){c.style.transform=''},{passive:true});
+    });
+  }
+})();
+</script>
 </body>
 </html>
