@@ -103,6 +103,22 @@ html.no-intro .splash{display:none}
 @property --a{syntax:'<angle>';inherits:false;initial-value:0deg}
 @keyframes shimmer{to{--a:360deg}}
 
+.mini{margin-top:auto;border-radius:20px;overflow:hidden;aspect-ratio:16/10;background:#fff;box-shadow:0 22px 36px -18px rgba(62,15,25,.55);display:flex;flex-direction:column}
+.mbar{display:flex;align-items:center;gap:5px;padding:9px 12px;background:#F6F1EA;border-bottom:1px solid #EADFD2}
+.mbar i{width:8px;height:8px;border-radius:50%;background:#F2A099}.mbar i:nth-child(2){background:#F4CF7A}.mbar i:nth-child(3){background:#9FD3A8}
+.mbar span{margin-left:8px;flex:1;background:#fff;border-radius:999px;padding:4px 10px;font-size:11px;color:#6A5A5D}
+.mbody{flex:1;display:grid;grid-template-columns:1.2fr 1fr;gap:12px;padding:14px;background:linear-gradient(180deg,#F3FAF8,#fff)}
+.mtxt{display:flex;flex-direction:column;gap:7px}
+.mtxt b{display:block;height:11px;border-radius:6px;background:#1F6F6B;width:90%}
+.mtxt b+b{width:70%;opacity:.75}
+.mtxt s{display:block;height:7px;border-radius:4px;background:#DCEBE8;width:85%;margin-top:4px}
+.mtxt em{margin-top:auto;align-self:flex-start;font-style:normal;font-size:11px;font-weight:600;color:#fff;background:#1F6F6B;padding:6px 10px;border-radius:999px}
+.mcal{display:grid;grid-template-columns:1fr 1fr;gap:6px;align-content:center}
+.mcal u{display:block;height:22px;border-radius:8px;border:1px solid #CFE3DF}
+.mcal .on{background:#1F6F6B;border-color:#1F6F6B;animation:slot 3s ease-in-out infinite}
+.mcal .on2{animation:slot 3s ease-in-out infinite;animation-delay:1.5s}
+@keyframes slot{0%,100%{background:#fff;border-color:#CFE3DF}40%,60%{background:#1F6F6B;border-color:#1F6F6B}}
+.card:hover .mini{transform:translateZ(60px) scale(1.02)}
 /* entrance */
 .reveal{opacity:0;transform:translateY(40px) rotateX(14deg)}
 .ready .reveal{animation:rise 1s cubic-bezier(.2,.8,.2,1) forwards}
@@ -160,14 +176,15 @@ html.no-intro .splash{display:none}
 <div class="photo lift3"><img src="images/p08.jpg" alt="Arshees Kitchen tray hamper with pink rose buns"></div>
 </div>
 </a>
-<div class="card s1 reveal">
+<a class="card s1 reveal" href="dotcom/">
 <div class="face">
-<div class="row lift2"><span class="num">2</span><span class="chip">Coming soon</span></div>
-<h3 class="lift2">Coming soon</h3>
-<p class="lift1">A new venture from the House of Arshees. Launching soon.</p>
-<div class="soonbox lift3">Coming soon</div>
+<div class="row lift2"><span class="num">2</span><span class="chip on">Now open</span></div>
+<h3 class="lift2">DotCom by Arshees</h3>
+<p class="lift1">A digital studio building websites for clinics and doctors, with online booking, video consultations, payments and WhatsApp built in.</p>
+<span class="go lift1">Visit DotCom by Arshees <i>&rarr;</i></span>
+<div class="mini lift3" aria-hidden="true"><div class="mbar"><i></i><i></i><i></i><span>www.yourclinic.com</span></div><div class="mbody"><div class="mtxt"><b></b><b></b><s></s><em>Book appointment</em></div><div class="mcal"><u></u><u class="on"></u><u></u><u></u><u class="on2"></u><u></u></div></div></div>
 </div>
-</div>
+</a>
 <div class="card s2 reveal">
 <div class="face">
 <div class="row lift2"><span class="num">3</span><span class="chip">Coming soon</span></div>
