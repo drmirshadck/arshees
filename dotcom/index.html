@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DotCom by Arshees | Websites for Clinics &amp; Doctors</title>
+<meta name="description" content="DotCom by Arshees is a digital studio from the House of Arshees. We build websites for clinics and doctors with online booking, video consultations, online payments and WhatsApp.">
+<meta property="og:title" content="DotCom by Arshees | Websites for Clinics">
+<meta property="og:description" content="Clinic websites with online booking, video consultations, payments and WhatsApp, designed and launched for you.">
+<meta name="theme-color" content="#FBF6EF">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='40' fill='%236B1E2E'/%3E%3Ccircle cx='40' cy='40' r='33' fill='none' stroke='%23F6EEE3' stroke-width='1.5' stroke-dasharray='3 4'/%3E%3Ctext x='37' y='57' text-anchor='middle' font-family='Rubik,Arial,sans-serif' font-weight='600' font-size='46' fill='%23F6EEE3'%3Ea%3C/text%3E%3Ccircle cx='57' cy='52' r='5.5' fill='%23E2A93B'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,500&amp;display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FBF6EF;--panel:#F4EADF;--ink:#24181A;--muted:#675A5C;--wine:#6B1E2E;--wine-d:#3E0F19;--gold:#E2A93B;--cream:#F6EEE3;--teal:#1F6F6B;--teal-l:#E2F0EE;--line:#EADFD2;--green:#25D366}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Rubik,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img{display:block;max-width:100%}
+svg text{font-family:Rubik,system-ui,sans-serif}
+.wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+/* header */
+.hdr{position:sticky;top:0;z-index:40;background:rgba(251,246,239,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:18px;height:74px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo svg{width:42px;height:42px;flex:0 0 auto}
+.logo span{display:flex;flex-direction:column;line-height:1.05}
+.logo b{font-size:22px;font-weight:600;color:var(--wine);letter-spacing:-.015em}
+.logo b i{font-style:normal;color:var(--gold)}
+.logo small{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.nav{display:flex;align-items:center;gap:26px;font-size:15px;font-weight:500}
+.nav a{text-decoration:none}.nav a:hover{color:var(--wine)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;text-decoration:none;border-radius:999px;font-weight:600;font-size:15px;padding:14px 26px;transition:transform .25s,background .25s;white-space:nowrap;border:0;cursor:pointer;font-family:inherit}
+.btn:hover{transform:translateY(-2px)}
+.btn-wine{background:var(--wine);color:#fff!important;box-shadow:0 14px 28px -14px rgba(107,30,46,.7)}
+.btn-wine:hover{background:var(--wine-d)}
+.btn-line{border:1.5px solid rgba(36,24,26,.7);color:var(--ink)!important}
+.btn-line:hover{background:#fff}
+.btn-gold{background:var(--gold);color:var(--wine-d)!important}
+.btn-ghost{border:1.5px solid rgba(246,238,227,.7);color:#F6EEE3!important}
+.nav .btn{padding:11px 20px;font-size:14px}
+.mnav{display:none;position:relative}
+.mnav summary{list-style:none;cursor:pointer;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid var(--line)}
+.mnav summary::-webkit-details-marker{display:none}
+.mnav .panel{position:absolute;right:0;top:54px;width:230px;background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 24px 50px -20px rgba(62,15,25,.35);padding:10px;display:flex;flex-direction:column}
+.mnav .panel a{padding:12px 14px;border-radius:12px;text-decoration:none;font-weight:500}
+.mnav .panel a:hover{background:var(--panel)}
+/* type */
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--wine)}
+.eyebrow:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold)}
+h1,h2{letter-spacing:-.03em;font-weight:600;margin:0}
+h2{font-size:46px;line-height:1.08;margin-top:14px}
+h1 em,h2 em{font-style:italic;font-weight:500;color:var(--wine)}
+.lead{margin:16px 0 0;font-size:18px;line-height:1.7;color:var(--muted);max-width:620px}
+.sec{padding:96px 0}
+.head{margin-bottom:44px}
+.center{text-align:center}.center .lead{margin-left:auto;margin-right:auto}
+/* hero */
+.hero{padding:70px 0 90px}
+.hero .wrap{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);color:var(--wine);font-size:13.5px;font-weight:600;padding:7px 14px;border-radius:999px}
+.pill:before{content:"";width:7px;height:7px;border-radius:50%;background:#2F8F5B;animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+.hero h1{margin-top:22px;font-size:62px;line-height:1.03}
+.hero .btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.ticks{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:28px;font-size:14.5px;color:var(--muted)}
+.ticks span{display:inline-flex;align-items:center;gap:8px}
+.ticks span:before{content:"";width:18px;height:18px;border-radius:50%;background:var(--teal-l) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='%231F6F6B' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat}
+/* device mockups */
+.stage{position:relative;height:520px;perspective:1600px}
+.browser{position:absolute;left:0;top:20px;width:88%;background:#fff;border-radius:22px;box-shadow:0 50px 90px -40px rgba(62,15,25,.55),0 0 0 1px rgba(62,15,25,.06);overflow:hidden;transform:rotateY(-9deg) rotateX(4deg);transform-origin:left center;animation:floatA 9s ease-in-out infinite}
+@keyframes floatA{0%,100%{transform:rotateY(-9deg) rotateX(4deg) translateY(0)}50%{transform:rotateY(-7deg) rotateX(3deg) translateY(-10px)}}
+.bar{display:flex;align-items:center;gap:7px;padding:12px 14px;background:#F6F1EA;border-bottom:1px solid var(--line)}
+.bar i{width:10px;height:10px;border-radius:50%;background:#E6D9CB}
+.bar i:nth-child(1){background:#F2A099}.bar i:nth-child(2){background:#F4CF7A}.bar i:nth-child(3){background:#9FD3A8}
+.url{margin-left:10px;flex:1;background:#fff;border-radius:999px;padding:6px 12px;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.url:before{content:"";width:9px;height:10px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 14'%3E%3Crect x='1' y='6' width='10' height='7' rx='2' fill='%231F6F6B'/%3E%3Cpath d='M3.5 6V4.5a2.5 2.5 0 015 0V6' fill='none' stroke='%231F6F6B' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat center/contain}
+.site{padding:20px 22px 22px;background:linear-gradient(180deg,#F3FAF8,#fff 60%)}
+.snav{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--muted)}
+.snav b{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--teal)}
+.snav b:before{content:"+";width:22px;height:22px;border-radius:7px;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px}
+.snav span{display:flex;gap:12px}
+.shero{display:grid;grid-template-columns:1.2fr 1fr;gap:16px;margin-top:20px;align-items:start}
+.shero h4{margin:0;font-size:22px;line-height:1.15;letter-spacing:-.02em}
+.shero p{margin:8px 0 0;font-size:11.5px;line-height:1.55;color:var(--muted)}
+.sbtns{display:flex;gap:6px;margin-top:12px}
+.sbtns span{font-size:10.5px;font-weight:600;padding:7px 11px;border-radius:999px;background:var(--teal);color:#fff}
+.sbtns span+span{background:#fff;color:var(--teal);border:1px solid #BFDCD8}
+.cal{background:#fff;border:1px solid #DCEBE8;border-radius:16px;padding:12px;box-shadow:0 14px 30px -20px rgba(31,111,107,.5)}
+.cal b{display:block;font-size:11.5px;margin-bottom:8px}
+.days{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;font-size:9.5px;text-align:center;color:var(--muted)}
+.days span{padding:5px 0;border-radius:7px;background:#F4F8F7}
+.days .on{background:var(--teal);color:#fff;font-weight:600}
+.slots{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:8px}
+.slots span{font-size:10px;text-align:center;padding:6px 0;border-radius:8px;border:1px solid #CFE3DF;color:var(--teal)}
+.slots .on{background:var(--teal);color:#fff;border-color:var(--teal)}
+.scards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}
+.scards span{background:#fff;border:1px solid #E5EFED;border-radius:12px;padding:10px;font-size:10.5px;font-weight:600;color:var(--ink)}
+.scards span:before{content:"";display:block;width:20px;height:20px;border-radius:7px;background:var(--teal-l);margin-bottom:6px}
+.phone{position:absolute;right:0;bottom:0;width:212px;height:420px;border-radius:34px;background:#1E1416;padding:10px;box-shadow:0 40px 70px -30px rgba(62,15,25,.7);animation:floatB 8s ease-in-out infinite;animation-delay:-2s}
+@keyframes floatB{0%,100%{transform:translateY(0) rotate(3deg)}50%{transform:translateY(-14px) rotate(2deg)}}
+.screen{height:100%;border-radius:26px;background:#ECE5DD;overflow:hidden;display:flex;flex-direction:column}
+.wtop{background:#0F5E54;color:#fff;padding:22px 12px 10px;font-size:12px;font-weight:600;display:flex;align-items:center;gap:8px}
+.wtop:before{content:"";width:24px;height:24px;border-radius:50%;background:#7BC4B8}
+.wbody{padding:10px;display:flex;flex-direction:column;gap:8px}
+.msg{background:#fff;border-radius:12px 12px 12px 3px;padding:8px 10px;font-size:10.5px;line-height:1.45;max-width:92%;box-shadow:0 1px 1px rgba(0,0,0,.08)}
+.msg.me{align-self:flex-end;background:#D9FDD3;border-radius:12px 12px 3px 12px}
+.msg b{color:#0F5E54}
+.msg u{color:#1B6FB8;text-decoration:none}
+.badge{position:absolute;left:-6px;bottom:40px;background:#fff;border-radius:18px;padding:12px 16px;box-shadow:0 24px 44px -20px rgba(62,15,25,.5);font-size:13px;line-height:1.35;animation:floatB 7s ease-in-out infinite;animation-delay:-4s}
+.badge b{display:block;font-size:15px;color:var(--teal)}
+/* strip */
+.strip{background:var(--wine);color:#F6EEE3;padding:22px 0;overflow:hidden}
+.marq{display:flex;gap:48px;width:max-content;animation:marq 32s linear infinite;font-size:17px;font-weight:500}
+.marq span{display:inline-flex;align-items:center;gap:48px;white-space:nowrap}
+.marq span:after{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold)}
+@keyframes marq{to{transform:translateX(-50%)}}
+/* features */
+.feats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.feat{background:#fff;border:1px solid var(--line);border-radius:26px;padding:26px 24px;display:flex;flex-direction:column;gap:10px;transition:transform .35s,box-shadow .35s}
+.feat:hover{transform:translateY(-6px);box-shadow:0 28px 50px -30px rgba(62,15,25,.45)}
+.ico{width:48px;height:48px;border-radius:15px;display:flex;align-items:center;justify-content:center;background:var(--teal-l);color:var(--teal)}
+.feat:nth-child(4n+2) .ico{background:#FCEFD2;color:#9A6A12}
+.feat:nth-child(4n+3) .ico{background:#F7E1DC;color:var(--wine)}
+.feat:nth-child(4n+4) .ico{background:#EDE6F6;color:#5B3F8C}
+.ico svg{width:24px;height:24px}
+.feat h3{margin:6px 0 0;font-size:19px;font-weight:600;letter-spacing:-.01em}
+.feat p{margin:0;font-size:14.5px;line-height:1.6;color:var(--muted)}
+/* for whom */
+.whowrap{background:var(--panel);border-radius:44px;margin:0 16px;padding:88px 0}
+.who{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+.tags{display:flex;flex-wrap:wrap;gap:12px}
+.tags span{background:#fff;border-radius:999px;padding:13px 20px;font-size:15.5px;font-weight:500;box-shadow:0 12px 26px -20px rgba(62,15,25,.5)}
+.tags span:nth-child(3n+1){background:var(--teal-l);color:var(--teal)}
+.tags span:nth-child(3n+2){background:#fff}
+.tags span:nth-child(3n){background:#FCEFD2;color:#7A520B}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;counter-reset:s}
+.step{position:relative;border-radius:26px;padding:28px 24px;background:#fff;border:1px solid var(--line)}
+.step .n{font-size:44px;font-weight:600;color:var(--gold);line-height:1}
+.step h3{margin:14px 0 8px;font-size:19px;font-weight:600}
+.step p{margin:0;font-size:14.5px;line-height:1.6;color:var(--muted)}
+/* plans */
+.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:stretch}
+.plan{background:#fff;border:1px solid var(--line);border-radius:30px;padding:32px 28px;display:flex;flex-direction:column;gap:14px}
+.plan.pop{background:var(--wine);color:#F6EEE3;border-color:var(--wine);transform:translateY(-10px);box-shadow:0 40px 70px -36px rgba(62,15,25,.8)}
+.plan .tag{align-self:flex-start;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:999px;background:var(--teal-l);color:var(--teal)}
+.plan.pop .tag{background:var(--gold);color:var(--wine-d)}
+.plan h3{margin:4px 0 0;font-size:26px;font-weight:600}
+.plan .for{margin:0;font-size:15px;color:var(--muted);line-height:1.55}
+.plan.pop .for{color:#E9D5CF}
+.plan ul{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:10px;flex:1;font-size:15px}
+.plan li{display:flex;gap:10px;line-height:1.45}
+.plan li:before{content:"";flex:0 0 18px;height:18px;margin-top:1px;border-radius:50%;background:var(--teal-l) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='%231F6F6B' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat}
+.plan.pop li:before{background-color:rgba(255,255,255,.16);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='%23E2A93B' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+.plan .btn{margin-top:8px}
+.plan.pop .btn-line{border-color:rgba(246,238,227,.75);color:#F6EEE3!important}
+.plan.pop .btn-line:hover{background:rgba(255,255,255,.08)}
+/* work */
+.work{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center}
+.shot{border-radius:24px;overflow:hidden;background:#fff;box-shadow:0 40px 80px -40px rgba(62,15,25,.6);border:1px solid var(--line);transition:transform .5s}
+.shot:hover{transform:translateY(-6px)}
+.shot img{width:100%}
+/* faq */
+.faq{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:20px;padding:0 24px}
+.faq summary{list-style:none;cursor:pointer;padding:20px 0;font-size:17px;font-weight:600;display:flex;justify-content:space-between;gap:16px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";font-size:24px;font-weight:400;color:var(--wine);transition:transform .3s}
+.faq details[open] summary:after{transform:rotate(45deg)}
+.faq p{margin:0 0 20px;font-size:15.5px;line-height:1.7;color:var(--muted)}
+/* cta */
+.cta{position:relative;overflow:hidden;background:var(--wine);color:#F6EEE3;border-radius:44px;margin:0 16px;padding:84px 24px;text-align:center}
+.cta:before{content:"";position:absolute;width:340px;height:340px;border-radius:50%;background:rgba(226,169,59,.18);left:-100px;top:-130px}
+.cta:after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:rgba(31,111,107,.35);right:-80px;bottom:-110px}
+.cta>*{position:relative;z-index:1}
+.cta h2{color:#fff;max-width:760px;margin:14px auto 0}
+.cta h2 em{color:var(--gold)}
+.cta .eyebrow{color:#F3E2DA}
+.cta p{margin:16px auto 0;max-width:560px;font-size:17px;line-height:1.65;color:#E9D5CF}
+.cta .btns{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:28px}
+/* footer */
+.ftr{padding:56px 0 34px}
+.fgrid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;align-items:center;padding-bottom:26px;border-bottom:1px solid var(--line)}
+.flinks{display:flex;flex-wrap:wrap;gap:22px;font-size:15px;color:var(--muted)}
+.flinks a{text-decoration:none}.flinks a:hover{color:var(--wine)}
+.fbot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-top:22px;font-size:13.5px;color:var(--muted)}
+.fbot a{color:var(--wine);font-weight:600}
+.fab{position:fixed;right:22px;bottom:22px;width:60px;height:60px;border-radius:50%;background:var(--green);color:#fff!important;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 30px -10px rgba(0,0,0,.45);z-index:60;transition:transform .25s}
+.fab:hover{transform:scale(1.08)}
+.fab svg{width:30px;height:30px}
+/* reveal */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+@media (max-width:1060px){
+ .hero .wrap,.who,.work{grid-template-columns:1fr}
+ .stage{max-width:600px;width:100%;margin:0 auto}
+ .feats,.steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .plans{grid-template-columns:1fr;max-width:520px;margin:0 auto}
+ .plan.pop{transform:none}
+}
+@media (max-width:900px){.nav{display:none}.mnav{display:block}}
+@media (max-width:600px){
+ .wrap{padding:0 18px}
+ .hdr .wrap{height:64px}
+ .logo svg{width:36px;height:36px}.logo b{font-size:19px}
+ .hero{padding:36px 0 60px}
+ .hero h1{font-size:40px}
+ .lead{font-size:16.5px}
+ .stage{height:430px}
+ .browser{width:96%;transform:none;animation:none}
+ .site{padding:14px}
+ .shero{grid-template-columns:1fr}
+ .cal{display:none}
+ .phone{width:160px;height:320px;border-radius:28px;bottom:-10px}
+ .screen{border-radius:20px}
+ .msg{font-size:9.5px}
+ .badge{display:none}
+ .sec{padding:64px 0}
+ h2{font-size:32px}
+ .feats,.steps{grid-template-columns:1fr}
+ .whowrap,.cta{border-radius:30px;margin:0 10px;padding:56px 0}
+ .cta{padding:56px 18px}
+ .tags span{font-size:14px;padding:11px 16px}
+}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header class="hdr"><div class="wrap">
+<a class="logo" href="./" aria-label="DotCom by Arshees home">
+<svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="40" fill="#6B1E2E"/><circle cx="40" cy="40" r="33" fill="none" stroke="#F6EEE3" stroke-width="1.5" stroke-dasharray="3 4"/><circle cx="20.5" cy="49" r="4.5" fill="#E2A93B"/><text x="44" y="51" text-anchor="middle" font-weight="600" font-size="24" fill="#F6EEE3" letter-spacing="-.5">com</text></svg>
+<span><b>DotCom</b><small>by arshees</small></span></a>
+<nav class="nav" aria-label="Main"><a href="#services">Services</a><a href="#clinics">For clinics</a><a href="#process">How it works</a><a href="#packages">Packages</a><a href="#faq">FAQ</a><a class="btn btn-wine" data-wa href="#">Get a free demo</a></nav>
+<details class="mnav"><summary aria-label="Open menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6B1E2E" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+<div class="panel"><a href="#services">Services</a><a href="#clinics">For clinics</a><a href="#process">How it works</a><a href="#packages">Packages</a><a href="#faq">FAQ</a><a class="btn btn-wine" data-wa href="#">Get a free demo</a></div></details>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+<div class="rv">
+<span class="pill">A digital studio from the House of Arshees</span>
+<h1>Websites that keep your clinic's <em>appointment book full</em></h1>
+<p class="lead">DotCom by Arshees designs and launches websites for clinics and doctors, with online booking, video consultations, payments and WhatsApp built in. You look after patients. We look after your website.</p>
+<div class="btns"><a class="btn btn-wine" data-wa href="#">Get a free demo</a><a class="btn btn-line" href="#services">See what's included</a></div>
+<div class="ticks"><span>Mobile-first design</span><span>Your own .com domain</span><span>Secure HTTPS</span><span>No app for patients</span></div>
+</div>
+<div class="stage rv d2" aria-label="Example of a clinic website with online booking and a WhatsApp confirmation">
+<div class="browser">
+<div class="bar"><i></i><i></i><i></i><div class="url">www.yourclinic.com</div></div>
+<div class="site">
+<div class="snav"><b>Your Clinic</b><span>About · Services · Doctors · Contact</span></div>
+<div class="shero">
+<div><h4>Expert care, in clinic or online</h4><p>Book a visit or a video consultation in under a minute. No sign-up needed.</p><div class="sbtns"><span>Book appointment</span><span>Video consult</span></div></div>
+<div class="cal"><b>Choose a time</b><div class="days"><span>Mon</span><span>Tue</span><span class="on">Wed</span><span>Thu</span><span>Fri</span></div><div class="slots"><span>10:00</span><span class="on">10:30</span><span>11:00</span><span>4:30</span></div></div>
+</div>
+<div class="scards"><span>General care</span><span>Women's health</span><span>Child health</span></div>
+</div>
+</div>
+<div class="phone"><div class="screen"><div class="wtop">Your Clinic</div><div class="wbody">
+<div class="msg"><b>Booking confirmed</b><br>Wed · 10:30 AM<br>Video consultation (30 min)</div>
+<div class="msg">Join your call here:<br><u>yourclinic.com/consult</u></div>
+<div class="msg me">Thank you, see you then!</div>
+<div class="msg">Reminder: your consultation starts in 1 hour.</div>
+</div></div></div>
+<div class="badge"><b>New booking</b>Paid online · 10:30 AM</div>
+</div>
+</div></section>
+
+<div class="strip" aria-hidden="true"><div class="marq">
+<span>Online appointments</span><span>Video consultations</span><span>UPI &amp; online payments</span><span>WhatsApp confirmations</span><span>Doctor profiles</span><span>Google-friendly pages</span><span>Custom domain &amp; email-ready</span>
+<span>Online appointments</span><span>Video consultations</span><span>UPI &amp; online payments</span><span>WhatsApp confirmations</span><span>Doctor profiles</span><span>Google-friendly pages</span><span>Custom domain &amp; email-ready</span>
+</div></div>
+
+<section id="services" class="sec"><div class="wrap">
+<div class="head rv"><span class="eyebrow">What we build</span><h2>Everything your clinic needs <em>online</em></h2><p class="lead">One website that introduces your doctors, takes bookings, collects payments and runs video consultations, all under your clinic's name.</p></div>
+<div class="feats">
+<div class="feat rv"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></span><h3>Clinic website</h3><p>A modern, fast site with your services, doctors, timings, location and reviews, designed around your brand.</p></div>
+<div class="feat rv d1"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><h3>Online booking</h3><p>Patients pick a date and time slot themselves. You get every booking on your phone and calendar.</p></div>
+<div class="feat rv d2"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="3"/><path d="M16 10l6-3v10l-6-3"/></svg></span><h3>Video consultations</h3><p>A private consultation room inside your own website. No app, no new tab, just a phone or laptop.</p></div>
+<div class="feat rv d3"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20M6 15h4"/></svg></span><h3>Online payments</h3><p>Collect consultation fees before the appointment, by UPI, Google Pay or card, depending on your country.</p></div>
+<div class="feat rv"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 01-11.8 7L4 20l1.1-4A8 8 0 1120 12z"/></svg></span><h3>WhatsApp built in</h3><p>One-tap WhatsApp chat, booking confirmations and consultation links sent straight to the patient's WhatsApp.</p></div>
+<div class="feat rv d1"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></span><h3>Instagram to website</h3><p>We turn your Instagram posts, reels and health tips into polished website pages that patients can find on Google.</p></div>
+<div class="feat rv d2"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg></span><h3>Domain &amp; hosting</h3><p>We set up your own .com address with secure HTTPS and fast, reliable hosting, so you don't have to.</p></div>
+<div class="feat rv d3"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></span><h3>Updates &amp; care</h3><p>New doctor, new timings or a new offer? Send us a WhatsApp and we keep your website up to date.</p></div>
+</div>
+</div></section>
+
+<section id="clinics" class="whowrap"><div class="wrap who">
+<div class="rv"><span class="eyebrow">Made for healthcare</span><h2>Built for clinics <em>of every kind</em></h2><p class="lead">Whether you run a busy family clinic or consult on your own, we shape the website around how your patients book and how you work.</p><div style="margin-top:28px"><a class="btn btn-wine" data-wa href="#">Talk to us about your clinic</a></div></div>
+<div class="tags rv d2"><span>Family &amp; GP clinics</span><span>Dental clinics</span><span>Homoeopathy</span><span>Ayurveda</span><span>Physiotherapy</span><span>Psychology &amp; counselling</span><span>Nutrition &amp; diet</span><span>Skin &amp; aesthetics</span><span>Paediatrics</span><span>Women's health</span><span>Specialist doctors</span><span>Diagnostic centres</span></div>
+</div></section>
+
+<section id="process" class="sec"><div class="wrap">
+<div class="head rv"><span class="eyebrow">How it works</span><h2>From first chat to <em>live website</em></h2></div>
+<div class="steps">
+<div class="step rv"><span class="n">01</span><h3>Free chat</h3><p>Tell us about your clinic, your services and how patients book today. A WhatsApp message is enough to start.</p></div>
+<div class="step rv d1"><span class="n">02</span><h3>Design preview</h3><p>We build a working preview with your content and photos, and refine it with you until it feels right.</p></div>
+<div class="step rv d2"><span class="n">03</span><h3>Go live</h3><p>We connect your domain, booking, payments and WhatsApp, test everything, and launch it.</p></div>
+<div class="step rv d3"><span class="n">04</span><h3>We stay with you</h3><p>Ongoing updates and support, so your website keeps working as your clinic grows.</p></div>
+</div>
+</div></section>
+
+<section id="packages" class="sec" style="padding-top:0"><div class="wrap">
+<div class="head center rv"><span class="eyebrow">Packages</span><h2>Pick a starting point, <em>we tailor the rest</em></h2><p class="lead">Every clinic is different, so every quote is made for you. Message us for a price.</p></div>
+<div class="plans">
+<div class="plan rv"><span class="tag">Starter</span><h3>Clinic Presence</h3><p class="for">For clinics that need a professional website patients can trust.</p><ul><li>Modern mobile-first website</li><li>Services, doctors, timings &amp; map</li><li>WhatsApp chat button</li><li>Your own domain with HTTPS</li></ul><a class="btn btn-line" data-wa data-plan="Clinic Presence" href="#">Ask for a quote</a></div>
+<div class="plan pop rv d1"><span class="tag">Most popular</span><h3>Clinic Booking</h3><p class="for">For clinics that want patients to book and pay online.</p><ul><li>Everything in Clinic Presence</li><li>Online appointment booking</li><li>Online payment before booking</li><li>WhatsApp booking confirmations</li><li>Health tips &amp; Instagram content pages</li></ul><a class="btn btn-gold" data-wa data-plan="Clinic Booking" href="#">Ask for a quote</a></div>
+<div class="plan rv d2"><span class="tag">Complete</span><h3>Online Clinic</h3><p class="for">For doctors who consult patients online, anywhere.</p><ul><li>Everything in Clinic Booking</li><li>Video consultation room in your website</li><li>Paid video consultation slots</li><li>Join links sent to WhatsApp</li><li>Priority updates &amp; support</li></ul><a class="btn btn-line" data-wa data-plan="Online Clinic" href="#">Ask for a quote</a></div>
+</div>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap work">
+<a class="shot rv" href="../kitchen/" aria-label="Open the Arshees Kitchen website"><img loading="lazy" src="../images/dotcom-kitchen.jpg" alt="Arshees Kitchen website designed by DotCom by Arshees"></a>
+<div class="rv d2"><span class="eyebrow">Our craft</span><h2>Designed and built <em>in-house</em></h2><p class="lead">The Arshees Kitchen website is our own work: a premium, mobile-first site with an Instagram reel showcase, WhatsApp ordering and weekly updates. We bring the same care to every clinic website.</p><div style="margin-top:26px"><a class="btn btn-line" href="../kitchen/">See Arshees Kitchen</a></div></div>
+</div></section>
+
+<section id="faq" class="sec" style="padding-top:0"><div class="wrap">
+<div class="head center rv"><span class="eyebrow">Questions</span><h2>Good to <em>know</em></h2></div>
+<div class="faq rv">
+<details><summary>Do I need any technical knowledge?</summary><p>No. We handle the design, domain, hosting, booking and payment setup. You only share your clinic details, photos and preferences.</p></details>
+<details><summary>Do patients need to download an app for video consultations?</summary><p>No. Patients join the consultation from your website on a phone or laptop. The call stays on your website, not in another app.</p></details>
+<details><summary>Can patients pay before they book?</summary><p>Yes. We can set up payment before booking, using options that suit your country, such as UPI and Google Pay in India or card payments.</p></details>
+<details><summary>Can I use my own domain name?</summary><p>Yes. We can connect a domain you already own, or help you buy a new one, such as yourclinic.com.</p></details>
+<details><summary>Can I change things after the website is live?</summary><p>Of course. Send us your changes on WhatsApp, such as new timings, a new doctor or new services, and we update the website for you.</p></details>
+<details><summary>Do you work with clinics outside the UAE?</summary><p>Yes. We work online, so we can build websites for clinics and doctors in the UAE, India and beyond.</p></details>
+</div>
+</div></section>
+
+<section class="cta rv">
+<span class="eyebrow">DotCom by Arshees</span>
+<h2>Ready to bring your clinic <em>online?</em></h2>
+<p>Send us a message with your clinic's name and Instagram page. We'll show you what your new website could look like.</p>
+<div class="btns"><a class="btn btn-gold" data-wa href="#"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4a.5.5 0 0 0 0-.4c-.1-.1-.6-1.4-.8-1.9s-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>Message us on WhatsApp</a><a class="btn btn-ghost" href="#packages">View packages</a></div>
+</section>
+</main>
+
+<footer class="ftr"><div class="wrap">
+<div class="fgrid">
+<a class="logo" href="./"><svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="40" fill="#6B1E2E"/><circle cx="40" cy="40" r="33" fill="none" stroke="#F6EEE3" stroke-width="1.5" stroke-dasharray="3 4"/><circle cx="20.5" cy="49" r="4.5" fill="#E2A93B"/><text x="44" y="51" text-anchor="middle" font-weight="600" font-size="24" fill="#F6EEE3" letter-spacing="-.5">com</text></svg><span><b>DotCom</b><small>by arshees</small></span></a>
+<div class="flinks"><a href="#services">Services</a><a href="#process">How it works</a><a href="#packages">Packages</a><a href="#faq">FAQ</a><a data-wa href="#">WhatsApp</a></div>
+</div>
+<div class="fbot"><span>&copy; 2026 DotCom by Arshees · Websites for clinics &amp; doctors</span><span>DotCom by Arshees is part of <a href="../">arshees</a></span></div>
+</div></footer>
+<a class="fab" data-wa href="#" aria-label="Message DotCom by Arshees on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4a.5.5 0 0 0 0-.4c-.1-.1-.6-1.4-.8-1.9s-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg></a>
+
+<script>
+(function(){
+ var NUM='971565645048';
+ document.querySelectorAll('[data-wa]').forEach(function(a){
+  var plan=a.getAttribute('data-plan');
+  var t=plan?"Hi DotCom by Arshees! I'd like a quote for the "+plan+" package for my clinic.":"Hi DotCom by Arshees! I'd like a website for my clinic.";
+  a.href='https://wa.me/'+NUM+'?text='+encodeURIComponent(t);a.target='_blank';a.rel='noopener';
+ });
+ var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12}):null;
+ document.querySelectorAll('.rv').forEach(function(el){io?io.observe(el):el.classList.add('in')});
+})();
+</script>
+</body>
+</html>
