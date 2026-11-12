@@ -119,6 +119,25 @@ h2{font-size:50px;line-height:1.06;font-weight:700;margin-top:16px}
 .hashtags{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
 .hashtags span{font-family:'JetBrains Mono',monospace;font-size:13.5px;color:var(--c)}
 .spot svg{width:100%;height:auto}
+.clients-head{margin:90px 0 34px}
+.clients{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.client{display:flex;flex-direction:column;text-decoration:none;border-radius:30px;background:var(--card);border:1px solid var(--line);overflow:hidden;transition:transform .45s cubic-bezier(.2,.8,.2,1),border-color .4s,box-shadow .45s}
+.client:hover{transform:translateY(-8px);border-color:rgba(0,212,255,.5);box-shadow:0 40px 70px -40px rgba(124,92,255,.6)}
+.cframe{margin:16px 16px 0;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#0F0E22}
+.cbar{display:flex;align-items:center;gap:6px;padding:10px 12px;background:#15142E}
+.cbar i{width:9px;height:9px;border-radius:50%;background:#FF5F7A}.cbar i:nth-child(2){background:#FFC24B}.cbar i:nth-child(3){background:#2BE3A1}
+.cbar span{margin-left:8px;flex:1;background:#0F0E22;border-radius:999px;padding:5px 12px;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#A3A1BF;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cframe img{display:block;width:100%;aspect-ratio:8/5;object-fit:cover;object-position:top;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.client:hover .cframe img{transform:scale(1.04)}
+.cbody{padding:22px 26px 28px;display:flex;flex-direction:column;gap:10px}
+.ctop{display:flex;justify-content:space-between;align-items:center}
+.cat{font-size:13px;font-weight:600;color:var(--muted)}
+.live{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--m)}
+.client h3{font-size:25px;font-weight:700}
+.client p{margin:0;font-size:15.5px;line-height:1.65;color:var(--muted)}
+.client .chips{margin-top:4px}
+.visit{margin-top:8px;font-weight:600;font-size:15px;color:var(--c)}
+@media (max-width:760px){.clients{grid-template-columns:1fr}.clients-head{margin-top:64px}.clients-head h2{font-size:30px!important}}
 /* why */
 .why{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
 .why .card{padding:30px 26px}
@@ -351,6 +370,17 @@ h2{font-size:50px;line-height:1.06;font-weight:700;margin-top:16px}
 <text x="418" y="358" text-anchor="middle" font-size="10.5" font-weight="700" fill="#2BE3A1">UPI ✓ Paid</text>
 </g>
 </svg>
+</div>
+<div class="clients-head rv"><span class="kicker">Live client websites</span><h2 style="font-size:40px">Brands already running on <span class="grad">DotCom</span> 🌟</h2></div>
+<div class="clients">
+<a class="client rv" href="https://www.drmurshidakk.com/" target="_blank" rel="noopener">
+<div class="cframe"><div class="cbar"><i></i><i></i><i></i><span>🔒 www.drmurshidakk.com</span></div><img loading="lazy" src="../images/client-drmurshida.jpg" alt="Homepage of the Dr. Murshida K K website"></div>
+<div class="cbody"><div class="ctop"><span class="cat">🩺 Healthcare</span><span class="live">● Live</span></div><h3>Dr. Murshida K K</h3><p>Homoeopathy &amp; psychological counselling clinic website with online appointment booking, secure video consultations, UPI payments and WhatsApp.</p><div class="chips"><span>Online booking</span><span>Video consults</span><span>UPI payments</span><span>WhatsApp</span></div><span class="visit">Visit website ↗</span></div>
+</a>
+<a class="client rv d1" href="https://www.spazio-properties.com/" target="_blank" rel="noopener">
+<div class="cframe"><div class="cbar"><i></i><i></i><i></i><span>🔒 www.spazio-properties.com</span></div><img loading="lazy" src="../images/client-spazio.jpg" alt="Homepage of the Spazio Properties website"></div>
+<div class="cbody"><div class="ctop"><span class="cat">🏢 Real estate</span><span class="live">● Live</span></div><h3>Spazio Properties</h3><p>A cinematic, premium website for a Kozhikode real estate firm, showcasing properties and services with instant WhatsApp enquiries.</p><div class="chips"><span>Property showcase</span><span>Cinematic design</span><span>WhatsApp leads</span></div><span class="visit">Visit website ↗</span></div>
+</a>
 </div>
 </div></section>
 
