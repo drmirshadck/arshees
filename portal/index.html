@@ -141,7 +141,7 @@ async function call(action, body) {
   if (!j.ok) throw j;
   return j;
 }
-const ERR = { pay_unavailable:'Online payment is not available right now. Please pay by UPI below and upload the screenshot.', pay_failed:'Could not start the payment. Please try again, or pay by UPI below.', bad_payment:'We could not verify this payment. If money was deducted, it will be confirmed automatically within 15 minutes — or contact support@arshees.com.', bad_amount:'The amount looks wrong. Please contact support@arshees.com.', phone_taken:'This mobile number is already registered with another email. Please log in with that email, or contact support@arshees.com.', bad_register:'Please enter your name and a valid phone number.', not_ready:'This step is not ready yet. Please refresh.', bad_plan:'Please choose a plan.', bad_sign:'Please type your name, sign in the box and tick the box to accept.', bad_email:'Please enter a valid email address.', bad_code:'That code is not right. Please check and try again.', expired:'That code has expired. Ask for a new one.', too_many:'Too many tries. Please wait a while and try again.', wait:'A code was just sent. Please wait a minute before asking again.', no_access:'This email does not have portal access. Please contact us.', logged_out:'Please log in again.', not_ready:'The portal is being set up. Please try again soon.', server_error:'Something went wrong on our side. Please try again.' };
+const ERR = { pay_unavailable:'Online payment is not available right now. Please try again in a few minutes or contact support@arshees.com.', pay_failed:'Could not start the payment. Please try again in a moment.', bad_payment:'We could not verify this payment. If money was deducted, it will be confirmed automatically within 15 minutes — or contact support@arshees.com.', bad_amount:'The amount looks wrong. Please contact support@arshees.com.', phone_taken:'This mobile number is already registered with another email. Please log in with that email, or contact support@arshees.com.', bad_register:'Please enter your name and a valid phone number.', not_ready:'This step is not ready yet. Please refresh.', bad_plan:'Please choose a plan.', bad_sign:'Please type your name, sign in the box and tick the box to accept.', bad_email:'Please enter a valid email address.', bad_code:'That code is not right. Please check and try again.', expired:'That code has expired. Ask for a new one.', too_many:'Too many tries. Please wait a while and try again.', wait:'A code was just sent. Please wait a minute before asking again.', no_access:'This email does not have portal access. Please contact us.', logged_out:'Please log in again.', not_ready:'The portal is being set up. Please try again soon.', server_error:'Something went wrong on our side. Please try again.' };
 const errText = e => (e && e.error === 'new_too_soon') ? `You can request a fresh sample after ${e.date}. Until then you can continue with your previous request.` : ERR[e && e.error] || 'Could not connect. Check your internet and try again.';
 
 /* ---------- login ---------- */
@@ -308,22 +308,12 @@ function tracker(stage) { const at = { registered:0, submitted:1, offer:2, accep
   return `<div class="track">${STEPS.map((t, i) => `<div class="${i < at ? 'done' : i === at ? 'now' : ''}"><i></i>${t}</div>`).join('')}</div>`; }
 const inr = n => money(n, 'INR');
 function payBlock(o, amt, hero, h) {
-    const of = o.offer || {}, link = `upi://pay?pa=${encodeURIComponent(of.upi || '').replace('%40', '@')}&pn=${encodeURIComponent(of.upiName || '')}&am=${Number(amt).toFixed(2)}&cu=INR&tn=${encodeURIComponent(of.quoteNo || 'Website')}`;
-    const phone = /Android|iPhone|iPad/i.test(navigator.userAgent);
-    const online = o.payOnline ? `<div class="card" style="text-align:center"><div class="amt">${inr(amt)}</div><div style="font-size:13px;color:var(--mute);margin-bottom:12px">Secure payment by Razorpay · UPI, cards, netbanking</div>
+    if (!o.payOnline) return h + `${hero}<div class="card" style="text-align:center"><div class="amt">${inr(amt)}</div><p style="margin:6px 0 0;color:var(--mute)">Online payment will be available here shortly. If you need help, contact <a href="mailto:support@arshees.com">support@arshees.com</a>.</p></div>`;
+    return h + `${hero}<div class="card" style="text-align:center"><div class="amt">${inr(amt)}</div><div style="font-size:13px;color:var(--mute);margin-bottom:12px">Secure payment by Razorpay · UPI, cards, netbanking</div>
       <button class="btn block" id="bRzp" data-act="rzp">Pay ${inr(amt)} now</button><div class="err" id="err"></div>
-      <p style="font-size:12.5px;color:var(--mute);margin:10px 0 0">Confirmed instantly — no screenshot needed.</p></div>
-      <details class="card" style="padding:12px 16px"><summary style="cursor:pointer;font-weight:600">Or pay directly by UPI and upload the screenshot</summary><div style="margin-top:12px">` : '';
-    return h + `${hero}
-    ${online}<div class="card" style="text-align:center"><div class="amt">${inr(amt)}</div><div style="font-size:13px;color:var(--mute)">to ${esc(of.upiName)} · ${esc(of.upi)}</div><div class="qr">${qrSVG(link, 220)}</div>
-      ${phone ? `<a class="btn block" href="${esc(link)}">Pay now with UPI</a>` : '<p style="font-size:14px;margin:0 0 10px">Scan with GPay, PhonePe, Paytm or any UPI app.</p>'}
-      <button class="btn ghost block" style="margin-top:8px" data-copyupi="${esc(of.upi)}">Copy UPI ID</button></div>
-    <h3>After paying, send us the screenshot</h3>
-    <form class="card" id="fOPay"><label class="f"><span>Amount paid</span><input id="pAmt" type="number" step="any" inputmode="decimal" value="${esc(amt)}" required></label>
-      <label class="f"><span>UPI reference / UTR (optional)</span><input id="pRef" placeholder="12-digit number on the receipt"></label>
-      <label class="f"><span>Payment screenshot</span><input id="pFile" type="file" accept="image/*,application/pdf" required></label>
-      <button class="btn block" id="bOPay">Confirm payment</button>${o.payOnline ? '' : '<div class="err" id="err"></div>'}</form>${o.payOnline ? '</div></details>' : ''}`;
+      <p style="font-size:12.5px;color:var(--mute);margin:10px 0 0">Confirmed instantly — you'll get a receipt by email.</p></div>`;
   }
+
 function viewOnboard() {
   const o = ONB(), st = o.stage, d = Object.assign({ name:o.name, phone:o.phone, email:S.email }, o.details || {}, S.msg.ondraft || {});
   let h = tracker(st);
