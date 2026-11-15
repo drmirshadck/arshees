@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Client Portal · DotCom by Arshees</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#6B1E3A">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='19' fill='%236B1E3A'/%3E%3Ctext x='19' y='27' text-anchor='middle' font-family='Georgia,serif' font-size='21' fill='%23fff'%3Ea%3C/text%3E%3Ccircle cx='27.5' cy='25.5' r='2.2' fill='%23C9A24A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--wine:#6B1E3A;--wine2:#8a2a4d;--gold:#C9A24A;--cream:#FBF7F2;--ink:#22181c;--mute:#7a6b70;--line:#eadfd8;--ok:#2f7d4f;--warn:#b7791f;--bad:#b4363c;--r:16px}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--cream);color:var(--ink);font:16px/1.5 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--wine)}
+button{font:inherit;cursor:pointer}
+header{background:var(--wine);color:#fff}
+.top{max-width:760px;margin:auto;display:flex;align-items:center;gap:12px;padding:14px 18px}
+.brand{font-family:Fraunces,Georgia,serif;font-size:20px;line-height:1.1}
+.brand small{display:block;font:500 11px Inter,sans-serif;letter-spacing:1.6px;text-transform:uppercase;opacity:.75}
+.sp{flex:1}
+.out{background:transparent;border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:999px;padding:6px 12px;font-size:13px}
+nav{max-width:760px;margin:auto;display:flex;gap:4px;overflow-x:auto;padding:0 14px 12px;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav button{background:transparent;border:0;color:#f3e6ea;padding:7px 13px;border-radius:999px;white-space:nowrap;font-weight:500}
+nav button.on{background:#fff;color:var(--wine)}
+main{max-width:760px;margin:auto;padding:22px 18px 70px}
+h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:28px;margin:0 0 6px}
+h2{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:22px;margin:0 0 12px}
+h3{font-size:12.5px;letter-spacing:1.3px;text-transform:uppercase;color:var(--mute);margin:26px 0 10px;font-weight:600}
+p.lead{color:var(--mute);margin:0 0 18px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin-bottom:12px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.btn{background:var(--wine);color:#fff;border:0;border-radius:12px;padding:12px 18px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn.ghost{background:#fff;color:var(--wine);border:1px solid var(--line)}
+.btn.gold{background:#f7c6d9;color:#3a1020}
+.btn.block{width:100%}
+.btn:disabled{opacity:.55;cursor:default}
+.chip{display:inline-block;font-size:12px;font-weight:600;padding:3px 9px;border-radius:999px;background:#f3ece8;color:var(--mute);white-space:nowrap}
+.chip.g{background:#e3f2e8;color:var(--ok)}.chip.y{background:#fbf0d9;color:var(--warn)}.chip.r{background:#fbe3e3;color:var(--bad)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:14px 16px}
+.kpi b{display:block;font-family:Fraunces,Georgia,serif;font-size:24px;color:var(--wine);font-weight:600}
+.kpi span{color:var(--mute);font-size:13px}
+.li{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid var(--line)}
+.li:first-child{border-top:0;padding-top:0}
+.li .m{flex:1;min-width:0}
+.li .m small{display:block;color:var(--mute);font-size:13px}
+label.f{display:block;margin:12px 0}
+label.f>span{display:block;font-size:13px;font-weight:600;color:var(--mute);margin-bottom:5px}
+input,select,textarea{font:inherit;width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
+textarea{min-height:96px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid #e9c9d6;border-color:var(--wine2)}
+.code{font-size:28px;letter-spacing:10px;text-align:center;font-weight:600}
+.note{background:#fff8ea;border:1px solid #f1dfb5;border-radius:12px;padding:12px 14px;font-size:14px}
+.ok{background:#eaf6ee;border:1px solid #cfe8d7;border-radius:12px;padding:12px 14px;font-size:14px;color:#1f5c38}
+.err{color:var(--bad);font-size:14px;margin-top:8px;min-height:20px}
+.login{max-width:420px;margin:30px auto}
+.seal{display:flex;justify-content:center;margin-bottom:14px}
+.qr{display:flex;justify-content:center;margin:12px 0}
+.qr svg{background:#fff;border-radius:12px;border:1px solid var(--line);padding:6px}
+.amt{font-family:Fraunces,Georgia,serif;font-size:30px;color:var(--wine);text-align:center}
+.files{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.files span{font-size:12px;background:#f3ece8;border-radius:8px;padding:4px 8px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
+td{padding:6px 0;border-top:1px solid var(--line);vertical-align:top}
+td.n{text-align:right;white-space:nowrap;padding-left:10px}
+tr.t td{font-weight:600;color:var(--wine)}
+footer{text-align:center;color:var(--mute);font-size:12.5px;padding:10px 18px 30px}
+.spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:s .8s linear infinite}
+.btn.ghost .spin{border-color:#e7d6dc;border-top-color:var(--wine)}
+@keyframes s{to{transform:rotate(1turn)}}
+</style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <svg width="38" height="38" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#fff"/><circle cx="20" cy="20" r="16.5" fill="#6B1E3A"/><text x="19" y="27" text-anchor="middle" font-family="Fraunces,Georgia,serif" font-size="21" fill="#fff">a</text><circle cx="27.5" cy="25.5" r="2.2" fill="#C9A24A"/></svg>
+    <div class="brand" id="brandName">DotCom by Arshees<small>Client portal</small></div>
+    <div class="sp"></div>
+    <button class="out" id="logout" hidden>Log out</button>
+  </div>
+  <nav id="nav" hidden></nav>
+</header>
+<main id="app"></main>
+<footer>Need help? <a href="mailto:support@arshees.com">support@arshees.com</a> · +971 58 657 6586</footer>
+<script src="qrcode.js"></script>
+<script>
+/* Backend: the Apps Script web app URL (set once it is deployed). */
+const API = '';
+const KEY = 'arsheesPortal';
+
+const $ = s => document.querySelector(s);
+const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmtD = iso => { if (!iso) return '—'; const d = new Date(String(iso).length === 10 ? iso + 'T00:00:00' : iso); return isNaN(d) ? esc(iso) : d.toLocaleDateString('en-GB', {day:'numeric', month:'short', year:'numeric'}); };
+function money(n, c) { if (n === '' || n == null || isNaN(+n)) return '—'; c = c || 'INR'; try { return new Intl.NumberFormat(c === 'INR' ? 'en-IN' : 'en-US', {style:'currency', currency:c, minimumFractionDigits:(+n % 1 ? 2 : 0), maximumFractionDigits:2}).format(+n); } catch (e) { return c + ' ' + n; } }
+function chip(s) { if (!s) return ''; const g = ['Paid','Signed','Accepted','Live','Handed over','Active','Done'], y = ['Sent','Part paid','Awaiting signature','Building','Due','Open'], r = ['Overdue','Expired','Cancelled']; return `<span class="chip ${g.includes(s)?'g':y.includes(s)?'y':r.includes(s)?'r':''}">${esc(s)}</span>`; }
+const store = { get(){ try { return localStorage.getItem(KEY) || ''; } catch(e) { return S.mem || ''; } }, set(v){ S.mem = v; try { v ? localStorage.setItem(KEY, v) : localStorage.removeItem(KEY); } catch(e) {} } };
+
+const S = { view:'login', step:'email', email:'', data:null, tab:'home', busy:false, mem:'', msg:{} };
+
+async function call(action, body) {
+  if (!API) throw { error:'not_ready' };
+  const r = await fetch(API, { method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify({ action, ...body }) });
+  const j = await r.json();
+  if (!j.ok) throw j;
+  return j;
+}
+const ERR = { bad_email:'Please enter a valid email address.', bad_code:'That code is not right. Please check and try again.', expired:'That code has expired. Ask for a new one.', too_many:'Too many tries. Please wait a while and try again.', wait:'A code was just sent. Please wait a minute before asking again.', no_access:'This email does not have portal access. Please contact us.', logged_out:'Please log in again.', not_ready:'The portal is being set up. Please try again soon.', server_error:'Something went wrong on our side. Please try again.' };
+const errText = e => ERR[e && e.error] || 'Could not connect. Check your internet and try again.';
+
+/* ---------- login ---------- */
+function viewLogin() {
+  if (S.step === 'email') return `<div class="login"><div class="card">
+    <h1>Welcome</h1><p class="lead">Log in to see your website, documents and payments. We'll email you a 6-digit code — no password needed.</p>
+    <form id="fEmail"><label class="f"><span>Your email</span><input id="email" type="email" autocomplete="email" inputmode="email" required value="${esc(S.email)}" placeholder="you@example.com"></label>
+    <button class="btn block" id="bSend">Send me a code</button><div class="err" id="err"></div></form></div></div>`;
+  return `<div class="login"><div class="card">
+    <h1>Check your email</h1><p class="lead">We sent a 6-digit code to <b>${esc(S.email)}</b>. It works for 10 minutes. Check spam if you don't see it.</p>
+    <form id="fCode"><label class="f"><span>Login code</span><input id="code" class="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" required></label>
+    <button class="btn block" id="bVerify">Log in</button><div class="err" id="err"></div></form>
+    <div class="row" style="justify-content:space-between;margin-top:6px"><button class="btn ghost" data-act="change">Use another email</button><button class="btn ghost" data-act="resend">Send a new code</button></div></div></div>`;
+}
+async function sendCode() {
+  const email = $('#email') ? $('#email').value.trim() : S.email; if (!email) return;
+  S.email = email; setBusy('#bSend', true);
+  try { await call('requestCode', { email }); S.step = 'code'; render(); setTimeout(() => $('#code') && $('#code').focus(), 50); }
+  catch (e) { showErr(errText(e)); if (e.error === 'wait') { S.step = 'code'; render(); showErr(errText(e)); } }
+  setBusy('#bSend', false);
+}
+async function verify() {
+  const code = $('#code').value.replace(/\D/g, ''); if (code.length !== 6) { showErr('Enter the 6 digits from the email.'); return; }
+  setBusy('#bVerify', true);
+  try { const j = await call('verifyCode', { email:S.email, code }); store.set(j.token); S.data = j.data; S.view = 'app'; S.tab = 'home'; render(); }
+  catch (e) { showErr(errText(e)); }
+  setBusy('#bVerify', false);
+}
+
+/* ---------- app ---------- */
+const TABS = [['home','Overview'],['docs','Documents'],['pay','Pay'],['details','My details'],['support','Support']];
+function D() { return S.data || {}; }
+function viewHome() {
+  const d = D(), bal = (d.balance || []).filter(b => +b.amt > 0);
+  const pending = (d.docs || []).filter(x => x.signLink && !x.signedAt);
+  return `<h1>Hello${d.name ? ', ' + esc(d.name) : ''}</h1><p class="lead">${esc(d.business || d.venture || '')}</p>
+  <div class="kpis">
+    <div class="kpi"><b>${bal.length ? bal.map(b => money(b.amt, b.cur)).join(' + ') : '₹0'}</b><span>Balance due</span></div>
+    <div class="kpi"><b>${pending.length}</b><span>Document${pending.length === 1 ? '' : 's'} to sign</span></div>
+    <div class="kpi"><b>${(d.payments || []).length}</b><span>Payment${(d.payments || []).length === 1 ? '' : 's'} received</span></div>
+  </div>
+  ${pending.length || bal.length ? `<h3>To do</h3><div class="card">${pending.map(x => `<div class="li"><div class="m"><b>Sign ${esc(x.title || x.no)}</b><small>${esc(x.no)} · ${fmtD(x.date)}</small></div><a class="btn gold" href="${esc(x.signLink)}" target="_blank" rel="noopener">Read & sign</a></div>`).join('')}${bal.length ? `<div class="li"><div class="m"><b>Pay ${bal.map(b => money(b.amt, b.cur)).join(' + ')}</b><small>By UPI, in a few taps</small></div><button class="btn gold" data-tab="pay">Pay now</button></div>` : ''}</div>` : ''}
+  <h3>Your website${(d.sites || []).length > 1 ? 's' : ''}</h3>
+  ${(d.sites || []).length ? (d.sites).map(s => `<div class="card"><div class="row"><b style="flex:1">${esc(s.name)}</b>${chip(s.status)}</div>
+    ${s.liveUrl ? `<div style="margin-top:4px"><a href="${esc(/^https?:/i.test(s.liveUrl) ? s.liveUrl : 'https://' + s.liveUrl)}" target="_blank" rel="noopener">${esc(s.liveUrl)}</a></div>` : ''}
+    <table>${s.handover ? `<tr><td>Handed over</td><td class="n">${fmtD(s.handover)}</td></tr>` : ''}${s.renewal ? `<tr><td>Next yearly renewal</td><td class="n">${fmtD(s.renewal)}</td></tr>` : ''}${s.renewalFee ? `<tr><td>Yearly renewal fee</td><td class="n">${money(s.renewalFee, s.cur)}</td></tr>` : ''}${s.domain ? `<tr><td>Domain</td><td class="n">${esc(s.domain)}</td></tr>` : ''}</table></div>`).join('') : '<div class="card" style="color:var(--mute)">Your website details will appear here.</div>'}
+  <h3>Payments received</h3>
+  <div class="card">${(d.payments || []).length ? d.payments.map(p => `<div class="li"><div class="m"><b>${money(p.amount, p.cur)}</b><small>${fmtD(p.date)}${p.purpose ? ' · ' + esc(p.purpose) : ''}${p.ref ? ' · Ref ' + esc(p.ref) : ''}</small></div>${chip('Paid')}</div>`).join('') : '<span style="color:var(--mute)">No payments yet.</span>'}</div>
+  ${d.syncedAt ? `<p style="font-size:12px;color:var(--mute)">Last updated ${fmtD(d.syncedAt)}. Payments you send can take up to a day to appear here.</p>` : ''}`;
+}
+function viewDocs() {
+  const docs = D().docs || [];
+  return `<h2>Documents</h2><p class="lead">Your quotes, agreements and invoices.</p>
+  ${docs.length ? docs.map((x, i) => `<div class="card"><div class="row"><div style="flex:1"><b>${esc(x.title || x.no)}</b><div style="font-size:13px;color:var(--mute)">${esc(x.no)} · ${fmtD(x.date)}${x.total != null ? ' · ' + money(x.total, x.cur) : ''}</div></div>${chip(x.status)}</div>
+    ${x.items && x.items.length ? `<details style="margin-top:8px"><summary style="cursor:pointer;color:var(--wine);font-weight:600;font-size:14px">View details</summary><table>${x.items.map(it => `<tr><td>${esc(it[0])}${+it[1] > 1 ? ' × ' + esc(it[1]) : ''}</td><td class="n">${esc(it[2])}</td></tr>`).join('')}${(x.totals || []).map(t => `<tr class="${t[0] === 'Total' || t[0] === 'Balance due' ? 't' : ''}"><td>${esc(t[0])}</td><td class="n">${esc(t[1])}</td></tr>`).join('')}</table>${x.due ? `<p style="font-size:13px;color:var(--mute);margin:8px 0 0">Due ${fmtD(x.due)}</p>` : ''}</details>` : ''}
+    <div class="row" style="margin-top:10px">${x.signLink && !x.signedAt ? `<a class="btn gold" href="${esc(x.signLink)}" target="_blank" rel="noopener">Read & sign</a>` : ''}${x.signedAt ? `<span style="font-size:13px;color:var(--ok)">✓ Signed ${fmtD(x.signedAt)}</span>` : ''}${x.payIdx != null ? `<button class="btn ghost" data-pay="${x.payIdx}">Pay ${money(D().pay[x.payIdx].amt, 'INR')}</button>` : ''}</div></div>`).join('') : '<div class="card" style="color:var(--mute)">No documents yet.</div>'}`;
+}
+function qrSVG(text, px) { try { const q = qrcode(0, 'M'); q.addData(text); q.make(); const n = q.getModuleCount(), m = 3, sz = n + m * 2; let d = ''; for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) if (q.isDark(y, x)) d += `M${x + m},${y + m}h1v1h-1z`; return `<svg viewBox="0 0 ${sz} ${sz}" width="${px}" height="${px}" shape-rendering="crispEdges" role="img" aria-label="UPI payment QR code"><rect width="${sz}" height="${sz}" fill="#fff"/><path d="${d}" fill="#000"/></svg>`; } catch (e) { return ''; } }
+function viewPay() {
+  const pay = D().pay || [], sel = S.payIx != null && pay[S.payIx] ? S.payIx : 0, p = pay[sel];
+  const isPhone = /Android|iPhone|iPad/i.test(navigator.userAgent);
+  return `<h2>Pay</h2>
+  ${p ? `${pay.length > 1 ? `<label class="f"><span>What are you paying for?</span><select id="paySel">${pay.map((x, i) => `<option value="${i}" ${i === sel ? 'selected' : ''}>${esc(x.label)} — ${money(x.amt, 'INR')}</option>`).join('')}</select></label>` : `<p class="lead">${esc(p.label)}</p>`}
+  <div class="card" style="text-align:center"><div class="amt">${money(p.amt, 'INR')}</div><div style="font-size:13px;color:var(--mute)">to ${esc(p.name)} · ${esc(p.upi)}</div>
+    <div class="qr">${qrSVG(p.link, 220)}</div>
+    <p style="font-size:14px;margin:0 0 12px">${isPhone ? 'Tap the button to open your UPI app (GPay, PhonePe, Paytm…), or scan the code from another phone.' : 'Scan this code with GPay, PhonePe, Paytm or any UPI app.'}</p>
+    ${isPhone ? `<a class="btn block" href="${esc(p.link)}">Pay now with UPI</a>` : ''}
+    <button class="btn ghost block" style="margin-top:8px" data-copyupi="${esc(p.upi)}">Copy UPI ID</button></div>` : `<div class="card" style="color:var(--mute)">Nothing to pay right now. 🎉</div>`}
+  <h3>Already paid? Send us the screenshot</h3>
+  <form class="card" id="fPay">
+    <label class="f"><span>Amount paid</span><input id="pAmt" type="number" step="any" inputmode="decimal" value="${p ? esc(p.amt) : ''}" required></label>
+    <label class="f"><span>UPI reference / UTR (optional)</span><input id="pRef" placeholder="12-digit number on the receipt"></label>
+    <label class="f"><span>Payment screenshot</span><input id="pFile" type="file" accept="image/*,application/pdf" required></label>
+    <button class="btn block" id="bPay">Send screenshot</button><div class="err" id="err"></div></form>`;
+}
+const DETAIL_FIELDS = [['name','Full name'],['business','Clinic / business name'],['qualification','Qualifications (e.g. BHMS, MD)'],['registration','Registration number'],['phone','Phone / WhatsApp'],['email','Email for website enquiries'],['address','Clinic address','ta'],['timings','Consultation timings','ta'],['fee','Consultation fee'],['languages','Languages you speak'],['services','Services / treatments you offer','ta'],['about','About you (a few lines for the website)','ta'],['instagram','Instagram'],['facebook','Facebook'],['other','Anything else we should know','ta']];
+function viewDetails() {
+  const d = D(), v = Object.assign({}, d.details || {}, S.msg.draft || {});
+  return `<h2>My details</h2><p class="lead">Keep these up to date — we use them on your website. Change anything and press Send.</p>
+  <form class="card" id="fDet">${DETAIL_FIELDS.map(([k, l, t]) => `<label class="f"><span>${esc(l)}</span>${t === 'ta' ? `<textarea name="${k}">${esc(v[k] || '')}</textarea>` : `<input name="${k}" value="${esc(v[k] || '')}">`}</label>`).join('')}
+  <label class="f"><span>Logo, photos or videos for the website</span><input id="dFiles" type="file" accept="image/*,video/*,application/pdf" multiple></label>
+  <p style="font-size:12.5px;color:var(--mute);margin-top:-4px">Up to 12 files at a time. Photos are resized automatically. Large videos: please send a Google Drive link in "Anything else".</p>
+  <button class="btn block" id="bDet">Send my details</button><div class="err" id="err"></div></form>`;
+}
+function viewSupport() {
+  return `<h2>Support</h2><p class="lead">Need a change on your website or have a question? We reply within 24 hours.</p>
+  <form class="card" id="fSup">
+    <label class="f"><span>What do you need help with?</span><select id="sType"><option>Change text or photos</option><option>Change timings or fees</option><option>Booking or video call problem</option><option>Payment or invoice question</option><option>Something else</option></select></label>
+    <label class="f"><span>Tell us more</span><textarea id="sMsg" required placeholder="What should we change, and where on the website?"></textarea></label>
+    <label class="f"><span>Screenshot or new photo (optional)</span><input id="sFile" type="file" accept="image/*,application/pdf" multiple></label>
+    <button class="btn block" id="bSup">Send to support</button><div class="err" id="err"></div></form>
+  <p style="font-size:13px;color:var(--mute)">You can also email <a href="mailto:support@arshees.com">support@arshees.com</a> (support@arshees.com).</p>`;
+}
+
+/* ---------- files ---------- */
+async function readFile(f) {
+  if (/^image\/(jpeg|png|webp|heic|heif)/i.test(f.type) && f.size > 350000) {
+    try { const img = await createImageBitmap(f); const sc = Math.min(1, 1800 / Math.max(img.width, img.height)); const c = document.createElement('canvas'); c.width = Math.round(img.width * sc); c.height = Math.round(img.height * sc); c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); const b = await new Promise(ok => c.toBlob(ok, 'image/jpeg', .85)); if (b) f = new File([b], f.name.replace(/\.\w+$/, '') + '.jpg', { type:'image/jpeg' }); } catch (e) {}
+  }
+  if (f.size > 8 * 1048576) throw { error:'file_big', name:f.name };
+  const b64 = await new Promise((ok, no) => { const r = new FileReader(); r.onload = () => ok(String(r.result).split(',')[1]); r.onerror = no; r.readAsDataURL(f); });
+  return { name:f.name, mime:f.type || 'application/octet-stream', b64 };
+}
+async function filesFrom(sel) { const el = $(sel); if (!el || !el.files.length) return []; const out = []; for (const f of [...el.files].slice(0, 12)) out.push(await readFile(f)); return out; }
+async function submit(btn, type, payload, fileSel, done) {
+  setBusy(btn, true);
+  try { const files = await filesFrom(fileSel); await call('submit', { token:store.get(), type, payload, files }); done(); }
+  catch (e) { if (e.error === 'logged_out') return logout(true); showErr(e.error === 'file_big' ? `"${e.name}" is too large (max 8 MB). Please send a smaller file.` : errText(e)); }
+  setBusy(btn, false);
+}
+
+/* ---------- render ---------- */
+function render() {
+  const app = S.view === 'app';
+  $('#logout').hidden = !app; $('#nav').hidden = !app;
+  if (app) $('#nav').innerHTML = TABS.map(([k, l]) => `<button data-tab="${k}" class="${S.tab === k ? 'on' : ''}">${l}</button>`).join('');
+  let h = '';
+  if (S.view === 'loading') h = `<div class="login" style="text-align:center;color:var(--mute)">Loading your portal…</div>`;
+  else if (!app) h = viewLogin();
+  else { const ok = S.msg[S.tab] ? `<div class="ok" style="margin-bottom:14px">${S.msg[S.tab]}</div>` : '';
+    h = ok + ({ home:viewHome, docs:viewDocs, pay:viewPay, details:viewDetails, support:viewSupport }[S.tab])(); }
+  $('#app').innerHTML = h;
+  if (S.view === 'login' && S.step === 'email' && !API) showErr(ERR.not_ready);
+}
+function showErr(m) { const e = $('#err'); if (e) e.textContent = m || ''; }
+function setBusy(sel, on) { const b = $(sel); if (!b) return; b.disabled = on; if (on) { b.dataset.t = b.innerHTML; b.innerHTML = '<span class="spin"></span>'; } else if (b.dataset.t) b.innerHTML = b.dataset.t; }
+async function logout(expired) { const t = store.get(); store.set(''); S.data = null; S.view = 'login'; S.step = 'email'; S.msg = {}; render(); if (expired) showErr(ERR.logged_out); if (t && !expired) try { await call('logout', { token:t }); } catch (e) {} }
+
+document.addEventListener('submit', e => {
+  e.preventDefault(); const id = e.target.id;
+  if (id === 'fEmail') sendCode();
+  else if (id === 'fCode') verify();
+  else if (id === 'fPay') { const p = (D().pay || [])[S.payIx || 0]; submit('#bPay', 'payment', { amount:$('#pAmt').value, ref:$('#pRef').value.trim(), forLabel:p ? p.label : '', forNo:p ? p.forNo : '' }, '#pFile', () => { S.msg.pay = 'Thank you! We received your screenshot and will confirm the payment shortly.'; render(); scrollTo(0, 0); }); }
+  else if (id === 'fDet') { const fd = Object.fromEntries(new FormData(e.target).entries()); S.msg.draft = fd; submit('#bDet', 'details', fd, '#dFiles', () => { S.data.details = Object.assign({}, S.data.details || {}, fd); S.msg.draft = null; S.msg.details = 'Thank you! Your details were sent. We will update your website soon.'; render(); scrollTo(0, 0); }); }
+  else if (id === 'fSup') submit('#bSup', 'support', { topic:$('#sType').value, message:$('#sMsg').value.trim() }, '#sFile', () => { S.msg.support = 'Sent! We reply within 24 hours by email.'; render(); scrollTo(0, 0); });
+});
+document.addEventListener('click', async e => {
+  const t = e.target.closest('[data-tab],[data-act],[data-pay],[data-copyupi]'); if (!t) return;
+  const d = t.dataset;
+  if (d.tab) { S.tab = d.tab; Object.keys(S.msg).forEach(k => { if (k !== 'draft') delete S.msg[k]; }); render(); scrollTo(0, 0); }
+  else if (d.pay) { S.payIx = +d.pay; S.tab = 'pay'; render(); scrollTo(0, 0); }
+  else if (d.act === 'change') { S.step = 'email'; render(); }
+  else if (d.act === 'resend') { sendCode(); }
+  else if (d.copyupi) { try { await navigator.clipboard.writeText(d.copyupi); t.textContent = 'Copied ✓'; } catch (_) { t.textContent = d.copyupi; } }
+});
+document.addEventListener('change', e => { if (e.target.id === 'paySel') { S.payIx = +e.target.value; render(); } });
+$('#logout').onclick = () => logout(false);
+
+(async () => {
+  const tok = store.get();
+  if (!tok || !API) { S.view = 'login'; render(); return; }
+  S.view = 'loading'; render();
+  try { const j = await call('me', { token:tok }); S.data = j.data; S.view = 'app'; render(); }
+  catch (e) { if (e.error === 'logged_out') store.set(''); S.view = 'login'; render(); if (e.error !== 'logged_out') showErr(errText(e)); }
+})();
+</script>
+</body>
+</html>
