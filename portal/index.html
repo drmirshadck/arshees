@@ -142,7 +142,7 @@ async function call(action, body) {
   return j;
 }
 const ERR = { phone_taken:'This mobile number is already registered with another email. Please log in with that email, or contact support@arshees.com.', bad_register:'Please enter your name and a valid phone number.', not_ready:'This step is not ready yet. Please refresh.', bad_plan:'Please choose a plan.', bad_sign:'Please type your name, sign in the box and tick the box to accept.', bad_email:'Please enter a valid email address.', bad_code:'That code is not right. Please check and try again.', expired:'That code has expired. Ask for a new one.', too_many:'Too many tries. Please wait a while and try again.', wait:'A code was just sent. Please wait a minute before asking again.', no_access:'This email does not have portal access. Please contact us.', logged_out:'Please log in again.', not_ready:'The portal is being set up. Please try again soon.', server_error:'Something went wrong on our side. Please try again.' };
-const errText = e => ERR[e && e.error] || 'Could not connect. Check your internet and try again.';
+const errText = e => (e && e.error === 'new_too_soon') ? `You can request a fresh sample after ${e.date}. Until then you can continue with your previous request.` : ERR[e && e.error] || 'Could not connect. Check your internet and try again.';
 
 /* ---------- login ---------- */
 function viewLogin() {
@@ -255,7 +255,7 @@ function viewSupport() {
 }
 
 /* ---------- onboarding (new customers) ---------- */
-const CLINIC_FIELDS = [['business','Clinic name'],['city','City'],['address','Clinic address','ta'],['timings','Consultation timings','ta'],['phone','Clinic phone / WhatsApp for patients'],['email','Email for website enquiries'],['services','Services / treatments offered','ta'],['reference','A website you like the style of (optional)'],['domain','Preferred website address, e.g. drname.com (optional)'],['instagram','Instagram (optional)'],['facebook','Facebook (optional)'],['other','Anything else we should know','ta']];
+const CLINIC_FIELDS = [['business','Clinic name'],['city','City'],['address','Clinic address','ta'],['timings','Consultation timings','ta'],['phone','Clinic phone / WhatsApp for patients'],['email','Email for website enquiries'],['services','Services / treatments offered','ta'],['domain','Preferred website address, e.g. drname.com (optional)'],['instagram','Instagram (optional)'],['facebook','Facebook (optional)'],['other','Anything else we should know','ta']];
 const DOC_FIELDS = [['name','Full name (as it should appear)'],['qualification','Qualifications (e.g. BHMS, MD)'],['specialty','Speciality / what they treat'],['registration','Registration number'],['onlineFee','Online consultation fee (₹)'],['languages','Languages spoken'],['about','About the doctor (a few lines)','ta']];
 const PICK = {}; // key -> [{file, caption}]
 function pickList(key, withCaption, single) {
@@ -318,7 +318,7 @@ function viewOnboard() {
       <button class="btn ghost block" data-resume="new">Create a new request</button>
       <p class="price-note" style="margin:6px 0 0">Change your details or photos and we'll prepare a fresh sample.</p><div class="err" id="err"></div></div>`;
   if (st === 'resume') return tracker('submitted') + `<div class="hero"><h1>Bringing back your sample website</h1><p>We're putting your sample website back online. You'll get an email and a notification as soon as it's ready to view.</p></div>`;
-  if (st === 'submitted') return h + (o.queue ? `<div class="hero"><h1>You're in our priority queue</h1><p>Thank you! We're currently creating online clinics for other doctors. Your request is on priority${o.queue.position > 1 ? ` — you are number ${o.queue.position} in the queue` : ' — you are next'} — and your sample website will be ready very soon. We'll email and notify you the moment it's ready.</p></div>` : `<div class="hero"><h1>We're preparing your sample website</h1><p>Thank you! Our team is designing a sample of your online clinic. You'll get an email and a notification as soon as it's ready.</p></div>`)
+  if (st === 'submitted') return h + (o.queue ? `<div class="hero"><h1>You're in our priority queue</h1><p>Thank you! We're currently creating online clinics for other doctors. Your request is on priority${o.queue.position > 1 ? ` — you are number ${o.queue.position} in the queue` : ' — you are next'} — and your sample website will be ready very soon. We'll email and notify you the moment it's ready.</p></div>` : `<div class="hero"><h1>We're preparing your sample website</h1><p>Thank you! Our team is designing a sample of your online clinic. You'll get an email and a notification as soon as it's ready.</p></div>`) + `
     <div class="card"><b>What happens next</b><table><tr><td>1. We build your sample website</td><td class="n">⏳</td></tr><tr><td>2. You view it here and choose a plan</td><td class="n"></td></tr><tr><td>3. Sign and pay to confirm</td><td class="n"></td></tr><tr><td>4. We build your full online clinic</td><td class="n"></td></tr></table></div>
     <p style="font-size:13px;color:var(--mute)">Want to change or add something? Use the Support tab.</p>`;
   if (st === 'offer') {
