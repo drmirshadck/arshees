@@ -307,6 +307,23 @@ const STEPS = ['Your details','Sample website','Choose plan','Payment','Under co
 function tracker(stage) { const at = { registered:0, submitted:1, offer:2, accepted:3, paid:4, building:4, live:5 }[stage] ?? 0;
   return `<div class="track">${STEPS.map((t, i) => `<div class="${i < at ? 'done' : i === at ? 'now' : ''}"><i></i>${t}</div>`).join('')}</div>`; }
 const inr = n => money(n, 'INR');
+function payBlock(o, amt, hero, h) {
+    const of = o.offer || {}, link = `upi://pay?pa=${encodeURIComponent(of.upi || '').replace('%40', '@')}&pn=${encodeURIComponent(of.upiName || '')}&am=${Number(amt).toFixed(2)}&cu=INR&tn=${encodeURIComponent(of.quoteNo || 'Website')}`;
+    const phone = /Android|iPhone|iPad/i.test(navigator.userAgent);
+    const online = o.payOnline ? `<div class="card" style="text-align:center"><div class="amt">${inr(amt)}</div><div style="font-size:13px;color:var(--mute);margin-bottom:12px">Secure payment by Razorpay · UPI, cards, netbanking</div>
+      <button class="btn block" id="bRzp" data-act="rzp">Pay ${inr(amt)} now</button><div class="err" id="err"></div>
+      <p style="font-size:12.5px;color:var(--mute);margin:10px 0 0">Confirmed instantly — no screenshot needed.</p></div>
+      <details class="card" style="padding:12px 16px"><summary style="cursor:pointer;font-weight:600">Or pay directly by UPI and upload the screenshot</summary><div style="margin-top:12px">` : '';
+    return h + `${hero}
+    ${online}<div class="card" style="text-align:center"><div class="amt">${inr(amt)}</div><div style="font-size:13px;color:var(--mute)">to ${esc(of.upiName)} · ${esc(of.upi)}</div><div class="qr">${qrSVG(link, 220)}</div>
+      ${phone ? `<a class="btn block" href="${esc(link)}">Pay now with UPI</a>` : '<p style="font-size:14px;margin:0 0 10px">Scan with GPay, PhonePe, Paytm or any UPI app.</p>'}
+      <button class="btn ghost block" style="margin-top:8px" data-copyupi="${esc(of.upi)}">Copy UPI ID</button></div>
+    <h3>After paying, send us the screenshot</h3>
+    <form class="card" id="fOPay"><label class="f"><span>Amount paid</span><input id="pAmt" type="number" step="any" inputmode="decimal" value="${esc(amt)}" required></label>
+      <label class="f"><span>UPI reference / UTR (optional)</span><input id="pRef" placeholder="12-digit number on the receipt"></label>
+      <label class="f"><span>Payment screenshot</span><input id="pFile" type="file" accept="image/*,application/pdf" required></label>
+      <button class="btn block" id="bOPay">Confirm payment</button>${o.payOnline ? '' : '<div class="err" id="err"></div>'}</form>${o.payOnline ? '</div></details>' : ''}`;
+  }
 function viewOnboard() {
   const o = ONB(), st = o.stage, d = Object.assign({ name:o.name, phone:o.phone, email:S.email }, o.details || {}, S.msg.ondraft || {});
   let h = tracker(st);
@@ -346,23 +363,9 @@ function viewOnboard() {
         <label class="opt" style="margin-top:8px"><input type="checkbox" id="aAgree"><span>I accept this quotation and the terms above. Signing here is as valid as signing on paper.</span></label>
         <button class="btn block" id="bAcc">Sign &amp; accept</button><div class="err" id="err"></div></form>` : '<p style="color:var(--mute);font-size:14px">Tap a plan to continue.</p>'}`;
   }
-  if (st === 'accepted') {
-    const of = o.offer || {}, link = `upi://pay?pa=${encodeURIComponent(of.upi || '').replace('%40', '@')}&pn=${encodeURIComponent(of.upiName || '')}&am=${Number(o.amount).toFixed(2)}&cu=INR&tn=${encodeURIComponent(of.quoteNo || 'Website')}`;
-    const phone = /Android|iPhone|iPad/i.test(navigator.userAgent);
-    const online = o.payOnline ? `<div class="card" style="text-align:center"><div class="amt">${inr(o.amount)}</div><div style="font-size:13px;color:var(--mute);margin-bottom:12px">Secure payment by Razorpay · UPI, cards, netbanking</div>
-      <button class="btn block" id="bRzp" data-act="rzp">Pay ${inr(o.amount)} now</button><div class="err" id="err"></div>
-      <p style="font-size:12.5px;color:var(--mute);margin:10px 0 0">Confirmed instantly — no screenshot needed.</p></div>
-      <details class="card" style="padding:12px 16px"><summary style="cursor:pointer;font-weight:600">Or pay directly by UPI and upload the screenshot</summary><div style="margin-top:12px">` : '';
-    return h + `<div class="hero"><h1>Almost done!</h1><p>You chose the <b>${esc(o.plan)}</b> plan. Pay ${o.payMode === 'full' ? 'the full amount' : 'the advance'} to confirm and we'll start building your online clinic.</p></div>
-    ${online}<div class="card" style="text-align:center"><div class="amt">${inr(o.amount)}</div><div style="font-size:13px;color:var(--mute)">to ${esc(of.upiName)} · ${esc(of.upi)}</div><div class="qr">${qrSVG(link, 220)}</div>
-      ${phone ? `<a class="btn block" href="${esc(link)}">Pay now with UPI</a>` : '<p style="font-size:14px;margin:0 0 10px">Scan with GPay, PhonePe, Paytm or any UPI app.</p>'}
-      <button class="btn ghost block" style="margin-top:8px" data-copyupi="${esc(of.upi)}">Copy UPI ID</button></div>
-    <h3>After paying, send us the screenshot</h3>
-    <form class="card" id="fOPay"><label class="f"><span>Amount paid</span><input id="pAmt" type="number" step="any" inputmode="decimal" value="${esc(o.amount)}" required></label>
-      <label class="f"><span>UPI reference / UTR (optional)</span><input id="pRef" placeholder="12-digit number on the receipt"></label>
-      <label class="f"><span>Payment screenshot</span><input id="pFile" type="file" accept="image/*,application/pdf" required></label>
-      <button class="btn block" id="bOPay">Confirm payment</button>${o.payOnline ? '' : '<div class="err" id="err"></div>'}</form>${o.payOnline ? '</div></details>' : ''}`;
-  }
+  if (st === 'accepted') return payBlock(o, o.amount, `<div class="hero"><h1>Almost done!</h1><p>You chose the <b>${esc(o.plan)}</b> plan. Pay ${o.payMode === 'full' ? 'the full amount' : 'the advance'} to confirm and we'll start building your online clinic.</p></div>`, h);
+  if (st === 'handover') return payBlock(o, o.balance, `<div class="hero"><h1>Your online clinic is ready! 🎉</h1><p>Have a look at your website, then pay the balance and we'll hand it over to you.</p>${o.finalUrl ? `<a class="btn" style="background:#fff;color:var(--wine);margin-top:10px" href="${esc(/^https?:/i.test(o.finalUrl) ? o.finalUrl : 'https://' + o.finalUrl)}" target="_blank" rel="noopener">View my website</a>` : ''}</div>`, '');
+  if (st === 'balancepaid') return `<div class="hero"><h1>Thank you! 🎉</h1><p>Your payment is complete. We're preparing the handover of your online clinic and will be in touch shortly.</p></div>`;
   if (st === 'paid') return h + `<div class="hero"><h1>Thanks for confirming! 🎉</h1><p>Your online clinic is under construction. We'll keep you updated here, by email and with notifications.</p></div>
     <div class="card"><table><tr><td>Plan</td><td class="n">${esc(o.plan || '')}</td></tr><tr><td>Paid</td><td class="n">${inr(o.amount)}</td></tr><tr><td>Confirmed</td><td class="n">${fmtD(o.paidAt)}</td></tr></table></div>`;
   return '';
