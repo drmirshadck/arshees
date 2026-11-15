@@ -276,7 +276,7 @@ function initPush() {
   pushReady = new Promise(ok => {
     window.OneSignalDeferred = window.OneSignalDeferred || [];
     OneSignalDeferred.push(async OS => {
-      try { await OS.init({ appId:S.app.pushAppId, serviceWorkerPath:'portal/sw.js', serviceWorkerParam:{ scope:'/portal/' }, notifyButton:{ enable:false }, autoResubscribe:true });
+      try { await OS.init({ appId:S.app.pushAppId, safari_web_id:'web.onesignal.auto.5b1b15a7-d107-41ff-b02e-c379c8847bd2', serviceWorkerPath:'portal/sw.js', serviceWorkerParam:{ scope:'/portal/' }, notifyButton:{ enable:false }, autoResubscribe:true });
         await OS.login(S.app.pushId); OS.Notifications.addEventListener('permissionChange', () => render()); } catch (e) { console.warn('push', e); }
       ok(OS);
     });
