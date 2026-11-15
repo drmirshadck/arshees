@@ -95,6 +95,10 @@ tr.t td{font-weight:600;color:var(--wine)}
 .opt{display:flex;gap:10px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:8px;cursor:pointer;font-size:15px}.opt input{width:auto;accent-color:var(--wine)}
 .sigpad{background:#fff;border:1px dashed #cdbfb8;border-radius:12px;width:100%;height:150px;touch-action:none;display:block}
 .hero{background:linear-gradient(135deg,#6B1E3A,#8a2a4d);color:#fff;border-radius:var(--r);padding:22px 20px;margin-bottom:14px}.hero h1{color:#fff}.hero p{color:#f3e6ea;margin:0}
+.sec{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:4px 16px 14px;margin-bottom:14px}.sec>h3{margin:14px 0 2px}
+.drcard{border:1px solid var(--line);border-radius:14px;padding:4px 14px 10px;margin:12px 0;background:#fdfbf9}.drcard b.t{display:block;margin-top:10px;color:var(--wine)}
+.picked{display:flex;flex-direction:column;gap:6px;margin-top:8px}.picked div{display:flex;gap:8px;align-items:center;font-size:13px;background:#f6f0ec;border-radius:10px;padding:6px 8px}.picked div span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.picked input{padding:7px 9px;font-size:13px}.picked button{border:0;background:none;color:var(--bad);font-size:18px;padding:0 4px}
+.price-note{font-size:13px;color:var(--mute);margin:-4px 0 8px}
 .link{background:none;border:0;color:var(--wine);font-weight:600;padding:0;text-decoration:underline}
 @media (display-mode: standalone){footer{padding-bottom:40px}}
 footer{text-align:center;color:var(--mute);font-size:12.5px;padding:10px 18px 30px}
@@ -137,7 +141,7 @@ async function call(action, body) {
   if (!j.ok) throw j;
   return j;
 }
-const ERR = { bad_register:'Please enter your name and a valid phone number.', not_ready:'This step is not ready yet. Please refresh.', bad_plan:'Please choose a plan.', bad_sign:'Please type your name, sign in the box and tick the box to accept.', bad_email:'Please enter a valid email address.', bad_code:'That code is not right. Please check and try again.', expired:'That code has expired. Ask for a new one.', too_many:'Too many tries. Please wait a while and try again.', wait:'A code was just sent. Please wait a minute before asking again.', no_access:'This email does not have portal access. Please contact us.', logged_out:'Please log in again.', not_ready:'The portal is being set up. Please try again soon.', server_error:'Something went wrong on our side. Please try again.' };
+const ERR = { phone_taken:'This mobile number is already registered with another email. Please log in with that email, or contact support@arshees.com.', bad_register:'Please enter your name and a valid phone number.', not_ready:'This step is not ready yet. Please refresh.', bad_plan:'Please choose a plan.', bad_sign:'Please type your name, sign in the box and tick the box to accept.', bad_email:'Please enter a valid email address.', bad_code:'That code is not right. Please check and try again.', expired:'That code has expired. Ask for a new one.', too_many:'Too many tries. Please wait a while and try again.', wait:'A code was just sent. Please wait a minute before asking again.', no_access:'This email does not have portal access. Please contact us.', logged_out:'Please log in again.', not_ready:'The portal is being set up. Please try again soon.', server_error:'Something went wrong on our side. Please try again.' };
 const errText = e => ERR[e && e.error] || 'Could not connect. Check your internet and try again.';
 
 /* ---------- login ---------- */
@@ -185,7 +189,7 @@ async function verify() {
 /* ---------- app ---------- */
 const TABS_ALL = [['home','Overview'],['updates','Updates'],['docs','Documents'],['pay','Pay'],['details','My details'],['support','Support']];
 const ONB = () => (S.app && S.app.onboarding) || null;
-const onboarding = () => { const o = ONB(); return o && ['registered','submitted','offer','accepted'].includes(o.stage); };
+const onboarding = () => { const o = ONB(); return o && ['registered','submitted','offer','accepted','expired','resume'].includes(o.stage); };
 const TABS_GET = () => onboarding() ? [['home','My website'],['updates','Updates'],['support','Support']] : TABS_ALL;
 function D() { return S.data || {}; }
 function viewHome() {
@@ -251,7 +255,54 @@ function viewSupport() {
 }
 
 /* ---------- onboarding (new customers) ---------- */
-const ONB_FIELDS = [['name','Your full name (as it should appear)'],['qualification','Qualifications (e.g. BHMS, MD)'],['specialty','Speciality / what you treat'],['business','Clinic name'],['registration','Registration number'],['phone','Phone / WhatsApp for patients'],['email','Email for website enquiries'],['city','City'],['address','Clinic address','ta'],['timings','Consultation timings','ta'],['fee','Consultation fee (in-clinic / online)'],['languages','Languages you speak'],['services','Services / treatments you offer','ta'],['about','About you (a few lines for the website)','ta'],['reference','A website you like the style of (optional)'],['domain','Preferred website address, e.g. drname.com (optional)'],['instagram','Instagram (optional)'],['facebook','Facebook (optional)'],['other','Anything else we should know','ta']];
+const CLINIC_FIELDS = [['business','Clinic name'],['city','City'],['address','Clinic address','ta'],['timings','Consultation timings','ta'],['phone','Clinic phone / WhatsApp for patients'],['email','Email for website enquiries'],['services','Services / treatments offered','ta'],['reference','A website you like the style of (optional)'],['domain','Preferred website address, e.g. drname.com (optional)'],['instagram','Instagram (optional)'],['facebook','Facebook (optional)'],['other','Anything else we should know','ta']];
+const DOC_FIELDS = [['name','Full name (as it should appear)'],['qualification','Qualifications (e.g. BHMS, MD)'],['specialty','Speciality / what they treat'],['registration','Registration number'],['onlineFee','Online consultation fee (₹)'],['languages','Languages spoken'],['about','About the doctor (a few lines)','ta']];
+const PICK = {}; // key -> [{file, caption}]
+function pickList(key, withCaption, single) {
+  const l = PICK[key] || [];
+  return `<div class="picked">${l.map((x, i) => `<div><span>📎 ${esc(x.file.name)}</span>${withCaption ? `<input data-cap="${key}:${i}" placeholder="What is this photo?" value="${esc(x.caption || '')}" style="flex:1.4">` : ''}<button type="button" data-unpick="${key}:${i}" aria-label="Remove">×</button></div>`).join('')}</div>
+  <input type="file" accept="image/*" ${single ? '' : 'multiple'} data-pick="${key}" data-single="${single ? 1 : ''}" style="margin-top:6px">`;
+}
+function onbDraft() { return S.msg.ondraft || null; }
+function onbForm(o) {
+  const base = Object.assign({}, o.details || {}), d = onbDraft() || base, n = Math.max(1, Math.min(20, +(d.doctorCount || (d.doctors && d.doctors.length) || 1)));
+  const docs = (d.doctors && d.doctors.length) ? d.doctors : [{ name:o.name || '', qualification:d.qualification || '', specialty:d.specialty || '', registration:d.registration || '', languages:d.languages || '', about:d.about || '' }];
+  const f = (k, l, t, v) => `<label class="f"><span>${esc(l)}</span>${t === 'ta' ? `<textarea name="${k}">${esc(v || '')}</textarea>` : `<input name="${k}" value="${esc(v || '')}">`}</label>`;
+  return `<form id="fOnb">
+  <div class="sec"><h3>1 · Doctors</h3>
+    <label class="f"><span>How many doctors will be on the website?</span><select name="doctorCount" id="docCount">${Array.from({ length:10 }, (_, i) => `<option value="${i + 1}" ${i + 1 === n ? 'selected' : ''}>${i + 1} doctor${i ? 's' : ''}</option>`).join('')}</select></label>
+    <p class="price-note">The plan price includes one doctor. Each additional doctor is ₹1,000 (renewal stays the same).</p>
+    ${Array.from({ length:n }, (_, i) => { const dr = docs[i] || {}; return `<div class="drcard"><b class="t">Doctor ${i + 1}</b>${DOC_FIELDS.map(([k, l, t]) => f(`dr${i}_${k}`, l, t, dr[k])).join('')}<label class="f"><span>Portrait photo of doctor ${i + 1}</span>${pickList('portrait' + i, false, true)}</label></div>`; }).join('')}
+  </div>
+  <div class="sec"><h3>2 · Clinic</h3>${CLINIC_FIELDS.map(([k, l, t]) => f(k, l, t, d[k])).join('')}</div>
+  <div class="sec"><h3>3 · Photos</h3>
+    <label class="f"><span>Clinic logo (optional)</span>${pickList('logo', false, true)}</label>
+    <label class="f"><span>Clinic photos (reception, consultation room, building…)</span>${pickList('clinic', true)}</label>
+    <label class="f"><span>Any other photos — say what each one is</span>${pickList('other', true)}</label>
+    <p class="price-note">Photos are resized automatically. Up to 30 in total.</p>
+  </div>
+  <button class="btn block" id="bOnb">Submit for website creation</button><div class="err" id="err"></div></form>`;
+}
+function collectOnb(form) {
+  const fd = Object.fromEntries(new FormData(form).entries()), n = +fd.doctorCount || 1, out = { doctorCount:n, doctors:[] };
+  CLINIC_FIELDS.forEach(([k]) => out[k] = (fd[k] || '').trim());
+  for (let i = 0; i < n; i++) { const dr = {}; DOC_FIELDS.forEach(([k]) => dr[k] = (fd[`dr${i}_${k}`] || '').trim()); out.doctors.push(dr); }
+  const d0 = out.doctors[0] || {}; Object.assign(out, { name:d0.name, qualification:d0.qualification, specialty:d0.specialty, registration:d0.registration, onlineFee:d0.onlineFee, languages:d0.languages, about:d0.about });
+  return out;
+}
+async function submitOnb(form) {
+  const data = collectOnb(form); S.msg.ondraft = data;
+  if (!data.doctors.every(d => d.name)) { showErr('Please enter the name of every doctor.'); return; }
+  const items = [];
+  Object.keys(PICK).forEach(k => (PICK[k] || []).forEach(x => { const cat = k.startsWith('portrait') ? 'portrait:doctor ' + (+k.slice(8) + 1) + (data.doctors[+k.slice(8)] ? ' (' + data.doctors[+k.slice(8)].name + ')' : '') : k; if (k.startsWith('portrait') && +k.slice(8) >= data.doctorCount) return; items.push({ file:x.file, meta:{ category:cat, caption:x.caption || '' } }); }));
+  if (items.length > 30) { showErr('Please choose 30 photos or fewer.'); return; }
+  setBusy('#bOnb', true);
+  try { const files = []; for (const it of items) files.push(await readFile(it.file));
+    const j = await call('submit', { token:store.get(), type:'register', payload:data, files, fileMeta:items.map(i => i.meta) });
+    if (j.onboarding) S.app.onboarding = j.onboarding; S.msg.ondraft = null; Object.keys(PICK).forEach(k => delete PICK[k]); S.msg.home = 'Thank you! Your details were sent.'; render(); scrollTo(0, 0); }
+  catch (e) { if (e.error === 'logged_out') return logout(true); showErr(e.error === 'file_big' ? `"${e.name}" is too large (max 8 MB).` : errText(e)); }
+  setBusy('#bOnb', false);
+}
 const STEPS = ['Your details','Sample website','Choose plan','Payment','Under construction'];
 function tracker(stage) { const at = { registered:0, submitted:1, offer:2, accepted:3, paid:4, building:4, live:5 }[stage] ?? 0;
   return `<div class="track">${STEPS.map((t, i) => `<div class="${i < at ? 'done' : i === at ? 'now' : ''}"><i></i>${t}</div>`).join('')}</div>`; }
@@ -259,11 +310,14 @@ const inr = n => money(n, 'INR');
 function viewOnboard() {
   const o = ONB(), st = o.stage, d = Object.assign({ name:o.name, phone:o.phone, email:S.email }, o.details || {}, S.msg.ondraft || {});
   let h = tracker(st);
-  if (st === 'registered') return h + `<div class="hero"><h1>Welcome${o.name ? ', ' + esc(o.name) : ''}!</h1><p>Tell us about your clinic. We'll build a free sample of your online clinic website and send it to you here.</p></div>
-    <form class="card" id="fOnb">${ONB_FIELDS.map(([k, l, t]) => `<label class="f"><span>${esc(l)}</span>${t === 'ta' ? `<textarea name="${k}">${esc(d[k] || '')}</textarea>` : `<input name="${k}" value="${esc(d[k] || '')}">`}</label>`).join('')}
-    <label class="f"><span>Your photo, clinic logo and clinic photos</span><input id="oFiles" type="file" accept="image/*,application/pdf" multiple></label>
-    <p style="font-size:12.5px;color:var(--mute);margin-top:-4px">Up to 12 files. Photos are resized automatically.</p>
-    <button class="btn block" id="bOnb">Submit for website creation</button><div class="err" id="err"></div></form>`;
+  if (st === 'registered') return h + `<div class="hero"><h1>Welcome${o.name ? ', ' + esc(o.name) : ''}!</h1><p>${o.prevOffer ? 'Your previous details are filled in below. Make any changes and submit your new request.' : "Tell us about your clinic. We'll build a free sample of your online clinic website and send it to you here."}</p></div>` + onbForm(o);
+  if (st === 'expired') return `<div class="hero"><h1>Welcome back${o.name ? ', ' + esc(o.name) : ''}</h1><p>You requested an online clinic website with us${o.createdAt ? ' on ' + fmtD(o.createdAt) : ''}. Your sample website has been taken offline, but all your details are saved.</p></div>
+    <div class="card"><b style="font-size:17px">What would you like to do?</b>
+      <button class="btn block" style="margin-top:12px" data-resume="continue">Continue with my previous request</button>
+      <p class="price-note" style="margin:6px 0 12px">We'll put your sample website back online and you can choose your plan.</p>
+      <button class="btn ghost block" data-resume="new">Create a new request</button>
+      <p class="price-note" style="margin:6px 0 0">Change your details or photos and we'll prepare a fresh sample.</p><div class="err" id="err"></div></div>`;
+  if (st === 'resume') return tracker('submitted') + `<div class="hero"><h1>Bringing back your sample website</h1><p>We're putting your sample website back online. You'll get an email and a notification as soon as it's ready to view.</p></div>`;
   if (st === 'submitted') return h + `<div class="hero"><h1>We're preparing your sample website</h1><p>Thank you! Our team is designing a sample of your online clinic. You'll get an email and a notification as soon as it's ready — usually within a day.</p></div>
     <div class="card"><b>What happens next</b><table><tr><td>1. We build your sample website</td><td class="n">⏳</td></tr><tr><td>2. You view it here and choose a plan</td><td class="n"></td></tr><tr><td>3. Sign and pay to confirm</td><td class="n"></td></tr><tr><td>4. We build your full online clinic</td><td class="n"></td></tr></table></div>
     <p style="font-size:13px;color:var(--mute)">Want to change or add something? Use the Support tab.</p>`;
@@ -272,13 +326,15 @@ function viewOnboard() {
     return h + `<div class="hero"><h1>Your sample website is ready 🎉</h1><p>Have a look, then choose the plan that suits you.</p>${of.sampleUrl ? `<p style="margin-top:14px"><a class="btn gold" href="${esc(of.sampleUrl)}" target="_blank" rel="noopener">View my sample website</a></p>` : ''}</div>
     ${of.note ? `<div class="note" style="margin-bottom:12px">${esc(of.note)}</div>` : ''}
     <h3>Choose your plan${of.quoteNo ? ' · Quotation ' + esc(of.quoteNo) : ''}</h3>
-    ${plans.map(p => `<label class="plan ${sel && sel.id === p.id ? 'on' : ''}"><div class="row"><input type="radio" name="plan" value="${esc(p.id)}" ${sel && sel.id === p.id ? 'checked' : ''}><b style="font-size:18px;flex:1">${esc(p.name)}</b><span class="pr">${inr(p.price)}</span></div><div style="font-size:13px;color:var(--mute);text-align:right">first year · then ${inr(p.renewal)} a year</div><ul>${(p.features || []).map(f => `<li>${esc(f)}</li>`).join('')}</ul></label>`).join('')}
+    ${of.doctors > 1 ? `<p class="price-note">Prices include ${of.doctors} doctors: the plan covers 1 doctor, plus ${inr(of.extraDoctor)} for each additional doctor.</p>` : ''}
+    ${plans.map(p => `<label class="plan ${sel && sel.id === p.id ? 'on' : ''}"><div class="row"><input type="radio" name="plan" value="${esc(p.id)}" ${sel && sel.id === p.id ? 'checked' : ''}><b style="font-size:18px;flex:1">${esc(p.name)}</b><span class="pr">${inr(p.price)}</span></div><div style="font-size:13px;color:var(--mute);text-align:right">${p.extraDoctors ? `${inr(p.base)} + ${p.extraDoctors} extra doctor${p.extraDoctors > 1 ? 's' : ''} ${inr(p.extraFee)} · ` : ''}first year · then ${inr(p.renewal)} a year</div><ul>${(p.features || []).map(f => `<li>${esc(f)}</li>`).join('')}</ul></label>`).join('')}
     <div class="card" style="font-size:14px;color:#4a3b40">${esc(of.proNote || '')} <a href="mailto:godigital@arshees.com">godigital@arshees.com</a> · +971 58 657 6586</div>
     ${sel ? `<h3>How would you like to pay?</h3>
       <label class="opt"><input type="radio" name="paymode" value="advance" ${mode === 'advance' ? 'checked' : ''}><span><b>${pct}% advance now: ${inr(Math.round(sel.price * pct / 100))}</b><br><small style="color:var(--mute)">Balance ${inr(sel.price - Math.round(sel.price * pct / 100))} before your website goes live</small></span></label>
       <label class="opt"><input type="radio" name="paymode" value="full" ${mode === 'full' ? 'checked' : ''}><span><b>Full payment: ${inr(sel.price)}</b></span></label>
       <h3>Terms</h3><div class="card" style="font-size:14px"><ul style="margin:0;padding-left:18px">
-        <li>${esc(sel.name)} plan: ${inr(sel.price)} for the first year (design, development, domain and hosting), then ${inr(sel.renewal)} per year for renewal, hosting and routine maintenance.</li>
+        <li>${esc(sel.name)} plan: ${inr(sel.price)} for the first year${sel.extraDoctors ? ` (${inr(sel.base)} plan + ${sel.extraDoctors} additional doctor${sel.extraDoctors > 1 ? 's' : ''} at ${inr(of.extraDoctor)} each)` : ''} — design, development, domain and hosting — then ${inr(sel.renewal)} per year for renewal, hosting and routine maintenance.</li>
+        <li>Additional doctors are ${inr(of.extraDoctor)} each. If a doctor is removed later, that doctor's place can be given to another doctor at no extra cost until your next renewal date.</li>
         <li>${pct}% advance to start the work; the balance is due before the website goes live.</li>
         <li>All photos, videos, logos and other media are provided by you.</li>
         <li>Payment by UPI. Support at support@arshees.com, replies within 24 hours.</li>
@@ -435,7 +491,7 @@ document.addEventListener('submit', e => {
   if (id === 'fEmail') sendCode();
   else if (id === 'fReg') register();
   else if (id === 'fAcc') acceptOffer();
-  else if (id === 'fOnb') { const fd = Object.fromEntries(new FormData(e.target).entries()); S.msg.ondraft = fd; submit('#bOnb', 'register', fd, '#oFiles', () => { S.msg.ondraft = null; S.msg.home = 'Thank you! Your details were sent.'; render(); scrollTo(0, 0); }); }
+  else if (id === 'fOnb') submitOnb(e.target);
   else if (id === 'fOPay') { const o = ONB() || {}; submit('#bOPay', 'payment', { amount:$('#pAmt').value, ref:$('#pRef').value.trim(), forLabel:(o.plan || '') + ' plan ' + (o.payMode || ''), forNo:(o.offer && o.offer.quoteNo) || '' }, '#pFile', () => { S.msg.home = ''; render(); scrollTo(0, 0); }); }
   else if (id === 'fCode') verify();
   else if (id === 'fPay') { const p = (D().pay || [])[S.payIx || 0]; submit('#bPay', 'payment', { amount:$('#pAmt').value, ref:$('#pRef').value.trim(), forLabel:p ? p.label : '', forNo:p ? p.forNo : '' }, '#pFile', () => { S.msg.pay = 'Thank you! We received your screenshot and will confirm the payment shortly.'; render(); scrollTo(0, 0); }); }
@@ -443,8 +499,10 @@ document.addEventListener('submit', e => {
   else if (id === 'fSup') submit('#bSup', 'support', { topic:$('#sType').value, message:$('#sMsg').value.trim() }, '#sFile', () => { S.msg.support = 'Sent! We reply within 24 hours by email.'; render(); scrollTo(0, 0); });
 });
 document.addEventListener('click', async e => {
-  const t = e.target.closest('[data-tab],[data-act],[data-pay],[data-copyupi]'); if (!t) return;
+  const t = e.target.closest('[data-tab],[data-act],[data-pay],[data-copyupi],[data-unpick],[data-resume]'); if (!t) return;
   const d = t.dataset;
+  if (d.unpick) { const [k, i] = d.unpick.split(':'); (PICK[k] || []).splice(+i, 1); const f = $('#fOnb'); if (f) S.msg.ondraft = collectOnb(f); render(); return; }
+  if (d.resume) { t.disabled = true; try { const j = await call('submit', { token:store.get(), type:'resume', payload:{ choice:d.resume } }); S.app.onboarding = j.onboarding; S.msg.ondraft = null; render(); scrollTo(0, 0); } catch (err) { if (err.error === 'logged_out') return logout(true); t.disabled = false; showErr(errText(err)); } return; }
   if (d.tab) { S.tab = d.tab; Object.keys(S.msg).forEach(k => { if (k !== 'draft') delete S.msg[k]; }); render(); scrollTo(0, 0); }
   else if (d.pay) { S.payIx = +d.pay; S.tab = 'pay'; render(); scrollTo(0, 0); }
   else if (d.act === 'change') { S.step = 'email'; render(); }
@@ -457,6 +515,12 @@ document.addEventListener('click', async e => {
   else if (d.act === 'resend') { sendCode(); }
   else if (d.copyupi) { try { await navigator.clipboard.writeText(d.copyupi); t.textContent = 'Copied ✓'; } catch (_) { t.textContent = d.copyupi; } }
 });
+document.addEventListener('change', e => {
+  const t = e.target;
+  if (t.dataset && t.dataset.pick) { const k = t.dataset.pick, list = [...t.files].map(f => ({ file:f, caption:'' })); PICK[k] = t.dataset.single ? list.slice(0, 1) : (PICK[k] || []).concat(list); const f = $('#fOnb'); if (f) S.msg.ondraft = collectOnb(f); render(); return; }
+  if (t.id === 'docCount') { const f = $('#fOnb'); S.msg.ondraft = collectOnb(f); render(); return; }
+});
+document.addEventListener('input', e => { const t = e.target; if (t.dataset && t.dataset.cap) { const [k, i] = t.dataset.cap.split(':'); if (PICK[k] && PICK[k][+i]) PICK[k][+i].caption = t.value; } });
 document.addEventListener('change', e => { if (e.target.id === 'paySel') { S.payIx = +e.target.value; render(); } else if (e.target.name === 'plan') { S.selPlan = e.target.value; render(); } else if (e.target.name === 'paymode') { S.payMode = e.target.value; render(); } });
 $('#logout').onclick = () => logout(false);
 
