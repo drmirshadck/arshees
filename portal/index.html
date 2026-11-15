@@ -86,6 +86,16 @@ tr.t td{font-weight:600;color:var(--wine)}
 .steps{background:#fff;border:1px solid var(--line);border-radius:14px;padding:6px 14px;margin:0 0 14px;font-size:15px}
 .steps div{padding:9px 0;border-top:1px solid var(--line);display:flex;gap:10px;align-items:center}.steps div:first-child{border-top:0}
 .steps b.n{width:24px;height:24px;border-radius:50%;background:var(--wine);color:#fff;font-size:13px;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.track{display:flex;gap:4px;margin:4px 0 18px}.track div{flex:1;text-align:center;font-size:11px;color:var(--mute)}
+.track div i{display:block;height:6px;border-radius:3px;background:#eadfd8;margin-bottom:6px}.track div.done i{background:var(--wine)}.track div.now i{background:var(--gold)}.track div.now{color:var(--ink);font-weight:600}
+.plan{display:block;background:#fff;border:2px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:10px;cursor:pointer}
+.plan.on{border-color:var(--wine);box-shadow:0 4px 18px rgba(107,30,58,.10)}
+.plan .pr{font-family:Fraunces,Georgia,serif;font-size:24px;color:var(--wine)}.plan ul{margin:8px 0 0;padding-left:18px;font-size:14px;color:#4a3b40}
+.plan input{width:auto;margin-right:8px;accent-color:var(--wine)}
+.opt{display:flex;gap:10px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:8px;cursor:pointer;font-size:15px}.opt input{width:auto;accent-color:var(--wine)}
+.sigpad{background:#fff;border:1px dashed #cdbfb8;border-radius:12px;width:100%;height:150px;touch-action:none;display:block}
+.hero{background:linear-gradient(135deg,#6B1E3A,#8a2a4d);color:#fff;border-radius:var(--r);padding:22px 20px;margin-bottom:14px}.hero h1{color:#fff}.hero p{color:#f3e6ea;margin:0}
+.link{background:none;border:0;color:var(--wine);font-weight:600;padding:0;text-decoration:underline}
 @media (display-mode: standalone){footer{padding-bottom:40px}}
 footer{text-align:center;color:var(--mute);font-size:12.5px;padding:10px 18px 30px}
 .spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:s .8s linear infinite}
@@ -127,7 +137,7 @@ async function call(action, body) {
   if (!j.ok) throw j;
   return j;
 }
-const ERR = { bad_email:'Please enter a valid email address.', bad_code:'That code is not right. Please check and try again.', expired:'That code has expired. Ask for a new one.', too_many:'Too many tries. Please wait a while and try again.', wait:'A code was just sent. Please wait a minute before asking again.', no_access:'This email does not have portal access. Please contact us.', logged_out:'Please log in again.', not_ready:'The portal is being set up. Please try again soon.', server_error:'Something went wrong on our side. Please try again.' };
+const ERR = { bad_register:'Please enter your name and a valid phone number.', not_ready:'This step is not ready yet. Please refresh.', bad_plan:'Please choose a plan.', bad_sign:'Please type your name, sign in the box and tick the box to accept.', bad_email:'Please enter a valid email address.', bad_code:'That code is not right. Please check and try again.', expired:'That code has expired. Ask for a new one.', too_many:'Too many tries. Please wait a while and try again.', wait:'A code was just sent. Please wait a minute before asking again.', no_access:'This email does not have portal access. Please contact us.', logged_out:'Please log in again.', not_ready:'The portal is being set up. Please try again soon.', server_error:'Something went wrong on our side. Please try again.' };
 const errText = e => ERR[e && e.error] || 'Could not connect. Check your internet and try again.';
 
 /* ---------- login ---------- */
@@ -135,7 +145,15 @@ function viewLogin() {
   if (S.step === 'email') return `<div class="login"><div class="card">
     <h1>Welcome</h1><p class="lead">Log in to see your website, documents and payments. We'll email you a 6-digit code — no password needed.</p>
     <form id="fEmail"><label class="f"><span>Your email</span><input id="email" type="email" autocomplete="email" inputmode="email" required value="${esc(S.email)}" placeholder="you@example.com"></label>
-    <button class="btn block" id="bSend">Send me a code</button><div class="err" id="err"></div></form></div></div>`;
+    <button class="btn block" id="bSend">Send me a code</button><div class="err" id="err"></div></form></div>
+    <div class="card" style="text-align:center"><b style="font-size:17px">New to DotCom by Arshees?</b><p style="color:var(--mute);margin:4px 0 12px;font-size:14px">Get your own online clinic website. Send us your details and we'll prepare a free sample for you.</p><button class="btn gold block" data-act="register">Get my online clinic website</button></div></div>`;
+  if (S.step === 'register') return `<div class="login"><div class="card">
+    <h1>Get your online clinic</h1><p class="lead">Create your free account. We'll email you a 6-digit code to confirm your email.</p>
+    <form id="fReg"><label class="f"><span>Your name</span><input id="rName" required autocomplete="name" placeholder="Dr Firstname Lastname" value="${esc(S.regName || '')}"></label>
+    <label class="f"><span>Email</span><input id="email" type="email" autocomplete="email" inputmode="email" required value="${esc(S.email)}" placeholder="you@example.com"></label>
+    <label class="f"><span>Phone / WhatsApp</span><input id="rPhone" type="tel" autocomplete="tel" inputmode="tel" required placeholder="+91 98xxxxxxxx" value="${esc(S.regPhone || '')}"></label>
+    <button class="btn block" id="bReg">Continue</button><div class="err" id="err"></div></form>
+    <p style="text-align:center;margin:12px 0 0"><button class="link" data-act="change">I already have an account</button></p></div></div>`;
   return `<div class="login"><div class="card">
     <h1>Check your email</h1><p class="lead">We sent a 6-digit code to <b>${esc(S.email)}</b>. It works for 10 minutes. Check spam if you don't see it.</p>
     <form id="fCode"><label class="f"><span>Login code</span><input id="code" class="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" required></label>
@@ -149,6 +167,13 @@ async function sendCode() {
   catch (e) { showErr(errText(e)); if (e.error === 'wait') { S.step = 'code'; render(); showErr(errText(e)); } }
   setBusy('#bSend', false);
 }
+async function register() {
+  const email = $('#email').value.trim(), name = $('#rName').value.trim(), phone = $('#rPhone').value.trim();
+  S.email = email; S.regName = name; S.regPhone = phone; setBusy('#bReg', true);
+  try { await call('requestCode', { email, register:true, name, phone }); S.step = 'code'; render(); setTimeout(() => $('#code') && $('#code').focus(), 50); }
+  catch (e) { showErr(errText(e)); if (e.error === 'wait') { S.step = 'code'; render(); showErr(errText(e)); } }
+  setBusy('#bReg', false);
+}
 async function verify() {
   const code = $('#code').value.replace(/\D/g, ''); if (code.length !== 6) { showErr('Enter the 6 digits from the email.'); return; }
   setBusy('#bVerify', true);
@@ -158,7 +183,10 @@ async function verify() {
 }
 
 /* ---------- app ---------- */
-const TABS = [['home','Overview'],['updates','Updates'],['docs','Documents'],['pay','Pay'],['details','My details'],['support','Support']];
+const TABS_ALL = [['home','Overview'],['updates','Updates'],['docs','Documents'],['pay','Pay'],['details','My details'],['support','Support']];
+const ONB = () => (S.app && S.app.onboarding) || null;
+const onboarding = () => { const o = ONB(); return o && ['registered','submitted','offer','accepted'].includes(o.stage); };
+const TABS_GET = () => onboarding() ? [['home','My website'],['updates','Updates'],['support','Support']] : TABS_ALL;
 function D() { return S.data || {}; }
 function viewHome() {
   const d = D(), bal = (d.balance || []).filter(b => +b.amt > 0);
@@ -220,6 +248,83 @@ function viewSupport() {
     <label class="f"><span>Screenshot or new photo (optional)</span><input id="sFile" type="file" accept="image/*,application/pdf" multiple></label>
     <button class="btn block" id="bSup">Send to support</button><div class="err" id="err"></div></form>
   <p style="font-size:13px;color:var(--mute)">You can also email <a href="mailto:support@arshees.com">support@arshees.com</a> (support@arshees.com).</p>`;
+}
+
+/* ---------- onboarding (new customers) ---------- */
+const ONB_FIELDS = [['name','Your full name (as it should appear)'],['qualification','Qualifications (e.g. BHMS, MD)'],['specialty','Speciality / what you treat'],['business','Clinic name'],['registration','Registration number'],['phone','Phone / WhatsApp for patients'],['email','Email for website enquiries'],['city','City'],['address','Clinic address','ta'],['timings','Consultation timings','ta'],['fee','Consultation fee (in-clinic / online)'],['languages','Languages you speak'],['services','Services / treatments you offer','ta'],['about','About you (a few lines for the website)','ta'],['reference','A website you like the style of (optional)'],['domain','Preferred website address, e.g. drname.com (optional)'],['instagram','Instagram (optional)'],['facebook','Facebook (optional)'],['other','Anything else we should know','ta']];
+const STEPS = ['Your details','Sample website','Choose plan','Payment','Under construction'];
+function tracker(stage) { const at = { registered:0, submitted:1, offer:2, accepted:3, paid:4, building:4, live:5 }[stage] ?? 0;
+  return `<div class="track">${STEPS.map((t, i) => `<div class="${i < at ? 'done' : i === at ? 'now' : ''}"><i></i>${t}</div>`).join('')}</div>`; }
+const inr = n => money(n, 'INR');
+function viewOnboard() {
+  const o = ONB(), st = o.stage, d = Object.assign({ name:o.name, phone:o.phone, email:S.email }, o.details || {}, S.msg.ondraft || {});
+  let h = tracker(st);
+  if (st === 'registered') return h + `<div class="hero"><h1>Welcome${o.name ? ', ' + esc(o.name) : ''}!</h1><p>Tell us about your clinic. We'll build a free sample of your online clinic website and send it to you here.</p></div>
+    <form class="card" id="fOnb">${ONB_FIELDS.map(([k, l, t]) => `<label class="f"><span>${esc(l)}</span>${t === 'ta' ? `<textarea name="${k}">${esc(d[k] || '')}</textarea>` : `<input name="${k}" value="${esc(d[k] || '')}">`}</label>`).join('')}
+    <label class="f"><span>Your photo, clinic logo and clinic photos</span><input id="oFiles" type="file" accept="image/*,application/pdf" multiple></label>
+    <p style="font-size:12.5px;color:var(--mute);margin-top:-4px">Up to 12 files. Photos are resized automatically.</p>
+    <button class="btn block" id="bOnb">Submit for website creation</button><div class="err" id="err"></div></form>`;
+  if (st === 'submitted') return h + `<div class="hero"><h1>We're preparing your sample website</h1><p>Thank you! Our team is designing a sample of your online clinic. You'll get an email and a notification as soon as it's ready — usually within a day.</p></div>
+    <div class="card"><b>What happens next</b><table><tr><td>1. We build your sample website</td><td class="n">⏳</td></tr><tr><td>2. You view it here and choose a plan</td><td class="n"></td></tr><tr><td>3. Sign and pay to confirm</td><td class="n"></td></tr><tr><td>4. We build your full online clinic</td><td class="n"></td></tr></table></div>
+    <p style="font-size:13px;color:var(--mute)">Want to change or add something? Use the Support tab.</p>`;
+  if (st === 'offer') {
+    const of = o.offer || {}, plans = of.plans || [], sel = plans.find(p => p.id === S.selPlan) || null, mode = S.payMode || 'advance', pct = of.advancePct || 50;
+    return h + `<div class="hero"><h1>Your sample website is ready 🎉</h1><p>Have a look, then choose the plan that suits you.</p>${of.sampleUrl ? `<p style="margin-top:14px"><a class="btn gold" href="${esc(of.sampleUrl)}" target="_blank" rel="noopener">View my sample website</a></p>` : ''}</div>
+    ${of.note ? `<div class="note" style="margin-bottom:12px">${esc(of.note)}</div>` : ''}
+    <h3>Choose your plan${of.quoteNo ? ' · Quotation ' + esc(of.quoteNo) : ''}</h3>
+    ${plans.map(p => `<label class="plan ${sel && sel.id === p.id ? 'on' : ''}"><div class="row"><input type="radio" name="plan" value="${esc(p.id)}" ${sel && sel.id === p.id ? 'checked' : ''}><b style="font-size:18px;flex:1">${esc(p.name)}</b><span class="pr">${inr(p.price)}</span></div><div style="font-size:13px;color:var(--mute);text-align:right">first year · then ${inr(p.renewal)} a year</div><ul>${(p.features || []).map(f => `<li>${esc(f)}</li>`).join('')}</ul></label>`).join('')}
+    <div class="card" style="font-size:14px;color:#4a3b40">${esc(of.proNote || '')} <a href="mailto:godigital@arshees.com">godigital@arshees.com</a> · +971 58 657 6586</div>
+    ${sel ? `<h3>How would you like to pay?</h3>
+      <label class="opt"><input type="radio" name="paymode" value="advance" ${mode === 'advance' ? 'checked' : ''}><span><b>${pct}% advance now: ${inr(Math.round(sel.price * pct / 100))}</b><br><small style="color:var(--mute)">Balance ${inr(sel.price - Math.round(sel.price * pct / 100))} before your website goes live</small></span></label>
+      <label class="opt"><input type="radio" name="paymode" value="full" ${mode === 'full' ? 'checked' : ''}><span><b>Full payment: ${inr(sel.price)}</b></span></label>
+      <h3>Terms</h3><div class="card" style="font-size:14px"><ul style="margin:0;padding-left:18px">
+        <li>${esc(sel.name)} plan: ${inr(sel.price)} for the first year (design, development, domain and hosting), then ${inr(sel.renewal)} per year for renewal, hosting and routine maintenance.</li>
+        <li>${pct}% advance to start the work; the balance is due before the website goes live.</li>
+        <li>All photos, videos, logos and other media are provided by you.</li>
+        <li>Payment by UPI. Support at support@arshees.com, replies within 24 hours.</li>
+        <li>DotCom by Arshees does not collect or store any patient data.</li></ul></div>
+      <h3>Sign to accept</h3><form class="card" id="fAcc">
+        <label class="f"><span>Your full name</span><input id="aName" required value="${esc(S.accName || d.name || '')}"></label>
+        <label class="f"><span>Your signature (draw with your finger)</span><canvas class="sigpad" id="sigpad"></canvas></label>
+        <div class="row" style="justify-content:space-between;margin:-4px 0 8px"><small style="color:var(--mute)">Sign inside the box</small><button type="button" class="link" data-act="clearsig">Clear</button></div>
+        <label class="opt" style="margin-top:8px"><input type="checkbox" id="aAgree"><span>I accept this quotation and the terms above. Signing here is as valid as signing on paper.</span></label>
+        <button class="btn block" id="bAcc">Sign &amp; accept</button><div class="err" id="err"></div></form>` : '<p style="color:var(--mute);font-size:14px">Tap a plan to continue.</p>'}`;
+  }
+  if (st === 'accepted') {
+    const of = o.offer || {}, link = `upi://pay?pa=${encodeURIComponent(of.upi || '').replace('%40', '@')}&pn=${encodeURIComponent(of.upiName || '')}&am=${Number(o.amount).toFixed(2)}&cu=INR&tn=${encodeURIComponent(of.quoteNo || 'Website')}`;
+    const phone = /Android|iPhone|iPad/i.test(navigator.userAgent);
+    return h + `<div class="hero"><h1>Almost done!</h1><p>You chose the <b>${esc(o.plan)}</b> plan. Pay ${o.payMode === 'full' ? 'the full amount' : 'the advance'} to confirm and we'll start building your online clinic.</p></div>
+    <div class="card" style="text-align:center"><div class="amt">${inr(o.amount)}</div><div style="font-size:13px;color:var(--mute)">to ${esc(of.upiName)} · ${esc(of.upi)}</div><div class="qr">${qrSVG(link, 220)}</div>
+      ${phone ? `<a class="btn block" href="${esc(link)}">Pay now with UPI</a>` : '<p style="font-size:14px;margin:0 0 10px">Scan with GPay, PhonePe, Paytm or any UPI app.</p>'}
+      <button class="btn ghost block" style="margin-top:8px" data-copyupi="${esc(of.upi)}">Copy UPI ID</button></div>
+    <h3>After paying, send us the screenshot</h3>
+    <form class="card" id="fOPay"><label class="f"><span>Amount paid</span><input id="pAmt" type="number" step="any" inputmode="decimal" value="${esc(o.amount)}" required></label>
+      <label class="f"><span>UPI reference / UTR (optional)</span><input id="pRef" placeholder="12-digit number on the receipt"></label>
+      <label class="f"><span>Payment screenshot</span><input id="pFile" type="file" accept="image/*,application/pdf" required></label>
+      <button class="btn block" id="bOPay">Confirm payment</button><div class="err" id="err"></div></form>`;
+  }
+  if (st === 'paid') return h + `<div class="hero"><h1>Thanks for confirming! 🎉</h1><p>Your online clinic is under construction. We'll keep you updated here, by email and with notifications.</p></div>
+    <div class="card"><table><tr><td>Plan</td><td class="n">${esc(o.plan || '')}</td></tr><tr><td>Paid</td><td class="n">${inr(o.amount)}</td></tr><tr><td>Confirmed</td><td class="n">${fmtD(o.paidAt)}</td></tr></table></div>`;
+  return '';
+}
+const SIG = { c:null, x:null, dirty:false, down:false };
+function initSig() {
+  const c = $('#sigpad'); if (!c || c === SIG.c) return; const r = c.getBoundingClientRect(), dpr = devicePixelRatio || 1;
+  c.width = r.width * dpr; c.height = r.height * dpr; const x = c.getContext('2d'); x.scale(dpr, dpr); x.lineWidth = 2.4; x.lineCap = 'round'; x.lineJoin = 'round'; x.strokeStyle = '#1d2a5a';
+  Object.assign(SIG, { c, x, dirty:false, down:false });
+  const pos = e => { const b = c.getBoundingClientRect(); return [e.clientX - b.left, e.clientY - b.top]; };
+  c.onpointerdown = e => { SIG.down = true; SIG.dirty = true; c.setPointerCapture(e.pointerId); const [a, b] = pos(e); x.beginPath(); x.moveTo(a, b); };
+  c.onpointermove = e => { if (!SIG.down) return; const [a, b] = pos(e); x.lineTo(a, b); x.stroke(); };
+  c.onpointerup = c.onpointercancel = () => { SIG.down = false; };
+}
+function sigData() { if (!SIG.c || !SIG.dirty) return ''; const o = document.createElement('canvas'), w = 480; o.width = w; o.height = Math.round(w * SIG.c.height / SIG.c.width); const g = o.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, o.width, o.height); g.drawImage(SIG.c, 0, 0, o.width, o.height); return o.toDataURL('image/png'); }
+async function acceptOffer() {
+  const name = $('#aName').value.trim(), sig = sigData(), agree = $('#aAgree').checked; S.accName = name;
+  if (!name || !sig || !agree) { showErr(ERR.bad_sign); return; }
+  setBusy('#bAcc', true);
+  try { const j = await call('submit', { token:store.get(), type:'accept', payload:{ plan:S.selPlan, payMode:S.payMode || 'advance', signedName:name, signature:sig, agree:true, ua:navigator.userAgent } }); S.app.onboarding = j.onboarding; S.msg.home = 'Signed! Now complete the payment below.'; render(); scrollTo(0, 0); }
+  catch (e) { if (e.error === 'logged_out') return logout(true); showErr(errText(e)); }
+  setBusy('#bAcc', false);
 }
 
 /* ---------- app: install, notifications, updates ---------- */
@@ -302,7 +407,7 @@ async function readFile(f) {
 async function filesFrom(sel) { const el = $(sel); if (!el || !el.files.length) return []; const out = []; for (const f of [...el.files].slice(0, 12)) out.push(await readFile(f)); return out; }
 async function submit(btn, type, payload, fileSel, done) {
   setBusy(btn, true);
-  try { const files = await filesFrom(fileSel); await call('submit', { token:store.get(), type, payload, files }); done(); }
+  try { const files = await filesFrom(fileSel); const j = await call('submit', { token:store.get(), type, payload, files }); if (j.onboarding) S.app.onboarding = j.onboarding; done(); }
   catch (e) { if (e.error === 'logged_out') return logout(true); showErr(e.error === 'file_big' ? `"${e.name}" is too large (max 8 MB). Please send a smaller file.` : errText(e)); }
   setBusy(btn, false);
 }
@@ -311,13 +416,14 @@ async function submit(btn, type, payload, fileSel, done) {
 function render() {
   const app = S.view === 'app';
   $('#logout').hidden = !app; $('#nav').hidden = !app;
-  if (app) $('#nav').innerHTML = TABS.map(([k, l]) => `<button data-tab="${k}" class="${S.tab === k ? 'on' : ''}">${l}${k === 'updates' && unread() ? `<span class="dot">${unread()}</span>` : ''}</button>`).join('');
+  if (app) $('#nav').innerHTML = TABS_GET().map(([k, l]) => `<button data-tab="${k}" class="${S.tab === k ? 'on' : ''}">${l}${k === 'updates' && unread() ? `<span class="dot">${unread()}</span>` : ''}</button>`).join('');
   let h = '';
   if (S.view === 'loading') h = `<div class="login" style="text-align:center;color:var(--mute)">Loading your portal…</div>`;
   else if (!app) h = viewLogin();
-  else { const ok = S.msg[S.tab] ? `<div class="ok" style="margin-bottom:14px">${S.msg[S.tab]}</div>` : '';
-    h = ok + ({ home:viewHome, updates:viewUpdates, docs:viewDocs, pay:viewPay, details:viewDetails, support:viewSupport }[S.tab])(); }
+  else { if (!TABS_GET().some(t => t[0] === S.tab)) S.tab = 'home'; const ok = S.msg[S.tab] ? `<div class="ok" style="margin-bottom:14px">${S.msg[S.tab]}</div>` : '';
+    h = ok + ({ home:() => (ONB() && ONB().stage !== 'live' && ONB().stage !== 'building' ? viewOnboard() : '') + (onboarding() ? '' : viewHome()), updates:viewUpdates, docs:viewDocs, pay:viewPay, details:viewDetails, support:viewSupport }[S.tab])(); }
   $('#app').innerHTML = h + installSheet();
+  SIG.c = null; initSig();
   if (S.view === 'login' && S.step === 'email' && !API) showErr(ERR.not_ready);
 }
 function showErr(m) { const e = $('#err'); if (e) e.textContent = m || ''; }
@@ -327,6 +433,10 @@ async function logout(expired) { try { if (pushReady) (await pushReady).logout()
 document.addEventListener('submit', e => {
   e.preventDefault(); const id = e.target.id;
   if (id === 'fEmail') sendCode();
+  else if (id === 'fReg') register();
+  else if (id === 'fAcc') acceptOffer();
+  else if (id === 'fOnb') { const fd = Object.fromEntries(new FormData(e.target).entries()); S.msg.ondraft = fd; submit('#bOnb', 'register', fd, '#oFiles', () => { S.msg.ondraft = null; S.msg.home = 'Thank you! Your details were sent.'; render(); scrollTo(0, 0); }); }
+  else if (id === 'fOPay') { const o = ONB() || {}; submit('#bOPay', 'payment', { amount:$('#pAmt').value, ref:$('#pRef').value.trim(), forLabel:(o.plan || '') + ' plan ' + (o.payMode || ''), forNo:(o.offer && o.offer.quoteNo) || '' }, '#pFile', () => { S.msg.home = ''; render(); scrollTo(0, 0); }); }
   else if (id === 'fCode') verify();
   else if (id === 'fPay') { const p = (D().pay || [])[S.payIx || 0]; submit('#bPay', 'payment', { amount:$('#pAmt').value, ref:$('#pRef').value.trim(), forLabel:p ? p.label : '', forNo:p ? p.forNo : '' }, '#pFile', () => { S.msg.pay = 'Thank you! We received your screenshot and will confirm the payment shortly.'; render(); scrollTo(0, 0); }); }
   else if (id === 'fDet') { const fd = Object.fromEntries(new FormData(e.target).entries()); S.msg.draft = fd; submit('#bDet', 'details', fd, '#dFiles', () => { S.data.details = Object.assign({}, S.data.details || {}, fd); S.msg.draft = null; S.msg.details = 'Thank you! Your details were sent. We will update your website soon.'; render(); scrollTo(0, 0); }); }
@@ -338,6 +448,8 @@ document.addEventListener('click', async e => {
   if (d.tab) { S.tab = d.tab; Object.keys(S.msg).forEach(k => { if (k !== 'draft') delete S.msg[k]; }); render(); scrollTo(0, 0); }
   else if (d.pay) { S.payIx = +d.pay; S.tab = 'pay'; render(); scrollTo(0, 0); }
   else if (d.act === 'change') { S.step = 'email'; render(); }
+  else if (d.act === 'register') { S.step = 'register'; render(); }
+  else if (d.act === 'clearsig') { if (SIG.x) { SIG.x.clearRect(0, 0, SIG.c.width, SIG.c.height); SIG.dirty = false; } }
   else if (d.act === 'install') { if (installEvt) { const ev = installEvt; ev.prompt(); try { const c = await ev.userChoice; if (c && c.outcome === 'accepted') S.installed = true; else { S.showInstall = false; lsSet(KEY + ':installLater', Date.now()); } } catch (_) {} installEvt = null; render(); } }
   else if (d.act === 'later') { S.showInstall = false; if (!S.installed) lsSet(KEY + ':installLater', Date.now()); render(); }
   else if (d.act === 'ovbg') { if (e.target === t) { S.showInstall = false; lsSet(KEY + ':installLater', Date.now()); render(); } }
@@ -345,7 +457,7 @@ document.addEventListener('click', async e => {
   else if (d.act === 'resend') { sendCode(); }
   else if (d.copyupi) { try { await navigator.clipboard.writeText(d.copyupi); t.textContent = 'Copied ✓'; } catch (_) { t.textContent = d.copyupi; } }
 });
-document.addEventListener('change', e => { if (e.target.id === 'paySel') { S.payIx = +e.target.value; render(); } });
+document.addEventListener('change', e => { if (e.target.id === 'paySel') { S.payIx = +e.target.value; render(); } else if (e.target.name === 'plan') { S.selPlan = e.target.value; render(); } else if (e.target.name === 'paymode') { S.payMode = e.target.value; render(); } });
 $('#logout').onclick = () => logout(false);
 
 (async () => {
