@@ -78,6 +78,14 @@ tr.t td{font-weight:600;color:var(--wine)}
 .promo .m{flex:1;font-size:14px}.promo .m b{display:block;font-size:15px}
 .dot{display:inline-block;min-width:18px;height:18px;line-height:18px;border-radius:9px;background:var(--gold);color:#2a1d10;font-size:11px;font-weight:700;text-align:center;margin-left:4px;padding:0 4px}
 .notice{padding:11px 0;border-top:1px solid var(--line);font-size:15px}.notice:first-child{border-top:0;padding-top:0}.notice small{display:block;color:var(--mute);font-size:12.5px}
+.ov{position:fixed;inset:0;background:rgba(34,24,28,.5);display:flex;align-items:flex-end;justify-content:center;z-index:50}
+.sheet{background:var(--cream);width:100%;max-width:480px;border-radius:22px 22px 0 0;padding:22px 20px 26px;box-shadow:0 -8px 30px rgba(0,0,0,.15)}
+@media(min-width:600px){.ov{align-items:center}.sheet{border-radius:22px}}
+.sheet .appic{width:64px;height:64px;border-radius:16px;margin:0 auto 10px;display:block}
+.sheet h2{text-align:center;margin:0 0 6px}.sheet p{text-align:center;color:var(--mute);margin:0 0 14px;font-size:15px}
+.steps{background:#fff;border:1px solid var(--line);border-radius:14px;padding:6px 14px;margin:0 0 14px;font-size:15px}
+.steps div{padding:9px 0;border-top:1px solid var(--line);display:flex;gap:10px;align-items:center}.steps div:first-child{border-top:0}
+.steps b.n{width:24px;height:24px;border-radius:50%;background:var(--wine);color:#fff;font-size:13px;display:inline-flex;align-items:center;justify-content:center;flex:none}
 @media (display-mode: standalone){footer{padding-bottom:40px}}
 footer{text-align:center;color:var(--mute);font-size:12.5px;padding:10px 18px 30px}
 .spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:s .8s linear infinite}
@@ -144,7 +152,7 @@ async function sendCode() {
 async function verify() {
   const code = $('#code').value.replace(/\D/g, ''); if (code.length !== 6) { showErr('Enter the 6 digits from the email.'); return; }
   setBusy('#bVerify', true);
-  try { const j = await call('verifyCode', { email:S.email, code }); store.set(j.token); S.data = j.data; S.app = j.app || {}; S.view = 'app'; initPush(); S.tab = 'home'; render(); }
+  try { const j = await call('verifyCode', { email:S.email, code }); store.set(j.token); S.data = j.data; S.app = j.app || {}; S.view = 'app'; maybeInstall(); initPush(); S.tab = 'home'; render(); }
   catch (e) { showErr(errText(e)); }
   setBusy('#bVerify', false);
 }
@@ -219,7 +227,7 @@ const isStandalone = () => matchMedia('(display-mode: standalone)').matches || n
 const isIOS = () => /iPhone|iPad|iPod/i.test(navigator.userAgent);
 let installEvt = null;
 addEventListener('beforeinstallprompt', e => { e.preventDefault(); installEvt = e; if (S.view === 'app') render(); });
-addEventListener('appinstalled', () => { installEvt = null; render(); });
+addEventListener('appinstalled', () => { installEvt = null; S.installed = true; render(); });
 function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
 function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
 function unread() { const n = (S.app.notices || []); const seen = lsGet(KEY + ':seen') || ''; return n.filter(x => x.at > seen).length; }
@@ -227,8 +235,8 @@ function pushState() { if (!S.app.pushAppId) return 'off'; if (!('Notification' 
 function promos() {
   let h = '';
   if (!isStandalone()) {
-    if (installEvt) h += `<div class="promo"><div class="ic">a</div><div class="m"><b>Get the Arshees app</b>Open your portal from your home screen.</div><button class="btn" data-act="install">Install</button></div>`;
-    else if (isIOS()) h += `<div class="promo"><div class="ic">a</div><div class="m"><b>Get the Arshees app</b>Tap <b style="display:inline">Share</b> ⬆︎ then <b style="display:inline">Add to Home Screen</b>.</div></div>`;
+    if (installEvt) h += `<div class="promo"><div class="ic">a</div><div class="m"><b>Install the Arshees app</b>Get notified when we update your account.</div><button class="btn" data-act="install">Install</button></div>`;
+    else if (isIOS()) h += `<div class="promo"><div class="ic">a</div><div class="m"><b>Install the Arshees app</b>For notifications: tap <b style="display:inline">Share</b> ⬆︎ then <b style="display:inline">Add to Home Screen</b>.</div></div>`;
   }
   const ps = pushState();
   if (ps === 'default') h += `<div class="promo"><div class="ic">🔔</div><div class="m"><b>Turn on notifications</b>Get an alert when we update your website, documents or payments.</div><button class="btn" data-act="push">Turn on</button></div>`;
@@ -242,6 +250,25 @@ function viewUpdates() {
   ${promos()}
   <div class="card">${n.length ? n.map(x => `<div class="notice">${esc(x.text)}<small>${fmtD(x.at)}${' · ' + new Date(x.at).toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' })}</small></div>`).join('') : '<span style="color:var(--mute)">No updates yet. When we add a document, record a payment or change your website, it will show here.</span>'}</div>
   <h3>Notifications</h3><div class="card" style="font-size:14px">${ps === 'granted' ? '✓ Notifications are on for this device.' : ps === 'denied' ? 'Notifications are blocked for this site. You can allow them in your browser or phone settings.' : ps === 'default' ? '<button class="btn" data-act="push">Turn on notifications</button>' : ps === 'ios-install' ? 'On iPhone, add the app to your Home Screen (Share → Add to Home Screen), open it from there, then turn on notifications here.' : (ps === 'off' ? 'Email updates are on. App notifications will be switched on soon.' : 'Email updates are on. App notifications are not available on this device.')}</div>`;
+}
+function maybeInstall() {
+  if (isStandalone()) return;
+  const last = +(lsGet(KEY + ':installLater') || 0);
+  if (Date.now() - last < 2 * 864e5) return; // asked in the last 2 days
+  S.showInstall = true;
+}
+function installSheet() {
+  if (!S.showInstall || S.view !== 'app' || isStandalone()) return '';
+  let body;
+  if (S.installed) body = `<h2>Installed ✓</h2><p>Open <b>Arshees</b> from your home screen, then tap <b>Turn on notifications</b>.</p><button class="btn block" data-act="later">Got it</button>`;
+  else if (installEvt) body = `<h2>Install the Arshees app</h2><p>Get a notification whenever we update your website, documents or payments. It takes one tap and uses almost no space.</p><button class="btn block" data-act="install">Install app</button><button class="btn ghost block" style="margin-top:8px" data-act="later">Maybe later</button>`;
+  else if (isIOS()) body = `<h2>Install the Arshees app</h2><p>To receive notifications on iPhone, add the app to your Home Screen:</p>
+    <div class="steps"><div><b class="n">1</b><span>Tap the <b>Share</b> button <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2f6fde" stroke-width="2" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5M5 12v8h14v-8"/></svg> at the bottom of Safari</span></div><div><b class="n">2</b><span>Choose <b>Add to Home Screen</b></span></div><div><b class="n">3</b><span>Open <b>Arshees</b> from your Home Screen and tap <b>Turn on notifications</b></span></div></div>
+    <button class="btn block" data-act="later">OK</button>`;
+  else body = `<h2>Install the Arshees app</h2><p>Get a notification whenever we update your account.</p>
+    <div class="steps"><div><b class="n">1</b><span>Open your browser menu <b>⋮</b></span></div><div><b class="n">2</b><span>Tap <b>Install app</b> or <b>Add to Home screen</b></span></div><div><b class="n">3</b><span>Open <b>Arshees</b> and tap <b>Turn on notifications</b></span></div></div>
+    <button class="btn block" data-act="later">OK</button>`;
+  return `<div class="ov" data-act="ovbg"><div class="sheet" role="dialog" aria-modal="true" aria-label="Install the Arshees app"><img class="appic" src="icon-192.png" alt="">${body}</div></div>`;
 }
 let pushReady = null;
 function initPush() {
@@ -290,7 +317,7 @@ function render() {
   else if (!app) h = viewLogin();
   else { const ok = S.msg[S.tab] ? `<div class="ok" style="margin-bottom:14px">${S.msg[S.tab]}</div>` : '';
     h = ok + ({ home:viewHome, updates:viewUpdates, docs:viewDocs, pay:viewPay, details:viewDetails, support:viewSupport }[S.tab])(); }
-  $('#app').innerHTML = h;
+  $('#app').innerHTML = h + installSheet();
   if (S.view === 'login' && S.step === 'email' && !API) showErr(ERR.not_ready);
 }
 function showErr(m) { const e = $('#err'); if (e) e.textContent = m || ''; }
@@ -311,7 +338,9 @@ document.addEventListener('click', async e => {
   if (d.tab) { S.tab = d.tab; Object.keys(S.msg).forEach(k => { if (k !== 'draft') delete S.msg[k]; }); render(); scrollTo(0, 0); }
   else if (d.pay) { S.payIx = +d.pay; S.tab = 'pay'; render(); scrollTo(0, 0); }
   else if (d.act === 'change') { S.step = 'email'; render(); }
-  else if (d.act === 'install') { if (installEvt) { installEvt.prompt(); try { await installEvt.userChoice; } catch (_) {} installEvt = null; render(); } }
+  else if (d.act === 'install') { if (installEvt) { const ev = installEvt; ev.prompt(); try { const c = await ev.userChoice; if (c && c.outcome === 'accepted') S.installed = true; else { S.showInstall = false; lsSet(KEY + ':installLater', Date.now()); } } catch (_) {} installEvt = null; render(); } }
+  else if (d.act === 'later') { S.showInstall = false; if (!S.installed) lsSet(KEY + ':installLater', Date.now()); render(); }
+  else if (d.act === 'ovbg') { if (e.target === t) { S.showInstall = false; lsSet(KEY + ':installLater', Date.now()); render(); } }
   else if (d.act === 'push') { askPush(); }
   else if (d.act === 'resend') { sendCode(); }
   else if (d.copyupi) { try { await navigator.clipboard.writeText(d.copyupi); t.textContent = 'Copied ✓'; } catch (_) { t.textContent = d.copyupi; } }
@@ -323,7 +352,7 @@ $('#logout').onclick = () => logout(false);
   const tok = store.get();
   if (!tok || !API) { S.view = 'login'; render(); return; }
   S.view = 'loading'; render();
-  try { const j = await call('me', { token:tok }); S.data = j.data; S.app = j.app || {}; S.view = 'app'; render(); initPush(); }
+  try { const j = await call('me', { token:tok }); S.data = j.data; S.app = j.app || {}; S.view = 'app'; maybeInstall(); render(); initPush(); }
   catch (e) { if (e.error === 'logged_out') store.set(''); S.view = 'login'; render(); if (e.error !== 'logged_out') showErr(errText(e)); }
 })();
 </script>
