@@ -6,6 +6,12 @@
 <title>Client Portal · DotCom by Arshees</title>
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#6B1E3A">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Arshees">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='19' fill='%236B1E3A'/%3E%3Ctext x='19' y='27' text-anchor='middle' font-family='Georgia,serif' font-size='21' fill='%23fff'%3Ea%3C/text%3E%3Ccircle cx='27.5' cy='25.5' r='2.2' fill='%23C9A24A'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -67,6 +73,12 @@ table{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
 td{padding:6px 0;border-top:1px solid var(--line);vertical-align:top}
 td.n{text-align:right;white-space:nowrap;padding-left:10px}
 tr.t td{font-weight:600;color:var(--wine)}
+.promo{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;margin-bottom:12px}
+.promo .ic{width:40px;height:40px;border-radius:10px;background:var(--wine);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;flex:none}
+.promo .m{flex:1;font-size:14px}.promo .m b{display:block;font-size:15px}
+.dot{display:inline-block;min-width:18px;height:18px;line-height:18px;border-radius:9px;background:var(--gold);color:#2a1d10;font-size:11px;font-weight:700;text-align:center;margin-left:4px;padding:0 4px}
+.notice{padding:11px 0;border-top:1px solid var(--line);font-size:15px}.notice:first-child{border-top:0;padding-top:0}.notice small{display:block;color:var(--mute);font-size:12.5px}
+@media (display-mode: standalone){footer{padding-bottom:40px}}
 footer{text-align:center;color:var(--mute);font-size:12.5px;padding:10px 18px 30px}
 .spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:s .8s linear infinite}
 .btn.ghost .spin{border-color:#e7d6dc;border-top-color:var(--wine)}
@@ -98,7 +110,7 @@ function money(n, c) { if (n === '' || n == null || isNaN(+n)) return '—'; c =
 function chip(s) { if (!s) return ''; const g = ['Paid','Signed','Accepted','Live','Handed over','Active','Done'], y = ['Sent','Part paid','Awaiting signature','Building','Due','Open'], r = ['Overdue','Expired','Cancelled']; return `<span class="chip ${g.includes(s)?'g':y.includes(s)?'y':r.includes(s)?'r':''}">${esc(s)}</span>`; }
 const store = { get(){ try { return localStorage.getItem(KEY) || ''; } catch(e) { return S.mem || ''; } }, set(v){ S.mem = v; try { v ? localStorage.setItem(KEY, v) : localStorage.removeItem(KEY); } catch(e) {} } };
 
-const S = { view:'login', step:'email', email:'', data:null, tab:'home', busy:false, mem:'', msg:{} };
+const S = { app:{}, seen:0, view:'login', step:'email', email:'', data:null, tab:'home', busy:false, mem:'', msg:{} };
 
 async function call(action, body) {
   if (!API) throw { error:'not_ready' };
@@ -132,18 +144,18 @@ async function sendCode() {
 async function verify() {
   const code = $('#code').value.replace(/\D/g, ''); if (code.length !== 6) { showErr('Enter the 6 digits from the email.'); return; }
   setBusy('#bVerify', true);
-  try { const j = await call('verifyCode', { email:S.email, code }); store.set(j.token); S.data = j.data; S.view = 'app'; S.tab = 'home'; render(); }
+  try { const j = await call('verifyCode', { email:S.email, code }); store.set(j.token); S.data = j.data; S.app = j.app || {}; S.view = 'app'; initPush(); S.tab = 'home'; render(); }
   catch (e) { showErr(errText(e)); }
   setBusy('#bVerify', false);
 }
 
 /* ---------- app ---------- */
-const TABS = [['home','Overview'],['docs','Documents'],['pay','Pay'],['details','My details'],['support','Support']];
+const TABS = [['home','Overview'],['updates','Updates'],['docs','Documents'],['pay','Pay'],['details','My details'],['support','Support']];
 function D() { return S.data || {}; }
 function viewHome() {
   const d = D(), bal = (d.balance || []).filter(b => +b.amt > 0);
   const pending = (d.docs || []).filter(x => x.signLink && !x.signedAt);
-  return `<h1>Hello${d.name ? ', ' + esc(d.name) : ''}</h1><p class="lead">${esc(d.business || d.venture || '')}</p>
+  return `${promos()}<h1>Hello${d.name ? ', ' + esc(d.name) : ''}</h1><p class="lead">${esc(d.business || d.venture || '')}</p>
   <div class="kpis">
     <div class="kpi"><b>${bal.length ? bal.map(b => money(b.amt, b.cur)).join(' + ') : '₹0'}</b><span>Balance due</span></div>
     <div class="kpi"><b>${pending.length}</b><span>Document${pending.length === 1 ? '' : 's'} to sign</span></div>
@@ -202,6 +214,55 @@ function viewSupport() {
   <p style="font-size:13px;color:var(--mute)">You can also email <a href="mailto:support@arshees.com">support@arshees.com</a> (support@arshees.com).</p>`;
 }
 
+/* ---------- app: install, notifications, updates ---------- */
+const isStandalone = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+const isIOS = () => /iPhone|iPad|iPod/i.test(navigator.userAgent);
+let installEvt = null;
+addEventListener('beforeinstallprompt', e => { e.preventDefault(); installEvt = e; if (S.view === 'app') render(); });
+addEventListener('appinstalled', () => { installEvt = null; render(); });
+function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+function unread() { const n = (S.app.notices || []); const seen = lsGet(KEY + ':seen') || ''; return n.filter(x => x.at > seen).length; }
+function pushState() { if (!S.app.pushAppId) return 'off'; if (!('Notification' in window) || !('serviceWorker' in navigator)) return isIOS() && !isStandalone() ? 'ios-install' : 'unsupported'; return Notification.permission; }
+function promos() {
+  let h = '';
+  if (!isStandalone()) {
+    if (installEvt) h += `<div class="promo"><div class="ic">a</div><div class="m"><b>Get the Arshees app</b>Open your portal from your home screen.</div><button class="btn" data-act="install">Install</button></div>`;
+    else if (isIOS()) h += `<div class="promo"><div class="ic">a</div><div class="m"><b>Get the Arshees app</b>Tap <b style="display:inline">Share</b> ⬆︎ then <b style="display:inline">Add to Home Screen</b>.</div></div>`;
+  }
+  const ps = pushState();
+  if (ps === 'default') h += `<div class="promo"><div class="ic">🔔</div><div class="m"><b>Turn on notifications</b>Get an alert when we update your website, documents or payments.</div><button class="btn" data-act="push">Turn on</button></div>`;
+  else if (ps === 'ios-install') h += `<div class="promo"><div class="ic">🔔</div><div class="m"><b>Want notifications?</b>On iPhone, add the app to your Home Screen first, then open it from there.</div></div>`;
+  return h;
+}
+function viewUpdates() {
+  const n = S.app.notices || []; lsSet(KEY + ':seen', n.length ? n[0].at : new Date().toISOString()); setTimeout(() => { const nav = $('#nav'); if (nav) nav.querySelectorAll('.dot').forEach(d => d.remove()); }, 50);
+  const ps = pushState();
+  return `<h2>Updates</h2><p class="lead">Everything new on your account. We also email you each update.</p>
+  ${promos()}
+  <div class="card">${n.length ? n.map(x => `<div class="notice">${esc(x.text)}<small>${fmtD(x.at)}${' · ' + new Date(x.at).toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' })}</small></div>`).join('') : '<span style="color:var(--mute)">No updates yet. When we add a document, record a payment or change your website, it will show here.</span>'}</div>
+  <h3>Notifications</h3><div class="card" style="font-size:14px">${ps === 'granted' ? '✓ Notifications are on for this device.' : ps === 'denied' ? 'Notifications are blocked for this site. You can allow them in your browser or phone settings.' : ps === 'default' ? '<button class="btn" data-act="push">Turn on notifications</button>' : ps === 'ios-install' ? 'On iPhone, add the app to your Home Screen (Share → Add to Home Screen), open it from there, then turn on notifications here.' : (ps === 'off' ? 'Email updates are on. App notifications will be switched on soon.' : 'Email updates are on. App notifications are not available on this device.')}</div>`;
+}
+let pushReady = null;
+function initPush() {
+  if (!S.app.pushAppId || pushReady || !('serviceWorker' in navigator)) return;
+  pushReady = new Promise(ok => {
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async OS => {
+      try { await OS.init({ appId:S.app.pushAppId, serviceWorkerPath:'portal/sw.js', serviceWorkerParam:{ scope:'/portal/' }, notifyButton:{ enable:false }, autoResubscribe:true });
+        await OS.login(S.app.pushId); OS.Notifications.addEventListener('permissionChange', () => render()); } catch (e) { console.warn('push', e); }
+      ok(OS);
+    });
+    const sc = document.createElement('script'); sc.src = 'https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js'; sc.defer = true; document.head.appendChild(sc);
+  });
+}
+async function askPush() {
+  initPush(); if (!pushReady) return;
+  try { const OS = await pushReady; await OS.Notifications.requestPermission(); if (OS.User && OS.User.PushSubscription) await OS.User.PushSubscription.optIn(); } catch (e) { try { await Notification.requestPermission(); } catch (_) {} }
+  render();
+}
+if ('serviceWorker' in navigator) addEventListener('load', () => { navigator.serviceWorker.register('sw.js', { scope:'./' }).catch(() => {}); });
+
 /* ---------- files ---------- */
 async function readFile(f) {
   if (/^image\/(jpeg|png|webp|heic|heif)/i.test(f.type) && f.size > 350000) {
@@ -223,18 +284,18 @@ async function submit(btn, type, payload, fileSel, done) {
 function render() {
   const app = S.view === 'app';
   $('#logout').hidden = !app; $('#nav').hidden = !app;
-  if (app) $('#nav').innerHTML = TABS.map(([k, l]) => `<button data-tab="${k}" class="${S.tab === k ? 'on' : ''}">${l}</button>`).join('');
+  if (app) $('#nav').innerHTML = TABS.map(([k, l]) => `<button data-tab="${k}" class="${S.tab === k ? 'on' : ''}">${l}${k === 'updates' && unread() ? `<span class="dot">${unread()}</span>` : ''}</button>`).join('');
   let h = '';
   if (S.view === 'loading') h = `<div class="login" style="text-align:center;color:var(--mute)">Loading your portal…</div>`;
   else if (!app) h = viewLogin();
   else { const ok = S.msg[S.tab] ? `<div class="ok" style="margin-bottom:14px">${S.msg[S.tab]}</div>` : '';
-    h = ok + ({ home:viewHome, docs:viewDocs, pay:viewPay, details:viewDetails, support:viewSupport }[S.tab])(); }
+    h = ok + ({ home:viewHome, updates:viewUpdates, docs:viewDocs, pay:viewPay, details:viewDetails, support:viewSupport }[S.tab])(); }
   $('#app').innerHTML = h;
   if (S.view === 'login' && S.step === 'email' && !API) showErr(ERR.not_ready);
 }
 function showErr(m) { const e = $('#err'); if (e) e.textContent = m || ''; }
 function setBusy(sel, on) { const b = $(sel); if (!b) return; b.disabled = on; if (on) { b.dataset.t = b.innerHTML; b.innerHTML = '<span class="spin"></span>'; } else if (b.dataset.t) b.innerHTML = b.dataset.t; }
-async function logout(expired) { const t = store.get(); store.set(''); S.data = null; S.view = 'login'; S.step = 'email'; S.msg = {}; render(); if (expired) showErr(ERR.logged_out); if (t && !expired) try { await call('logout', { token:t }); } catch (e) {} }
+async function logout(expired) { try { if (pushReady) (await pushReady).logout(); } catch (e) {} const t = store.get(); store.set(''); S.data = null; S.view = 'login'; S.step = 'email'; S.msg = {}; render(); if (expired) showErr(ERR.logged_out); if (t && !expired) try { await call('logout', { token:t }); } catch (e) {} }
 
 document.addEventListener('submit', e => {
   e.preventDefault(); const id = e.target.id;
@@ -250,6 +311,8 @@ document.addEventListener('click', async e => {
   if (d.tab) { S.tab = d.tab; Object.keys(S.msg).forEach(k => { if (k !== 'draft') delete S.msg[k]; }); render(); scrollTo(0, 0); }
   else if (d.pay) { S.payIx = +d.pay; S.tab = 'pay'; render(); scrollTo(0, 0); }
   else if (d.act === 'change') { S.step = 'email'; render(); }
+  else if (d.act === 'install') { if (installEvt) { installEvt.prompt(); try { await installEvt.userChoice; } catch (_) {} installEvt = null; render(); } }
+  else if (d.act === 'push') { askPush(); }
   else if (d.act === 'resend') { sendCode(); }
   else if (d.copyupi) { try { await navigator.clipboard.writeText(d.copyupi); t.textContent = 'Copied ✓'; } catch (_) { t.textContent = d.copyupi; } }
 });
@@ -260,7 +323,7 @@ $('#logout').onclick = () => logout(false);
   const tok = store.get();
   if (!tok || !API) { S.view = 'login'; render(); return; }
   S.view = 'loading'; render();
-  try { const j = await call('me', { token:tok }); S.data = j.data; S.view = 'app'; render(); }
+  try { const j = await call('me', { token:tok }); S.data = j.data; S.app = j.app || {}; S.view = 'app'; render(); initPush(); }
   catch (e) { if (e.error === 'logged_out') store.set(''); S.view = 'login'; render(); if (e.error !== 'logged_out') showErr(errText(e)); }
 })();
 </script>
