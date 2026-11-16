@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>{{CLINIC}} · Online Homoeopathy Consultation (Sample)</title>
+<meta name="description" content="Sample website for {{CLINIC}}, {{AREA}} — online homoeopathy consultations. Prepared by DotCom by Arshees.">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="theme.css"><!-- theme.css = copy of modern.css, serene.css or warm.css -->
+</head>
+<body>
+
+<div class="sample-banner" role="note"><b>SAMPLE</b> prepared by DotCom by Arshees for {{CLINIC}} · not for public use</div>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">{{CLINIC}}</a>
+    <ul>
+      <li><a href="#doctors">Our Doctors</a></li>
+      <li><a href="#how">Online consultation</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="watermark" aria-hidden="true"><span>SAMPLE</span></div>
+  <div class="wrap hero-inner">
+    <div class="hero-grid">
+      <div class="reveal">
+        <span class="eyebrow">{{SPECIALTY}} · {{CITY}}</span>
+        <h1>{{CLINIC}}</h1>
+        <p class="lead">Consult our homoeopathic doctors by private video call, right here on the clinic's own website. No third-party apps needed.</p>
+        <div class="btn-row">
+          <span class="btn btn-primary" aria-disabled="true">Book online consultation <small>· Available after confirmation</small></span>
+          <a class="btn btn-ghost" href="#doctors" style="cursor:pointer">Meet our doctors</a>
+        </div>
+        <ul class="facts">
+          <li>{{N}} doctors</li>
+          <li>English · Malayalam</li>
+          <li>{{AREA}}</li>
+        </ul>
+      </div>
+      <div class="hero-stack reveal">
+        <div class="avatars">
+          <div><img src="doctor1.jpg" alt="{{DOCTOR_1}}"></div>
+          <div aria-label="{{DOCTOR_2}}">AM</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="doctors">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Our Doctors</span>
+      <h2>Meet the doctors</h2>
+      <p class="lead">Choose the doctor you'd like to consult. Each consultation happens over a private video call on this website.</p>
+    </div>
+    <div class="doctors-grid">
+      <article class="doc-card reveal">
+        <div class="doc-photo"><img src="doctor1.jpg" alt="{{DOCTOR_1}}"></div>
+        <div class="doc-body">
+          <h3>{{DOCTOR_1}}</h3>
+          <p class="doc-meta">BHMS · Homoeopathic Doctor</p>
+          <p class="doc-meta">Reg. No. {{REG_1}}</p>
+          <p class="doc-meta">Languages: English, Malayalam</p>
+          <div class="doc-fee"><span>Online consultation</span><strong>₹{{FEE_1}}</strong></div>
+        </div>
+        <span class="btn btn-primary" aria-disabled="true">Available after confirmation</span>
+      </article>
+      <article class="doc-card reveal">
+        <div class="doc-photo"><span class="initials" aria-hidden="true">AM</span></div>
+        <div class="doc-body">
+          <h3>{{DOCTOR_2}}</h3>
+          <p class="doc-meta">BHMS · Homoeopathic Doctor</p>
+          <p class="doc-meta">Reg. No. {{REG_2}}</p>
+          <p class="doc-meta">Languages: English, Malayalam</p>
+          <div class="doc-fee"><span>Online consultation</span><strong>₹{{FEE_2}}</strong></div>
+        </div>
+        <span class="btn btn-primary" aria-disabled="true">Available after confirmation</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="alt">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Online consultation</span>
+      <h2>How it works</h2>
+      <p class="lead">A simple, private consultation from wherever you are.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><h3>Choose your doctor</h3><p>Pick a doctor and a convenient time slot.</p></div>
+      <div class="step reveal"><h3>Confirm your booking</h3><p>Pay the online consultation fee securely and get a confirmation.</p></div>
+      <div class="step reveal"><h3>Join the video call</h3><p>At your appointment time, join a private video room on this website.</p></div>
+    </div>
+    <div class="btn-row">
+      <span class="btn btn-primary" aria-disabled="true">Book now <small>· Available after confirmation</small></span>
+      <span class="btn btn-ghost" aria-disabled="true">Join video consultation <small>· Available after confirmation</small></span>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Visit or call</span>
+      <h2>Contact the clinic</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-item reveal"><span class="label">Address</span><p>{{ADDRESS}}</p></div>
+      <div class="contact-item reveal"><span class="label">Timings</span><p>{{TIMINGS}}</p></div>
+      <div class="contact-item reveal"><span class="label">Phone</span><p><a href="tel:{{PHONE}}">{{PHONE}}</a></p></div>
+      <div class="contact-item reveal"><span class="label">Email</span><p><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© {{CLINIC}}</span>
+    <span>Developed by <a href="https://arshees.com/dotcom/">DotCom by Arshees</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){var els=document.querySelectorAll('.reveal');
+if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}})},{threshold:.12});
+els.forEach(function(e){io.observe(e)});})();
+</script>
+</body>
+</html>

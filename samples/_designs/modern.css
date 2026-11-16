@@ -1,0 +1,25 @@
+/* Design "Modern" — deep navy, bold sans, glowing gradient hero */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+:root{
+  --font-head:'Plus Jakarta Sans',system-ui,sans-serif;--font-body:'Plus Jakarta Sans',system-ui,sans-serif;
+  --bg:#f5f7fb;--card:#fff;--ink:#2b3445;--ink-strong:#0b1630;--muted:#5d6880;
+  --accent:#1f6feb;--on-accent:#fff;--line:#e3e8f2;--line-strong:#c9d2e3;--chip:#eaf1ff;
+  --nav-bg:rgba(245,247,251,.82);--photo-bg:linear-gradient(160deg,#dfe9ff,#f2f6ff);
+  --watermark:rgba(255,255,255,.07);--shadow:0 24px 50px -24px rgba(11,22,48,.35);
+  --radius:20px;--radius-btn:12px;
+}
+.hero{background:radial-gradient(1200px 500px at 85% -10%,rgba(56,132,255,.55),transparent 60%),radial-gradient(800px 400px at -10% 110%,rgba(0,196,180,.35),transparent 60%),#0b1630;color:#dbe4f5;padding:clamp(80px,12vw,150px) 0 clamp(70px,10vw,120px)}
+.hero h1{color:#fff}
+.hero .eyebrow{color:#7fb2ff}
+.hero .lead{color:#b7c4dc}
+.hero .facts li{background:rgba(255,255,255,.09);color:#e6edfa;border:1px solid rgba(255,255,255,.12)}
+.hero .btn-ghost{color:#fff;border-color:rgba(255,255,255,.3)}
+.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:center}
+.hero-stack{display:flex;justify-content:center}
+.hero-stack .avatars{display:flex}
+.hero-stack .avatars>div{width:150px;height:190px;border-radius:22px;overflow:hidden;border:3px solid rgba(255,255,255,.18);background:linear-gradient(160deg,#25407a,#13244a);box-shadow:0 30px 60px -20px rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;font:700 3rem/1 var(--font-head);color:#7fb2ff}
+.hero-stack .avatars>div:nth-child(2){margin-left:-28px;transform:translateY(34px)}
+.hero-stack img{width:100%;height:100%;object-fit:cover}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr}.hero-stack{justify-content:flex-start}}
+.alt{background:#fff}
+.step::before{background:linear-gradient(90deg,#1f6feb,#00b4a6);-webkit-background-clip:text;background-clip:text;color:transparent}

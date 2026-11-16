@@ -1,0 +1,19 @@
+/* Design "Warm" — cream & terracotta, editorial display type, centred hero */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=DM+Sans:wght@400;500;700&display=swap');
+:root{
+  --font-head:'Fraunces',Georgia,serif;--font-body:'DM Sans',system-ui,sans-serif;
+  --bg:#fdf6ee;--card:#fffaf4;--ink:#4a3a32;--ink-strong:#2a1d17;--muted:#7a675c;
+  --accent:#c4623a;--on-accent:#fff;--line:#efe1d2;--line-strong:#e0cbb6;--chip:#f7e7d9;
+  --nav-bg:rgba(253,246,238,.85);--photo-bg:linear-gradient(160deg,#f6e2cf,#fdf1e5);
+  --watermark:rgba(196,98,58,.08);--shadow:0 24px 46px -24px rgba(90,50,30,.35);
+  --radius:28px;--radius-btn:16px;
+}
+.hero{text-align:center;padding:clamp(70px,11vw,140px) 0 clamp(60px,9vw,110px);background:radial-gradient(700px 360px at 50% 0%,#f8dcc6,transparent 70%)}
+.hero .lead{margin-left:auto;margin-right:auto}
+.hero .facts,.hero .btn-row{justify-content:center}
+.hero-grid{display:flex;flex-direction:column-reverse;align-items:center;gap:36px}
+.hero-stack .avatars{display:flex;gap:14px;justify-content:center}
+.hero-stack .avatars>div{width:120px;height:120px;border-radius:50%;overflow:hidden;border:4px solid #fff;box-shadow:var(--shadow);background:var(--photo-bg);display:flex;align-items:center;justify-content:center;font:700 2.4rem/1 var(--font-head);color:var(--accent)}
+.hero-stack img{width:100%;height:100%;object-fit:cover}
+.alt{background:#f9ede1}
+.step{border-radius:28px}
