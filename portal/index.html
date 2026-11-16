@@ -105,6 +105,7 @@ footer{text-align:center;color:var(--mute);font-size:12.5px;padding:10px 18px 30
 .spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:s .8s linear infinite}
 .btn.ghost .spin{border-color:#e7d6dc;border-top-color:var(--wine)}
 @keyframes s{to{transform:rotate(1turn)}}
+.phototip{background:#fbf3e4;border:1px solid #ecd9b0;border-radius:12px;padding:12px 14px;margin:4px 0 14px;font-size:13px;line-height:1.5;color:#4a3a22}.phototip ul{margin:6px 0;padding-left:18px}.phototip li{margin:3px 0}.phototip p{margin:6px 0 0;font-size:12px;color:#6b5a3e}
 </style>
 </head>
 <body>
@@ -272,14 +273,20 @@ function onbForm(o) {
   <div class="sec"><h3>1 · Doctors</h3>
     <label class="f"><span>How many doctors will be on the website?</span><select name="doctorCount" id="docCount">${Array.from({ length:10 }, (_, i) => `<option value="${i + 1}" ${i + 1 === n ? 'selected' : ''}>${i + 1} doctor${i ? 's' : ''}</option>`).join('')}</select></label>
     <p class="price-note">The plan price includes one doctor. Each additional doctor is ₹1,000 (renewal stays the same).</p>
-    ${Array.from({ length:n }, (_, i) => { const dr = docs[i] || {}; return `<div class="drcard"><b class="t">Doctor ${i + 1}</b>${DOC_FIELDS.map(([k, l, t]) => f(`dr${i}_${k}`, l, t, dr[k])).join('')}<label class="f"><span>Portrait photo of doctor ${i + 1}</span>${pickList('portrait' + i, false, true)}</label></div>`; }).join('')}
+    <div class="phototip"><b>Photo guidelines — please read</b><ul>
+      <li>Upload a recent, professional portrait of each doctor: head and shoulders, facing the camera, in professional attire.</li>
+      <li>Use a plain, uncluttered background and good, even lighting. The photo should be sharp, in focus and not stretched.</li>
+      <li>One person per photo. No group photos, selfies, sunglasses, filters, heavy edits, watermarks or text on the image.</li>
+      <li>A clear, high-resolution photo works best (at least 800 pixels wide). Photos from a professional photographer are ideal.</li>
+    </ul><p>By uploading, you confirm you own these photos or have permission to use them, and that everyone shown agrees to appear on the website. We may ask for a new photo if one is unclear or unsuitable.</p></div>
+    ${Array.from({ length:n }, (_, i) => { const dr = docs[i] || {}; return `<div class="drcard"><b class="t">Doctor ${i + 1}</b>${DOC_FIELDS.map(([k, l, t]) => f(`dr${i}_${k}`, l, t, dr[k])).join('')}<label class="f"><span>Portrait photo of doctor ${i + 1} <small style="font-weight:400">— professional head-and-shoulders photo, plain background (see guidelines above)</small></span>${pickList('portrait' + i, false, true)}</label></div>`; }).join('')}
   </div>
   <div class="sec"><h3>2 · Clinic</h3>${CLINIC_FIELDS.map(([k, l, t]) => f(k, l, t, d[k])).join('')}</div>
   <div class="sec"><h3>3 · Photos</h3>
     <label class="f"><span>Clinic logo (optional)</span>${pickList('logo', false, true)}</label>
     <label class="f"><span>Clinic photos (reception, consultation room, building…)</span>${pickList('clinic', true)}</label>
     <label class="f"><span>Any other photos — say what each one is</span>${pickList('other', true)}</label>
-    <p class="price-note">Photos are resized automatically. Up to 30 in total.</p>
+    <p class="price-note">Photos are resized automatically. Up to 30 in total. Please upload clear, well-lit photos that you own or have permission to use — no watermarks or photos taken from other websites.</p>
   </div>
   <button class="btn block" id="bOnb">Submit for website creation</button><div class="err" id="err"></div></form>`;
 }
