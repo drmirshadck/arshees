@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>{{SITE_NAME}} · Online Consultation (Sample)</title>
+<meta name="description" content="Sample website for {{SITE_NAME}}, {{CITY}}. Prepared by DotCom by Arshees.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="sample-banner" role="note"><b>SAMPLE</b> prepared by DotCom by Arshees for {{SITE_NAME}} · not for public use</div>
+<div id="app">
+<div class="navwrap"><div class="pill">
+  <a class="brand" href="#top" aria-label="{{SITE_NAME}} home"><svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#fff"></circle><path d="M20 9v22M9 20h22" stroke="var(--brand)" stroke-width="5" stroke-linecap="round"></path></svg><span><b>{{SITE_NAME_UPPER}}</b><small>{{TAGLINE}}</small></span></a>
+  <nav class="links" aria-label="Main"><a href="#about">About</a><!-- 2+ doctors: --><a href="#doctors">Doctors</a><a href="#book">Consultations</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></nav>
+  <span class="btn btn-light na" aria-disabled="true">Book now</span>
+</div></div>
+<main id="top">
+<section class="hero" style="position:relative"><span class="arc" aria-hidden="true"></span>
+  <div class="watermark" aria-hidden="true"><span>SAMPLE</span></div>
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">{{SPECIALTY}} · {{CITY}}</p>
+      <h1>{{DOCTOR_NAME}}</h1>
+      <!-- 2+ doctors: <h1>{{SITE_NAME}}</h1> -->
+      <p class="role">{{QUALIFICATION}} · {{SPECIALTY}}, {{CITY}}</p>
+      <p class="lead">Now open for private video consultations, right here on this website. No third-party apps, no travel.</p>
+      <div class="cta"><span class="btn btn-light na" aria-disabled="true">Book a consultation<small>Available after confirmation</small></span><a class="btn btn-line" href="#about">About the doctor</a></div>
+    </div>
+    <div class="portrait"><span class="ring" aria-hidden="true"></span>
+      <div class="disc"><img src="doctor1.jpg" alt="{{DOCTOR_NAME}}"><!-- no suitable photo: <span class="initials">{{INITIALS}}</span> --></div>
+      <div class="badge"><strong>₹{{FEE}}</strong><span>online<br>consultation</span></div>
+    </div>
+  </div>
+</section>
+<div class="wrap band"><div class="band-in">
+  <h3>Gentle medicine, <span>clear advice.</span></h3>
+  <div class="stat"><strong>Online</strong><small>Private video consultations</small></div><div class="stat"><strong>₹{{FEE}}</strong><small>Online consultation</small></div><div class="stat"><strong>{{LANG_COUNT}}</strong><small>Languages: {{LANGUAGES}}</small></div>
+</div></div>
+<section id="about"><div class="wrap statement rv">
+  <h2>A doctor who explains your health in simple words, and takes the time to listen.</h2>
+  <div><p>{{ABOUT}}</p></div>
+</div></section>
+<section class="exp" id="experience"><div class="wrap exp-grid">
+  <div><p class="eyebrow">Credentials</p><h2 style="margin-top:12px">Training and practice</h2>
+    <div class="creds"><div class="cred rv"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 10L12 5 2 10l10 5 10-5z"></path><path d="M6 12v5c3 2 9 2 12 0v-5"></path></svg><div><b>{{QUALIFICATION}}</b><span>{{SPECIALTY}}</span></div></div><div class="cred rv"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M10 21v-6h4v6"></path></svg><div><b>{{CLINIC_NAME}}</b><span>{{CITY}}</span></div></div><div class="cred rv"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"></path></svg><div><b>Languages</b><span>{{LANGUAGES}}</span></div></div><div class="cred rv"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="9" r="6"></circle><path d="M8.5 14L7 22l5-3 5 3-1.5-8"></path></svg><div><b>Registration</b><span>Reg. No. {{REG}}</span></div></div></div>
+  </div>
+  <div><div class="timeline"><div class="tl rv"><span class="yr">Qualification</span><div><b>{{QUALIFICATION}}</b><p>{{SPECIALTY}}</p></div></div><div class="tl rv"><span class="yr">Practice</span><div><b>{{CLINIC_NAME}}</b><p>{{CITY}}</p></div></div><div class="tl rv"><span class="yr">Online</span><div><b>Online clinic</b><p>Private video consultations inside this website.</p></div></div></div></div>
+</div></section>
+<!-- ===== 2+ DOCTORS ONLY: "Our doctors" (one .doc-card per doctor; delete for one doctor) ===== -->
+<section id="doctors"><div class="wrap">
+  <div class="book-head rv"><div><p class="eyebrow">Our doctors</p><h2 style="margin-top:12px">Choose your doctor</h2><p>Every doctor consults privately by video on this website.</p></div></div>
+  <div class="docs">
+    <!-- DOCTOR CARD START -->
+    <article class="doc-card rv"><img src="doctor1.jpg" alt="{{DOCTOR_NAME}}" loading="lazy"><!-- or <span class="initials doc-ini">{{INITIALS}}</span> --><div><h3>{{DOCTOR_NAME}}</h3><p class="dt">{{QUALIFICATION}} · {{SPECIALTY}}</p><p class="dl">Reg. No. {{REG}} · {{LANGUAGES}}</p><p><b>Online consultation · ₹{{FEE}}</b></p><span class="btn btn-solid na" aria-disabled="true">Available after confirmation</span></div></article>
+    <!-- DOCTOR CARD END -->
+  </div>
+</div></section>
+<section id="book"><div class="wrap">
+  <div class="book-head rv">
+    <div><p class="eyebrow">Online consultations</p><h2 style="margin-top:12px">Book a video consultation</h2><p>Consult privately by video. Choose your consultation, pay securely online, then pick your time.</p></div>
+    <span class="btn btn-solid na" aria-disabled="true">Start booking<small>Available after confirmation</small></span>
+  </div>
+  <div class="types"><article class="type rv feature">
+    <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="14" height="12" rx="2"></rect><path d="M16 10l6-3v10l-6-3"></path></svg></span>
+    <h3>Online consultation</h3><div class="meta"><span>Video call</span><span>₹{{FEE}}</span></div>
+    <p>A private one-to-one consultation over video, right here on this website.</p><span class="go na">Available after confirmation</span></article></div>
+  <div class="steps">
+    <div class="step rv"><b>Choose a consultation</b><p>Pick the consultation that suits you.</p></div>
+    <div class="step rv"><b>Pay online</b><p>Pay the online consultation fee securely.</p></div>
+    <div class="step rv"><b>Pick your time</b><p>Choose a slot from the doctor's live calendar.</p></div>
+    <div class="step rv"><b>Join the call</b><p>The video call opens on this website. No app to install.</p></div>
+  </div>
+</div></section>
+<section class="circle-sec"><div class="wrap"><div class="circle"><div>
+  <p class="eyebrow" style="color:var(--sky)">Consult from anywhere</p>
+  <h2>The same careful consultation, wherever you are.</h2><p>Consult without travelling. The video call happens privately inside this website, with no third-party app needed.</p>
+  <div class="ticks"><span>Private video room</span><span>Secure online payment</span><span>Advice after the call</span></div>
+  <span class="btn btn-light na" aria-disabled="true">Book a consultation<small>Available after confirmation</small></span>
+</div></div></div></section>
+<section id="faq" style="padding-top:20px"><div class="wrap faq-grid">
+  <div><p class="eyebrow">Questions</p><h2 style="margin-top:12px">Before you book</h2></div>
+  <div><details class="rv"><summary>Do I need to install an app?</summary><p>No. The consultation opens in your browser on this website. Chrome or Safari on a phone or laptop works best.</p></details><details class="rv"><summary>How do I receive the consultation link?</summary><p>After you pay and pick your time, your booking confirmation includes the link to the consultation room.</p></details><details class="rv"><summary>Can I consult from outside India?</summary><p>Yes. Book the same way from anywhere.</p></details><details class="rv"><summary>Is this for emergencies?</summary><p>No. In an emergency, go to the nearest hospital.</p></details></div>
+</div></section>
+</main>
+<footer id="contact"><div class="wrap">
+  <div class="foot rv">
+    <div><h3>Booking and enquiries</h3><p><a href="tel:{{PHONE}}">{{PHONE}}</a><br><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></p><p style="margin-top:8px">{{TIMINGS}}</p></div>
+    <div><h3>Clinic</h3><p>{{CLINIC_NAME}}<br>{{ADDRESS}}</p></div>
+    <div></div>
+  </div>
+  <div class="legal"><span>© {{YEAR}} {{SITE_NAME}} · <span class="dc-sample-foot">Developed by <a href="https://arshees.com/dotcom/">DotCom by Arshees</a></span></span><span>Online consultations are not for medical emergencies.</span></div>
+</div></footer>
+</div>
+</body>
+</html>
