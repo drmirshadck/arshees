@@ -1,0 +1,68 @@
+name: DotCom by Arshees – voice (Google TTS)
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Output file name (no extension), e.g. 2026-11-18-ml"
+        required: true
+      lang:
+        description: "Language code, e.g. ml-IN or en-IN"
+        required: true
+      voice:
+        description: "Google voice name, e.g. ml-IN-Wavenet-B"
+        required: true
+      text:
+        description: "Text to speak (plain text or SSML starting with <speak>)"
+        required: true
+      rate:
+        description: "Speaking rate (0.25–4.0)"
+        required: false
+        default: "1.0"
+permissions:
+  contents: write
+concurrency:
+  group: tts
+  cancel-in-progress: false
+jobs:
+  speak:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: tts-audio
+        continue-on-error: true
+      - name: Prepare branch
+        run: |
+          if [ ! -d .git ] || [ "$(git rev-parse --abbrev-ref HEAD 2>/dev/null)" != "tts-audio" ]; then
+            rm -rf ./* .git 2>/dev/null || true
+            git init -q && git checkout -q -b tts-audio
+            git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          fi
+      - name: Synthesize
+        env:
+          KEY: ${{ secrets.GOOGLE_TTS_KEY }}
+          TEXT: ${{ inputs.text }}
+          LANG_CODE: ${{ inputs.lang }}
+          VOICE: ${{ inputs.voice }}
+          RATE: ${{ inputs.rate }}
+          NAME: ${{ inputs.name }}
+        run: |
+          set -e
+          test -n "$KEY" || { echo "GOOGLE_TTS_KEY secret missing"; exit 1; }
+          case "$NAME" in *[!A-Za-z0-9._-]*|"") echo "bad name"; exit 1;; esac
+          if printf '%s' "$TEXT" | grep -q '^<speak>'; then INPUT=$(jq -n --arg t "$TEXT" '{ssml:$t}'); else INPUT=$(jq -n --arg t "$TEXT" '{text:$t}'); fi
+          BODY=$(jq -n --argjson input "$INPUT" --arg l "$LANG_CODE" --arg v "$VOICE" --arg r "$RATE" '{input:$input,voice:{languageCode:$l,name:$v},audioConfig:{audioEncoding:"MP3",speakingRate:($r|tonumber),sampleRateHertz:44100}}')
+          curl -sS -f -X POST -H "Content-Type: application/json" -H "X-Goog-Api-Key: $KEY" \
+            "https://texttospeech.googleapis.com/v1/text:synthesize" -d "$BODY" -o resp.json || { cat resp.json 2>/dev/null | head -c 500; exit 1; }
+          mkdir -p tts
+          jq -r .audioContent resp.json | base64 -d > "tts/$NAME.mp3"
+          rm resp.json
+          ls -la tts
+      - name: Commit audio
+        env:
+          NAME: ${{ inputs.name }}
+        run: |
+          git config user.name "DotCom by Arshees bot"
+          git config user.email "godigital@arshees.com"
+          git remote set-url origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git add tts && git commit -qm "voice $NAME" && git push -q origin tts-audio
