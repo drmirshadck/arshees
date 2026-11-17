@@ -202,7 +202,7 @@ function viewHome() {
     <div class="kpi"><b>${pending.length}</b><span>Document${pending.length === 1 ? '' : 's'} to sign</span></div>
     <div class="kpi"><b>${(d.payments || []).length}</b><span>Payment${(d.payments || []).length === 1 ? '' : 's'} received</span></div>
   </div>
-  ${pending.length || bal.length ? `<h3>To do</h3><div class="card">${pending.map(x => `<div class="li"><div class="m"><b>Sign ${esc(x.title || x.no)}</b><small>${esc(x.no)} · ${fmtD(x.date)}</small></div><a class="btn gold" href="${esc(x.signLink)}" target="_blank" rel="noopener">Read & sign</a></div>`).join('')}${bal.length ? `<div class="li"><div class="m"><b>Pay ${bal.map(b => money(b.amt, b.cur)).join(' + ')}</b><small>By UPI, in a few taps</small></div><button class="btn gold" data-tab="pay">Pay now</button></div>` : ''}</div>` : ''}
+  ${pending.length || bal.length ? `<h3>To do</h3><div class="card">${pending.map(x => `<div class="li"><div class="m"><b>Sign ${esc(x.title || x.no)}</b><small>${esc(x.no)} · ${fmtD(x.date)}</small></div><a class="btn gold" href="${esc(x.signLink)}" target="_blank" rel="noopener">Read & sign</a></div>`).join('')}${bal.length && !(ONB() && ['accepted','handover'].includes(ONB().stage)) ? `<div class="li"><div class="m"><b>Pay ${bal.map(b => money(b.amt, b.cur)).join(' + ')}</b><small>Secure online payment</small></div><button class="btn gold" data-tab="pay">Pay now</button></div>` : ''}</div>` : ''}
   <h3>Your website${(d.sites || []).length > 1 ? 's' : ''}</h3>
   ${(d.sites || []).length ? (d.sites).map(s => `<div class="card"><div class="row"><b style="flex:1">${esc(s.name)}</b>${chip(s.status)}</div>
     ${s.liveUrl ? `<div style="margin-top:4px"><a href="${esc(/^https?:/i.test(s.liveUrl) ? s.liveUrl : 'https://' + s.liveUrl)}" target="_blank" rel="noopener">${esc(s.liveUrl)}</a></div>` : ''}
@@ -220,21 +220,12 @@ function viewDocs() {
 }
 function qrSVG(text, px) { try { const q = qrcode(0, 'M'); q.addData(text); q.make(); const n = q.getModuleCount(), m = 3, sz = n + m * 2; let d = ''; for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) if (q.isDark(y, x)) d += `M${x + m},${y + m}h1v1h-1z`; return `<svg viewBox="0 0 ${sz} ${sz}" width="${px}" height="${px}" shape-rendering="crispEdges" role="img" aria-label="UPI payment QR code"><rect width="${sz}" height="${sz}" fill="#fff"/><path d="${d}" fill="#000"/></svg>`; } catch (e) { return ''; } }
 function viewPay() {
-  const pay = D().pay || [], sel = S.payIx != null && pay[S.payIx] ? S.payIx : 0, p = pay[sel];
-  const isPhone = /Android|iPhone|iPad/i.test(navigator.userAgent);
+  const o = ONB(), bal = (D().balance || []).filter(b => +b.amt > 0);
+  if (o && o.stage === 'accepted' && o.payOnline) return payBlock(o, o.amount, '', '<h2>Pay</h2>');
+  if (o && o.stage === 'handover' && o.payOnline) return payBlock(o, o.balance, '', '<h2>Pay</h2>');
   return `<h2>Pay</h2>
-  ${p ? `${pay.length > 1 ? `<label class="f"><span>What are you paying for?</span><select id="paySel">${pay.map((x, i) => `<option value="${i}" ${i === sel ? 'selected' : ''}>${esc(x.label)} — ${money(x.amt, 'INR')}</option>`).join('')}</select></label>` : `<p class="lead">${esc(p.label)}</p>`}
-  <div class="card" style="text-align:center"><div class="amt">${money(p.amt, 'INR')}</div><div style="font-size:13px;color:var(--mute)">to ${esc(p.name)} · ${esc(p.upi)}</div>
-    <div class="qr">${qrSVG(p.link, 220)}</div>
-    <p style="font-size:14px;margin:0 0 12px">${isPhone ? 'Tap the button to open your UPI app (GPay, PhonePe, Paytm…), or scan the code from another phone.' : 'Scan this code with GPay, PhonePe, Paytm or any UPI app.'}</p>
-    ${isPhone ? `<a class="btn block" href="${esc(p.link)}">Pay now with UPI</a>` : ''}
-    <button class="btn ghost block" style="margin-top:8px" data-copyupi="${esc(p.upi)}">Copy UPI ID</button></div>` : `<div class="card" style="color:var(--mute)">Nothing to pay right now. 🎉</div>`}
-  <h3>Already paid? Send us the screenshot</h3>
-  <form class="card" id="fPay">
-    <label class="f"><span>Amount paid</span><input id="pAmt" type="number" step="any" inputmode="decimal" value="${p ? esc(p.amt) : ''}" required></label>
-    <label class="f"><span>UPI reference / UTR (optional)</span><input id="pRef" placeholder="12-digit number on the receipt"></label>
-    <label class="f"><span>Payment screenshot</span><input id="pFile" type="file" accept="image/*,application/pdf" required></label>
-    <button class="btn block" id="bPay">Send screenshot</button><div class="err" id="err"></div></form>`;
+  ${bal.length ? `<div class="card" style="text-align:center"><div class="amt">${bal.map(b => money(b.amt, b.cur)).join(' + ')}</div>
+    <p style="margin:6px 0 0;color:var(--mute)">We'll send you a secure online payment link (UPI, cards, netbanking by Razorpay). If you need help, contact <a href="mailto:support@arshees.com">support@arshees.com</a>.</p></div>` : `<div class="card" style="color:var(--mute)">Nothing to pay right now. 🎉</div>`}`;
 }
 const DETAIL_FIELDS = [['name','Full name'],['business','Clinic / business name'],['qualification','Qualifications (e.g. BHMS, MD)'],['registration','Registration number'],['phone','Phone / WhatsApp'],['email','Email for website enquiries'],['address','Clinic address','ta'],['timings','Consultation timings','ta'],['fee','Consultation fee'],['languages','Languages you speak'],['services','Services / treatments you offer','ta'],['about','About you (a few lines for the website)','ta'],['instagram','Instagram'],['facebook','Facebook'],['other','Anything else we should know','ta']];
 function viewDetails() {
