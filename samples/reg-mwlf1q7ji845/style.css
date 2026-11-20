@@ -286,3 +286,4 @@ body{padding-top:34px}
 .na small{display:block;font-size:.72em;font-weight:500;opacity:.8;letter-spacing:0;text-transform:none}
 .initials{display:flex;align-items:center;justify-content:center;width:100%;height:100%;font:700 clamp(28px,6vw,56px)/1 system-ui,sans-serif;letter-spacing:.04em;color:#fff;background:linear-gradient(135deg,#7a8a99,#3d4b59)}
 .dc-sample-foot a{text-decoration:underline}
+@media (max-width:560px){.sample-banner{white-space:normal;font-size:10.5px;letter-spacing:0;line-height:1.25}}
