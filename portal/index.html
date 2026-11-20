@@ -63,6 +63,20 @@ input:focus,select:focus,textarea:focus{outline:2px solid #e9c9d6;border-color:v
 .ok{background:#eaf6ee;border:1px solid #cfe8d7;border-radius:12px;padding:12px 14px;font-size:14px;color:#1f5c38}
 .err{color:var(--bad);font-size:14px;margin-top:8px;min-height:20px}
 .login{max-width:420px;margin:30px auto}
+#intro{max-width:880px;margin:22px auto 0;padding:0 16px}
+.iv{position:relative;border-radius:18px;overflow:hidden;background:#2a0a18;box-shadow:0 14px 40px rgba(107,30,58,.22);aspect-ratio:16/9}
+.iv video{display:block;width:100%;height:100%;object-fit:cover}
+.iv-sound,.iv-replay{position:absolute;top:12px;right:12px;background:rgba(20,6,12,.72);color:#fff;border:0;border-radius:999px;padding:8px 14px;font:600 13px Inter,sans-serif;cursor:pointer}
+.iv-replay{top:auto;bottom:12px;right:12px}
+.iv-end{position:absolute;inset:0}
+.iv-btn{position:absolute;top:66.7%;width:17.7%;height:8.9%;transform:translate(-50%,-50%);border-radius:999px;font:700 clamp(12px,2vw,20px) Inter,sans-serif;cursor:pointer}
+.iv-btn{background:transparent;border:0;color:transparent;box-shadow:0 0 0 0 rgba(201,162,74,.6);animation:ivpulse 1.8s ease-out .6s 3}
+.iv-btn.reg{left:40.1%}
+.iv-btn.iv-log{left:59.9%}
+.iv-btn:hover,.iv-btn:focus-visible{background:rgba(255,255,255,.12);outline:none}
+@keyframes ivpulse{0%{box-shadow:0 0 0 0 rgba(201,162,74,.6)}100%{box-shadow:0 0 0 18px rgba(201,162,74,0)}}
+@keyframes ivpop{from{transform:translate(-50%,-50%) scale(.8);opacity:0}to{transform:translate(-50%,-50%) scale(1);opacity:1}}
+.iv-cap{text-align:center;color:var(--mute);font-size:13px;margin:8px 0 0}
 .seal{display:flex;justify-content:center;margin-bottom:14px}
 .qr{display:flex;justify-content:center;margin:12px 0}
 .qr svg{background:#fff;border-radius:12px;border:1px solid var(--line);padding:6px}
@@ -118,6 +132,18 @@ footer{text-align:center;color:var(--mute);font-size:12.5px;padding:10px 18px 30
   </div>
   <nav id="nav" hidden></nav>
 </header>
+<section id="intro" hidden>
+  <div class="iv">
+    <video id="introVid" src="intro.mp4" poster="intro-poster.jpg" muted playsinline preload="metadata"></video>
+    <button class="iv-sound" id="ivSound" type="button" aria-label="Turn sound on">&#128263; Tap for sound</button>
+    <button class="iv-replay" id="ivReplay" type="button" hidden>&#8635; Watch again</button>
+    <div class="iv-end" id="ivEnd" hidden>
+      <button type="button" class="iv-btn reg" data-act="register">Register</button>
+      <button type="button" class="iv-btn iv-log" data-act="ivlogin">Log in</button>
+    </div>
+  </div>
+  <p class="iv-cap">Doctor, see what DotCom by Arshees can do for your clinic — 1 minute</p>
+</section>
 <main id="app"></main>
 <footer>Need help? <a href="mailto:support@arshees.com">support@arshees.com</a> · +971 58 657 6586</footer>
 <script src="qrcode.js"></script>
@@ -492,9 +518,28 @@ function render() {
   else { if (!TABS_GET().some(t => t[0] === S.tab)) S.tab = 'home'; const ok = S.msg[S.tab] ? `<div class="ok" style="margin-bottom:14px">${S.msg[S.tab]}</div>` : '';
     h = ok + ({ home:() => (ONB() && ONB().stage !== 'live' && ONB().stage !== 'building' ? viewOnboard() : '') + (onboarding() ? '' : viewHome()), updates:viewUpdates, docs:viewDocs, pay:viewPay, details:viewDetails, support:viewSupport }[S.tab])(); }
   $('#app').innerHTML = h + installSheet();
+  introShow(!app && S.view === 'login' && S.step !== 'code');
   SIG.c = null; initSig();
   if (S.view === 'login' && S.step === 'email' && !API) showErr(ERR.not_ready);
 }
+/* ---------- intro video (shown above login / register) ---------- */
+function introShow(on) {
+  const sec = $('#intro'), v = $('#introVid'); if (!sec || !v) return;
+  const was = !sec.hidden; sec.hidden = !on;
+  if (!on) { try { v.pause(); } catch (e) {} return; }
+  if (!was && !introShow.done) { introShow.done = true; const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+}
+function goForm() { setTimeout(() => { const f = $('#app .login'); if (f) f.scrollIntoView({ behavior:'smooth', block:'start' }); const i = $('#rName') || $('#email'); if (i) i.focus({ preventScroll:true }); }, 60); }
+(function initIntro() {
+  const v = $('#introVid'); if (!v) return;
+  const snd = $('#ivSound'), end = $('#ivEnd'), rep = $('#ivReplay');
+  const soundOn = () => { v.muted = false; snd.hidden = true; if (v.ended || v.paused) { end.hidden = true; rep.hidden = true; if (v.ended) v.currentTime = 0; v.play().catch(() => {}); } };
+  snd.addEventListener('click', e => { e.stopPropagation(); soundOn(); });
+  v.addEventListener('click', () => { if (v.muted) soundOn(); else if (v.paused) v.play().catch(() => {}); else v.pause(); });
+  v.addEventListener('ended', () => { end.hidden = false; rep.hidden = false; snd.hidden = true; });
+  v.addEventListener('play', () => { end.hidden = true; rep.hidden = true; });
+  rep.addEventListener('click', e => { e.stopPropagation(); v.currentTime = 0; v.muted = false; v.play().catch(() => {}); });
+})();
 function showErr(m) { const e = $('#err'); if (e) e.textContent = m || ''; }
 function setBusy(sel, on) { const b = $(sel); if (!b) return; b.disabled = on; if (on) { b.dataset.t = b.innerHTML; b.innerHTML = '<span class="spin"></span>'; } else if (b.dataset.t) b.innerHTML = b.dataset.t; }
 async function logout(expired) { try { if (pushReady) (await pushReady).logout(); } catch (e) {} const t = store.get(); store.set(''); S.data = null; S.view = 'login'; S.step = 'email'; S.msg = {}; render(); if (expired) showErr(ERR.logged_out); if (t && !expired) try { await call('logout', { token:t }); } catch (e) {} }
@@ -520,7 +565,8 @@ document.addEventListener('click', async e => {
   if (d.tab) { S.tab = d.tab; Object.keys(S.msg).forEach(k => { if (k !== 'draft') delete S.msg[k]; }); render(); scrollTo(0, 0); }
   else if (d.pay) { S.payIx = +d.pay; S.tab = 'pay'; render(); scrollTo(0, 0); }
   else if (d.act === 'change') { S.step = 'email'; render(); }
-  else if (d.act === 'register') { S.step = 'register'; render(); }
+  else if (d.act === 'register') { S.step = 'register'; render(); goForm(); }
+  else if (d.act === 'ivlogin') { S.step = 'email'; render(); goForm(); }
   else if (d.act === 'clearsig') { if (SIG.x) { SIG.x.clearRect(0, 0, SIG.c.width, SIG.c.height); SIG.dirty = false; } }
   else if (d.act === 'install') { if (installEvt) { const ev = installEvt; ev.prompt(); try { const c = await ev.userChoice; if (c && c.outcome === 'accepted') S.installed = true; else { S.showInstall = false; lsSet(KEY + ':installLater', Date.now()); } } catch (_) {} installEvt = null; render(); } }
   else if (d.act === 'later') { S.showInstall = false; if (!S.installed) lsSet(KEY + ':installLater', Date.now()); render(); }
