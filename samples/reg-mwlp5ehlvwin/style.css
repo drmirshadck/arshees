@@ -324,3 +324,17 @@ body{padding-top:34px}
 /* this sample: long clinic name in the banner, initials card */
 @media (max-width:600px){.sample-banner{display:block;white-space:normal;font-size:10px;letter-spacing:0;line-height:1.15;padding:5px 10px}}
 .doc-card .doc-ini{width:96px;height:96px;font-size:28px;flex:none}
+
+/* this sample: two doctors in the hero */
+.hero h1.duo-h{font-size:clamp(2.3rem,5vw,4rem);line-height:1.08}
+.hero h1.duo-h .amp{color:var(--sky);font-weight:500}
+.duo{display:flex;gap:28px;justify-content:center;align-items:flex-start;animation:pop 1s .3s cubic-bezier(.2,.8,.2,1) both}
+.duo-p{position:relative;width:min(240px,46%);margin:0;text-align:center}
+.duo-p .disc{position:relative;aspect-ratio:1;border-radius:50%;overflow:hidden;background:#5b5f66;box-shadow:0 24px 48px rgba(0,0,0,.35)}
+.duo-p .disc img,.duo-p .disc svg{width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block}
+.duo-p .ring{position:absolute;left:-6%;right:-6%;top:-6%;aspect-ratio:1;border-radius:50%;border:2px dashed rgba(159,227,220,.35);animation:spin 40s linear infinite}
+.duo-p figcaption{margin-top:20px;color:#fff;font-family:var(--display);font-weight:600;font-size:1.02rem;line-height:1.25}
+.duo-p:nth-child(2){margin-top:56px}
+@media (max-width:900px){.duo{gap:18px}.duo-p:nth-child(2){margin-top:28px}.duo-p figcaption{font-size:.9rem;margin-top:14px}}
+.doc-card .doc-sil{width:96px;height:96px;border-radius:50%;overflow:hidden;flex:none;display:block}
+.doc-card .doc-sil svg{width:100%;height:100%;display:block}
